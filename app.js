@@ -939,9 +939,8 @@ function updateNavigationButtons() {
         }
     }
     
-    prevBtn.disabled = currentModuleIndex === 0 && currentIndex === 0;
-    nextBtn.disabled = currentModuleIndex === JAVA_CURRICULUM.modules.length - 1 && 
-                       currentIndex === JAVA_CURRICULUM.modules[currentModuleIndex]?.lessons.length - 1;
+    prevBtn.disabled = false;
+    nextBtn.disabled = false;
 }
 
 // Event Listeners
@@ -1731,24 +1730,54 @@ function formatMarkdown(content) {
 
 // Navigation
 function previousLesson() {
-    const currentModule = JAVA_CURRICULUM.modules.find(m => 
+    const allModules = JAVA_CURRICULUM.modules;
+    const currentModuleIndex = allModules.findIndex(m => 
         m.lessons.some(l => l.id === state.currentLesson?.id)
     );
+    const currentModule = allModules[currentModuleIndex];
     const currentIndex = currentModule?.lessons.findIndex(l => l.id === state.currentLesson?.id);
     
     if (currentIndex > 0) {
         loadLesson(currentModule.lessons[currentIndex - 1]);
+        return;
+    }
+    
+    const prevModule = allModules[currentModuleIndex - 1];
+    if (prevModule) {
+        const prevModuleHeader = document.querySelector(`.module-header[data-module-id="${prevModule.id}"]`);
+        if (prevModuleHeader) {
+            prevModuleHeader.classList.add('expanded');
+        }
+        loadLesson(prevModule.lessons[prevModule.lessons.length - 1]);
     }
 }
 
 function nextLesson() {
-    const currentModule = JAVA_CURRICULUM.modules.find(m => 
+    const allModules = JAVA_CURRICULUM.modules;
+    const currentModuleIndex = allModules.findIndex(m => 
         m.lessons.some(l => l.id === state.currentLesson?.id)
     );
+    const currentModule = allModules[currentModuleIndex];
     const currentIndex = currentModule?.lessons.findIndex(l => l.id === state.currentLesson?.id);
     
     if (currentIndex < currentModule.lessons.length - 1) {
         loadLesson(currentModule.lessons[currentIndex + 1]);
+        return;
+    }
+    
+    const nextModule = allModules[currentModuleIndex + 1];
+    if (nextModule) {
+        const nextModuleHeader = document.querySelector(`[data-module-header-id="${nextModule.id}"]`);
+        if (nextModuleHeader) {
+            nextModuleHeader.classList.add('expanded');
+        }
+        const nextModuleInSidebar = document.querySelector(`.module-header[data-module-id="${nextModule.id}"]`);
+        if (nextModuleInSidebar) {
+            nextModuleInSidebar.classList.add('expanded');
+        }
+        loadLesson(nextModule.lessons[0]);
+    } else {
+        showToast('Congratulations! You completed all lessons!', 'success');
     }
 }
 
