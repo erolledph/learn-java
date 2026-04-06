@@ -888,6 +888,36 @@ function setupEventListeners() {
         }
     });
     
+    // Mobile menu button
+    safeAddEvent('mobileMenuBtn', 'click', () => {
+        const sidebar = document.getElementById('sidebarLeft');
+        const overlay = document.getElementById('sidebarOverlay');
+        if (sidebar) {
+            sidebar.classList.toggle('open');
+            if (overlay) overlay.classList.toggle('active');
+        }
+    });
+    
+    // Close sidebar when clicking overlay
+    safeAddEvent('sidebarOverlay', 'click', () => {
+        const sidebar = document.getElementById('sidebarLeft');
+        const overlay = document.getElementById('sidebarOverlay');
+        if (sidebar) sidebar.classList.remove('open');
+        if (overlay) overlay.classList.remove('active');
+    });
+    
+    // Close sidebar when clicking lesson item on mobile
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('lesson-item')) {
+            if (window.innerWidth <= 768) {
+                const sidebar = document.getElementById('sidebarLeft');
+                const overlay = document.getElementById('sidebarOverlay');
+                if (sidebar) sidebar.classList.remove('open');
+                if (overlay) overlay.classList.remove('active');
+            }
+        }
+    });
+    
     // Navigation buttons
     safeAddEvent('prevLesson', 'click', previousLesson);
     safeAddEvent('nextLesson', 'click', nextLesson);

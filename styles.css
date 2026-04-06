@@ -230,6 +230,34 @@ input, textarea, select {
     height: 20px;
 }
 
+.mobile-menu-btn {
+    display: none;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.mobile-menu-btn:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.mobile-menu-btn svg {
+    width: 22px;
+    height: 22px;
+}
+
+.sidebar-overlay {
+    display: none;
+}
+
 /* ============================================
    Main Layout
    ============================================ */
@@ -2114,23 +2142,174 @@ input, textarea, select {
 /* ============================================
    Responsive
    ============================================ */
+
+/* Tablet */
 @media (max-width: 1024px) {
     .lesson-section {
         width: 40%;
-        min-width: 250px;
+        min-width: 280px;
     }
     
     .sidebar {
-        width: 240px;
+        width: 280px;
     }
     
     .floating-chat {
-        width: 340px;
-        height: 480px;
+        width: 360px;
+        height: 500px;
+    }
+    
+    .header {
+        padding: 0 16px;
+    }
+    
+    .logo-text {
+        font-size: 18px;
+    }
+    
+    .breadcrumb {
+        font-size: 12px;
     }
 }
 
+/* Mobile */
 @media (max-width: 768px) {
+    :root {
+        --header-height: 52px;
+        --status-height: 40px;
+    }
+    
+    body {
+        font-size: 13px;
+    }
+    
+    /* Header */
+    .header {
+        padding: 0 12px;
+        justify-content: space-between;
+    }
+    
+    .header-left {
+        gap: 8px;
+    }
+    
+    .mobile-menu-btn {
+        display: flex;
+        width: 36px;
+        height: 36px;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        color: var(--text-primary);
+        cursor: pointer;
+        padding: 0;
+        border-radius: var(--radius-sm);
+        transition: background var(--transition-fast);
+    }
+    
+    .mobile-menu-btn:hover {
+        background: var(--bg-hover);
+    }
+    
+    .mobile-menu-btn svg {
+        width: 22px;
+        height: 22px;
+    }
+    
+    .logo-icon {
+        display: none;
+    }
+    
+    .logo-text {
+        font-size: 16px;
+    }
+    
+    .header-divider {
+        display: none;
+    }
+    
+    .breadcrumb {
+        display: none;
+    }
+    
+    .ai-status {
+        display: none;
+    }
+    
+    .header-right {
+        gap: 8px;
+    }
+    
+    .header-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .header-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    /* Sidebar Overlay */
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 99;
+        opacity: 0;
+        transition: opacity var(--transition-normal);
+    }
+    
+    .sidebar-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+    
+    /* Sidebar */
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: var(--header-height);
+        bottom: 0;
+        width: 85%;
+        max-width: 320px;
+        z-index: 100;
+        transform: translateX(-100%);
+        transition: transform var(--transition-normal);
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .sidebar-progress {
+        padding: 12px 16px;
+    }
+    
+    .sidebar-section-title {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+    
+    .progress-bar {
+        height: 6px;
+    }
+    
+    .progress-stats {
+        font-size: 11px;
+    }
+    
+    .sidebar-content {
+        padding: 8px 0;
+    }
+    
+    /* Main Content */
     .content-area {
         flex-direction: column;
         min-height: 0;
@@ -2140,8 +2319,27 @@ input, textarea, select {
         width: 100% !important;
         max-width: 100%;
         min-height: 100px !important;
-        height: 20% !important;
+        height: 25vh !important;
         flex-shrink: 1;
+        border-bottom: 1px solid var(--border-primary);
+    }
+    
+    .lesson-panel {
+        padding: 12px;
+    }
+    
+    .panel-header {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
+    .lesson-panel-title {
+        font-size: 14px;
+    }
+    
+    .key-point {
+        padding: 6px 10px;
+        font-size: 11px;
     }
     
     .resize-handle-v {
@@ -2160,37 +2358,289 @@ input, textarea, select {
     
     .output-panel {
         flex-shrink: 1;
-        min-height: 50px;
-        max-height: 30%;
+        min-height: 80px;
+        max-height: 35vh;
     }
     
     .resize-handle-h {
         display: none;
     }
     
-    .sidebar {
-        position: absolute;
-        left: 0;
-        top: var(--header-height);
-        bottom: var(--status-height);
-        z-index: 100;
-        transform: translateX(-100%);
-        transition: transform var(--transition-normal);
+    /* Editor Panel Header */
+    .editor-panel .panel-header {
+        padding: 6px 10px;
     }
     
-    .sidebar.open {
-        transform: translateX(0);
+    .run-btn {
+        padding: 6px 14px;
+        font-size: 12px;
+    }
+    
+    .panel-actions {
+        gap: 6px;
+    }
+    
+    .panel-btn {
+        padding: 5px 8px;
+        font-size: 11px;
+    }
+    
+    /* Output Panel */
+    .output-content {
+        font-size: 12px;
+        padding: 10px;
+    }
+    
+    /* Floating Chat */
+    .floating-chat {
+        width: calc(100vw - 24px);
+        left: 12px;
+        right: 12px;
+        bottom: 70px;
+        height: 60vh;
+        max-height: 450px;
+        border-radius: var(--radius-xl);
+    }
+    
+    .floating-chat-header {
+        padding: 10px 14px;
+    }
+    
+    .floating-chat-header h3 {
+        font-size: 14px;
+    }
+    
+    .chat-messages {
+        padding: 10px;
+    }
+    
+    .message {
+        max-width: 85%;
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
+    .floating-chat-input {
+        padding: 10px 12px;
+    }
+    
+    .floating-chat-input textarea {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+    
+    .send-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    /* Quick Actions */
+    .quick-actions {
+        padding: 8px 10px;
+        gap: 6px;
+    }
+    
+    .quick-btn {
+        padding: 4px 10px;
+        font-size: 10px;
+    }
+    
+    /* Settings Modal */
+    .settings-modal {
+        width: calc(100vw - 24px);
+        max-width: 400px;
+        margin: 12px;
+        max-height: calc(100vh - 24px);
+    }
+    
+    .modal-body {
+        padding: 16px;
+    }
+    
+    .setting-group {
+        margin-bottom: 16px;
+    }
+    
+    .setting-group h3 {
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    
+    .setting-item {
+        margin-bottom: 12px;
+    }
+    
+    .setting-item label {
+        font-size: 12px;
+        margin-bottom: 4px;
+    }
+    
+    .setting-item small {
+        font-size: 10px;
+    }
+    
+    .theme-selector {
+        gap: 8px;
+    }
+    
+    .theme-option {
+        padding: 10px 6px;
+    }
+    
+    .theme-preview {
+        width: 40px;
+        height: 28px;
+    }
+    
+    .theme-label {
+        font-size: 10px;
+    }
+    
+    /* Welcome Modal */
+    .welcome-modal {
+        width: calc(100vw - 24px);
+        margin: 12px;
+        padding: 20px;
+    }
+    
+    .welcome-title {
+        font-size: 20px;
+    }
+    
+    .welcome-text {
+        font-size: 13px;
+    }
+    
+    /* Status Bar */
+    .status-bar {
+        font-size: 10px;
+        padding: 0 10px;
+    }
+    
+    /* Lesson Items */
+    .lesson-item {
+        padding: 10px 14px;
+    }
+    
+    .lesson-title {
+        font-size: 13px;
+    }
+    
+    .lesson-duration {
+        font-size: 10px;
+    }
+    
+    .lesson-item .lesson-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 11px;
+    }
+    
+    /* Navigation Buttons */
+    .lesson-nav {
+        padding: 8px 12px;
+        gap: 8px;
+    }
+    
+    .nav-btn {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    :root {
+        --header-height: 48px;
+    }
+    
+    .header {
+        padding: 0 10px;
+    }
+    
+    .logo-text {
+        font-size: 15px;
+    }
+    
+    .header-btn {
+        width: 34px;
+        height: 34px;
+    }
+    
+    .header-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .sidebar {
+        width: 100%;
+        max-width: 100%;
     }
     
     .floating-chat {
-        width: calc(100vw - 32px);
-        left: 16px;
-        right: 16px;
-        bottom: 90px;
+        width: calc(100vw - 16px);
+        left: 8px;
+        right: 8px;
+        bottom: 60px;
+        height: 65vh;
+        max-height: 500px;
     }
     
-    .breadcrumb {
-        display: none;
+    .settings-modal {
+        width: calc(100vw - 16px);
+        margin: 8px;
+        max-height: calc(100vh - 16px);
+    }
+    
+    .welcome-modal {
+        width: calc(100vw - 16px);
+        margin: 8px;
+        padding: 16px;
+    }
+    
+    .welcome-title {
+        font-size: 18px;
+    }
+    
+    .theme-selector {
+        flex-direction: column;
+    }
+    
+    .theme-option {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 12px;
+    }
+}
+
+/* Touch-specific improvements */
+@media (hover: none) and (pointer: coarse) {
+    .run-btn,
+    .nav-btn,
+    .panel-btn,
+    .quick-btn,
+    .theme-option,
+    .header-btn,
+    .mobile-menu-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .lesson-item {
+        min-height: 48px;
+    }
+    
+    .floating-chat-input textarea {
+        min-height: 44px;
+    }
+    
+    .send-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .CodeMirror {
+        font-size: 15px !important;
     }
 }
 
@@ -2249,7 +2699,22 @@ body.light-theme .header-btn:hover {
     color: var(--text-primary);
 }
 
-body.light-theme .sidebar,
+body.light-theme .mobile-menu-btn {
+    color: var(--text-secondary);
+}
+
+body.light-theme .mobile-menu-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+body.light-theme .sidebar-overlay {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+body.light-theme .sidebar {
+    background: var(--bg-primary);
+}
 body.light-theme .lesson-section,
 body.light-theme .lesson-panel,
 body.light-theme .output-panel,
@@ -2592,6 +3057,19 @@ body.night-theme .header-btn {
 body.night-theme .header-btn:hover {
     background: var(--bg-hover);
     color: var(--text-primary);
+}
+
+body.night-theme .mobile-menu-btn {
+    color: var(--text-secondary);
+}
+
+body.night-theme .mobile-menu-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+body.night-theme .sidebar-overlay {
+    background: rgba(0, 0, 0, 0.6);
 }
 
 body.night-theme .CodeMirror {
