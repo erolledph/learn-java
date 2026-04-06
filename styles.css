@@ -43,31 +43,6 @@
     --transition-normal: 0.25s ease;
 }
 
-/* Night/Amber Theme Variables */
-body.night-theme {
-    --bg-primary: #1a1410;
-    --bg-secondary: #0f0c08;
-    --bg-tertiary: #2d2319;
-    --bg-hover: #3d3127;
-    --bg-active: rgba(251, 191, 36, 0.1);
-    
-    --text-primary: #fef3c7;
-    --text-secondary: #fcd34d;
-    --text-muted: #b45309;
-    
-    --accent-primary: #f59e0b;
-    --accent-secondary: #d97706;
-    --accent-success: #84cc16;
-    --accent-warning: #fbbf24;
-    --accent-error: #ef4444;
-    
-    --java-orange: #f8981d;
-    --java-blue: #5382a1;
-    
-    --border-primary: #2d2319;
-    --border-secondary: #3d3127;
-}
-
 /* Reset */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -2227,11 +2202,17 @@ body.light-theme {
     --bg-secondary: #f8fafc;
     --bg-tertiary: #f1f5f9;
     --bg-hover: #e2e8f0;
-    --bg-active: rgba(99, 102, 241, 0.1);
+    --bg-active: rgba(99, 102, 241, 0.15);
     
     --text-primary: #1e293b;
     --text-secondary: #475569;
-    --text-muted: #94a3b8;
+    --text-muted: #64748b;
+    
+    --accent-primary: #4f46e5;
+    --accent-secondary: #7c3aed;
+    --accent-success: #059669;
+    --accent-warning: #d97706;
+    --accent-error: #dc2626;
     
     --border-primary: #e2e8f0;
     --border-secondary: #cbd5e1;
@@ -2239,7 +2220,33 @@ body.light-theme {
 
 body.light-theme .header {
     background: var(--bg-primary);
-    border-bottom-color: var(--border-primary);
+    border-bottom: 1px solid var(--border-primary);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+body.light-theme .logo-text {
+    color: var(--text-primary);
+}
+
+body.light-theme .logo-accent {
+    color: var(--accent-primary);
+}
+
+body.light-theme .breadcrumb {
+    color: var(--text-secondary);
+}
+
+body.light-theme .ai-status-text {
+    color: var(--accent-success);
+}
+
+body.light-theme .header-btn {
+    color: var(--text-secondary);
+}
+
+body.light-theme .header-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
 }
 
 body.light-theme .sidebar,
@@ -2261,48 +2268,45 @@ body.light-theme .editor-section {
 
 body.light-theme .editor-panel,
 body.light-theme .CodeMirror {
-    background: #f8f8f2 !important;
+    background: #ffffff !important;
 }
 
 body.light-theme .CodeMirror-gutters {
-    background: #e8e8e2 !important;
-    border-right-color: #bfbfb4 !important;
+    background: #f1f5f9 !important;
+    border-right: 1px solid #e2e8f0 !important;
 }
 
 body.light-theme .CodeMirror-linenumber {
-    color: #6272a4 !important;
+    color: #94a3b8 !important;
 }
 
 body.light-theme .CodeMirror-selected {
-    background: transparent !important;
-}
-
-body.light-theme .CodeMirror span {
-    color: #282a36 !important;
+    background: rgba(99, 102, 241, 0.1) !important;
 }
 
 body.light-theme .CodeMirror-activeline,
 body.light-theme .CodeMirror-activeline-background {
-    background: transparent !important;
+    background: rgba(99, 102, 241, 0.03) !important;
 }
 
 body.light-theme .editor-panel,
 body.light-theme .editor-section,
 body.light-theme .editor-wrapper,
 body.light-theme #codeMirrorEditor {
-    background: #f8f8f2 !important;
+    background: #ffffff !important;
 }
 
 body.light-theme .CodeMirror {
-    background: #f8f8f2 !important;
+    background: #ffffff !important;
 }
 
 body.light-theme .CodeMirror div.CodeMirror-scroller {
-    background: #f8f8f2 !important;
+    background: #ffffff !important;
 }
 
 body.light-theme .floating-chat-header {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(139, 92, 246, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.06) 0%, rgba(124, 58, 237, 0.04) 100%);
+    border-bottom: 1px solid var(--border-primary);
 }
 
 body.light-theme .message.bot-message .message-content {
@@ -2310,14 +2314,25 @@ body.light-theme .message.bot-message .message-content {
     color: var(--text-primary);
 }
 
+body.light-theme .message.user-message .message-content {
+    background: var(--accent-primary);
+    color: #ffffff;
+}
+
 body.light-theme .floating-chat-input {
     background: var(--bg-primary);
+    border-top: 1px solid var(--border-primary);
 }
 
 body.light-theme .floating-chat-input textarea {
-    background: var(--bg-secondary);
-    border-color: var(--border-primary);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
     color: var(--text-primary);
+}
+
+body.light-theme .floating-chat-input textarea:focus {
+    border-color: var(--accent-primary);
+    outline: none;
 }
 
 body.light-theme .settings-modal {
@@ -2334,6 +2349,137 @@ body.light-theme .setting-item label {
 
 body.light-theme .modal-header h2 {
     color: var(--text-primary);
+}
+
+body.light-theme .modal-header .close-modal {
+    color: var(--text-secondary);
+}
+
+body.light-theme .modal-header .close-modal:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+body.light-theme .setting-item small {
+    color: var(--text-muted);
+}
+
+body.light-theme input[type="password"],
+body.light-theme input[type="text"],
+body.light-theme select {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-secondary);
+    color: var(--text-primary);
+}
+
+body.light-theme input[type="password"]:focus,
+body.light-theme input[type="text"]:focus {
+    border-color: var(--accent-primary);
+    outline: none;
+}
+
+body.light-theme .btn-primary-full {
+    background: var(--accent-primary);
+    color: #ffffff;
+}
+
+body.light-theme .btn-primary-full:hover {
+    background: #4338ca;
+}
+
+body.light-theme .lesson-item {
+    color: var(--text-primary);
+}
+
+body.light-theme .lesson-item:hover {
+    background: var(--bg-hover);
+}
+
+body.light-theme .lesson-item.active {
+    background: var(--bg-active);
+    border-left-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+body.light-theme .lesson-duration {
+    color: var(--text-muted);
+}
+
+body.light-theme .lesson-panel-title {
+    color: var(--text-primary);
+}
+
+body.light-theme .key-point {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+}
+
+body.light-theme .key-point-icon {
+    color: var(--accent-primary);
+}
+
+body.light-theme .panel-header {
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-primary);
+    color: var(--text-primary);
+}
+
+body.light-theme .run-btn {
+    background: var(--accent-success);
+    color: #ffffff;
+}
+
+body.light-theme .run-btn:hover {
+    background: #047857;
+}
+
+body.light-theme .output-content {
+    color: var(--text-primary);
+    background: #ffffff;
+}
+
+body.light-theme .status-bar {
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-primary);
+    color: var(--text-secondary);
+}
+
+body.light-theme .resize-handle {
+    background: var(--border-secondary);
+}
+
+body.light-theme .resize-handle:hover {
+    background: var(--accent-primary);
+}
+
+body.light-theme .welcome-modal {
+    background: var(--bg-primary);
+}
+
+body.light-theme .welcome-title {
+    color: var(--text-primary);
+}
+
+body.light-theme .welcome-text {
+    color: var(--text-secondary);
+}
+
+body.light-theme .welcome-btn-primary {
+    background: var(--accent-primary);
+    color: #ffffff;
+}
+
+body.light-theme .welcome-btn-secondary {
+    color: var(--accent-primary);
+}
+
+body.light-theme .theme-option {
+    background: var(--bg-tertiary);
+    border-color: var(--border-secondary);
+}
+
+body.light-theme .theme-option.active {
+    border-color: var(--accent-primary);
 }
 
 /* Theme Selector */
@@ -2397,27 +2543,78 @@ body.light-theme .modal-header h2 {
 }
 
 /* Night Theme Overrides */
-body.night-theme .CodeMirror {
-    background: var(--bg-secondary) !important;
-    color: var(--text-primary) !important;
-}
-
-body.night-theme .CodeMirror-gutters {
-    background: var(--bg-secondary) !important;
-    border-right: 1px solid var(--border-primary) !important;
-}
-
-body.night-theme .CodeMirror-linenumber {
-    color: var(--text-muted) !important;
-}
-
-body.night-theme .CodeMirror-selected {
-    background: var(--bg-active) !important;
+body.night-theme {
+    --bg-primary: #1a1410;
+    --bg-secondary: #0f0c08;
+    --bg-tertiary: #2d2319;
+    --bg-hover: #3d3127;
+    --bg-active: rgba(251, 191, 36, 0.15);
+    
+    --text-primary: #fef3c7;
+    --text-secondary: #fcd34d;
+    --text-muted: #b45309;
+    
+    --accent-primary: #f59e0b;
+    --accent-secondary: #d97706;
+    --accent-success: #84cc16;
+    --accent-warning: #fbbf24;
+    --accent-error: #f87171;
+    
+    --border-primary: #3d3127;
+    --border-secondary: #4d4137;
 }
 
 body.night-theme .header {
     background: var(--bg-primary);
-    border-bottom-color: var(--border-primary);
+    border-bottom: 1px solid var(--border-primary);
+}
+
+body.night-theme .logo-text {
+    color: var(--text-primary);
+}
+
+body.night-theme .logo-accent {
+    color: var(--accent-primary);
+}
+
+body.night-theme .breadcrumb {
+    color: var(--text-secondary);
+}
+
+body.night-theme .ai-status-text {
+    color: var(--accent-success);
+}
+
+body.night-theme .header-btn {
+    color: var(--text-secondary);
+}
+
+body.night-theme .header-btn:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+body.night-theme .CodeMirror {
+    background: #0d0a08 !important;
+    color: #fef3c7 !important;
+}
+
+body.night-theme .CodeMirror-gutters {
+    background: #0d0a08 !important;
+    border-right: 1px solid var(--border-primary) !important;
+}
+
+body.night-theme .CodeMirror-linenumber {
+    color: #b45309 !important;
+}
+
+body.night-theme .CodeMirror-selected {
+    background: rgba(251, 191, 36, 0.2) !important;
+}
+
+body.night-theme .CodeMirror-activeline,
+body.night-theme .CodeMirror-activeline-background {
+    background: rgba(251, 191, 36, 0.05) !important;
 }
 
 body.night-theme .sidebar,
@@ -2428,6 +2625,10 @@ body.night-theme .output-panel {
     border-color: var(--border-primary);
 }
 
+body.night-theme .lesson-item {
+    color: var(--text-primary);
+}
+
 body.night-theme .lesson-item:hover {
     background: var(--bg-hover);
 }
@@ -2435,6 +2636,24 @@ body.night-theme .lesson-item:hover {
 body.night-theme .lesson-item.active {
     background: var(--bg-active);
     border-left-color: var(--accent-primary);
+    color: var(--text-secondary);
+}
+
+body.night-theme .lesson-duration {
+    color: var(--text-muted);
+}
+
+body.night-theme .lesson-panel-title {
+    color: var(--text-primary);
+}
+
+body.night-theme .key-point {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+body.night-theme .key-point-icon {
+    color: var(--accent-primary);
 }
 
 body.night-theme .floating-chat {
@@ -2443,7 +2662,8 @@ body.night-theme .floating-chat {
 }
 
 body.night-theme .floating-chat-header {
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(217, 119, 6, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.08) 100%);
+    border-bottom: 1px solid var(--border-primary);
 }
 
 body.night-theme .message.bot-message .message-content {
@@ -2451,14 +2671,25 @@ body.night-theme .message.bot-message .message-content {
     color: var(--text-primary);
 }
 
+body.night-theme .message.user-message .message-content {
+    background: var(--accent-primary);
+    color: #0f0c08;
+}
+
 body.night-theme .floating-chat-input {
     background: var(--bg-primary);
+    border-top: 1px solid var(--border-primary);
 }
 
 body.night-theme .floating-chat-input textarea {
-    background: var(--bg-secondary);
-    border-color: var(--border-primary);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
     color: var(--text-primary);
+}
+
+body.night-theme .floating-chat-input textarea:focus {
+    border-color: var(--accent-primary);
+    outline: none;
 }
 
 body.night-theme .settings-modal {
@@ -2481,6 +2712,93 @@ body.night-theme .modal-header .close-modal {
     color: var(--text-secondary);
 }
 
+body.night-theme .modal-header .close-modal:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+body.night-theme .setting-item small {
+    color: var(--text-muted);
+}
+
+body.night-theme input[type="password"],
+body.night-theme input[type="text"],
+body.night-theme select {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-secondary);
+    color: var(--text-primary);
+}
+
+body.night-theme input[type="password"]:focus,
+body.night-theme input[type="text"]:focus {
+    border-color: var(--accent-primary);
+    outline: none;
+}
+
+body.night-theme .btn-primary-full {
+    background: var(--accent-primary);
+    color: #0f0c08;
+}
+
+body.night-theme .btn-primary-full:hover {
+    background: #d97706;
+}
+
+body.night-theme .panel-header {
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-primary);
+    color: var(--text-primary);
+}
+
+body.night-theme .run-btn {
+    background: var(--accent-success);
+    color: #0f0c08;
+}
+
+body.night-theme .run-btn:hover {
+    background: #65a30d;
+}
+
+body.night-theme .output-content {
+    color: var(--text-primary);
+    background: #0d0a08;
+}
+
+body.night-theme .status-bar {
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border-primary);
+    color: var(--text-secondary);
+}
+
+body.night-theme .resize-handle {
+    background: var(--border-secondary);
+}
+
+body.night-theme .resize-handle:hover {
+    background: var(--accent-primary);
+}
+
+body.night-theme .welcome-modal {
+    background: var(--bg-primary);
+}
+
+body.night-theme .welcome-title {
+    color: var(--text-primary);
+}
+
+body.night-theme .welcome-text {
+    color: var(--text-secondary);
+}
+
+body.night-theme .welcome-btn-primary {
+    background: var(--accent-primary);
+    color: #0f0c08;
+}
+
+body.night-theme .welcome-btn-secondary {
+    color: var(--accent-primary);
+}
+
 body.night-theme .theme-option {
     background: var(--bg-tertiary);
     border-color: var(--border-primary);
@@ -2491,7 +2809,7 @@ body.night-theme .theme-option.active {
 }
 
 /* ============================================
-   SYNTAX HIGHLIGHTING - Dracula Theme
+   SYNTAX HIGHLIGHTING - Dark Theme (Default)
    ============================================ */
 .CodeMirror .cm-keyword { color: #ff79c6 !important; font-weight: bold !important; }
 .CodeMirror .cm-atom { color: #ffb86c !important; }
@@ -2529,7 +2847,96 @@ body.night-theme .theme-option.active {
 .CodeMirror .cm-strikethrough { text-decoration: line-through !important; }
 .CodeMirror .cm-header { color: #ff79c6 !important; }
 
-/* Default text color for unstyled elements */
 .CodeMirror pre, .CodeMirror pre *, .CodeMirror span { 
     color: #f8f8f2 !important; 
+}
+
+/* ============================================
+   SYNTAX HIGHLIGHTING - Light Theme
+   ============================================ */
+body.light-theme .CodeMirror .cm-keyword { color: #7c3aed !important; font-weight: bold !important; }
+body.light-theme .CodeMirror .cm-atom { color: #b45309 !important; }
+body.light-theme .CodeMirror .cm-string { color: #059669 !important; }
+body.light-theme .CodeMirror .cm-string-2 { color: #059669 !important; }
+body.light-theme .CodeMirror .cm-def { color: #2563eb !important; }
+body.light-theme .CodeMirror .cm-variable { color: #1e293b !important; }
+body.light-theme .CodeMirror .cm-variable-2 { color: #1e293b !important; }
+body.light-theme .CodeMirror .cm-variable-3 { color: #7c3aed !important; }
+body.light-theme .CodeMirror .cm-property { color: #0891b2 !important; }
+body.light-theme .CodeMirror .cm-operator { color: #7c3aed !important; }
+body.light-theme .CodeMirror .cm-comment { color: #94a3b8 !important; font-style: italic !important; }
+body.light-theme .CodeMirror .cm-number { color: #b45309 !important; }
+body.light-theme .CodeMirror .cm-meta { color: #d97706 !important; }
+body.light-theme .CodeMirror .cm-qualifier { color: #d97706 !important; }
+body.light-theme .CodeMirror .cm-builtin { color: #7c3aed !important; }
+body.light-theme .CodeMirror .cm-type { color: #2563eb !important; }
+body.light-theme .CodeMirror .cm-bracket { color: #b45309 !important; }
+body.light-theme .CodeMirror .cm-brace { color: #7c3aed !important; font-weight: bold !important; }
+body.light-theme .CodeMirror .cm-punctuation { color: #1e293b !important; }
+body.light-theme .CodeMirror .cm-tag { color: #dc2626 !important; }
+body.light-theme .CodeMirror .cm-attribute { color: #059669 !important; }
+body.light-theme .CodeMirror .cm-hint { color: #7c3aed !important; }
+body.light-theme .CodeMirror .cm-header { color: #dc2626 !important; }
+body.light-theme .CodeMirror .cm-link { color: #2563eb !important; }
+body.light-theme .CodeMirror .cm-url { color: #059669 !important; }
+body.light-theme .CodeMirror .cm-error { color: #dc2626 !important; }
+body.light-theme .CodeMirror .cm-special { color: #7c3aed !important; }
+body.light-theme .CodeMirror .cm-invalid { color: #dc2626 !important; }
+body.light-theme .CodeMirror .cm-quote { color: #059669 !important; }
+body.light-theme .CodeMirror .cm-process { color: #d97706 !important; }
+body.light-theme .CodeMirror .cm-entity { color: #7c3aed !important; }
+body.light-theme .CodeMirror .cm-em { font-style: italic !important; }
+body.light-theme .CodeMirror .cm-strong { font-weight: bold !important; }
+body.light-theme .CodeMirror .cm-strikethrough { text-decoration: line-through !important; }
+body.light-theme .CodeMirror .cm-header { color: #7c3aed !important; }
+
+body.light-theme .CodeMirror pre, 
+body.light-theme .CodeMirror pre *, 
+body.light-theme .CodeMirror span { 
+    color: #1e293b !important; 
+}
+
+/* ============================================
+   SYNTAX HIGHLIGHTING - Night/Amber Theme
+   ============================================ */
+body.night-theme .CodeMirror .cm-keyword { color: #fbbf24 !important; font-weight: bold !important; }
+body.night-theme .CodeMirror .cm-atom { color: #fcd34d !important; }
+body.night-theme .CodeMirror .cm-string { color: #84cc16 !important; }
+body.night-theme .CodeMirror .cm-string-2 { color: #84cc16 !important; }
+body.night-theme .CodeMirror .cm-def { color: #fde68a !important; }
+body.night-theme .CodeMirror .cm-variable { color: #fef3c7 !important; }
+body.night-theme .CodeMirror .cm-variable-2 { color: #fef3c7 !important; }
+body.night-theme .CodeMirror .cm-variable-3 { color: #fbbf24 !important; }
+body.night-theme .CodeMirror .cm-property { color: #fcd34d !important; }
+body.night-theme .CodeMirror .cm-operator { color: #fbbf24 !important; }
+body.night-theme .CodeMirror .cm-comment { color: #92400e !important; font-style: italic !important; }
+body.night-theme .CodeMirror .cm-number { color: #fcd34d !important; }
+body.night-theme .CodeMirror .cm-meta { color: #fde68a !important; }
+body.night-theme .CodeMirror .cm-qualifier { color: #fde68a !important; }
+body.night-theme .CodeMirror .cm-builtin { color: #fbbf24 !important; }
+body.night-theme .CodeMirror .cm-type { color: #fde68a !important; }
+body.night-theme .CodeMirror .cm-bracket { color: #fcd34d !important; }
+body.night-theme .CodeMirror .cm-brace { color: #fbbf24 !important; font-weight: bold !important; }
+body.night-theme .CodeMirror .cm-punctuation { color: #fef3c7 !important; }
+body.night-theme .CodeMirror .cm-tag { color: #f87171 !important; }
+body.night-theme .CodeMirror .cm-attribute { color: #84cc16 !important; }
+body.night-theme .CodeMirror .cm-hint { color: #fbbf24 !important; }
+body.night-theme .CodeMirror .cm-header { color: #f87171 !important; }
+body.night-theme .CodeMirror .cm-link { color: #fde68a !important; }
+body.night-theme .CodeMirror .cm-url { color: #84cc16 !important; }
+body.night-theme .CodeMirror .cm-error { color: #f87171 !important; }
+body.night-theme .CodeMirror .cm-special { color: #fbbf24 !important; }
+body.night-theme .CodeMirror .cm-invalid { color: #f87171 !important; }
+body.night-theme .CodeMirror .cm-quote { color: #84cc16 !important; }
+body.night-theme .CodeMirror .cm-process { color: #fde68a !important; }
+body.night-theme .CodeMirror .cm-entity { color: #fbbf24 !important; }
+body.night-theme .CodeMirror .cm-em { font-style: italic !important; }
+body.night-theme .CodeMirror .cm-strong { font-weight: bold !important; }
+body.night-theme .CodeMirror .cm-strikethrough { text-decoration: line-through !important; }
+body.night-theme .CodeMirror .cm-header { color: #fbbf24 !important; }
+
+body.night-theme .CodeMirror pre, 
+body.night-theme .CodeMirror pre *, 
+body.night-theme .CodeMirror span { 
+    color: #fef3c7 !important; 
 }
