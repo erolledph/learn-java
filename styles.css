@@ -3671,6 +3671,8 @@ body.night-theme .floating-chat-close:hover {
     background: rgba(239, 68, 68, 0.2);
     color: var(--accent-error);
 }
+
+body.night-theme .floating-chat-input {
     background: var(--bg-primary);
     border-top: 1px solid var(--border-primary);
 }
