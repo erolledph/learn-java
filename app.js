@@ -842,6 +842,10 @@ function renderInteractiveLesson(lesson) {
     html += `
         <div class="lesson-navigation">
             <button class="nav-btn" id="prevLessonBtn" onclick="previousLesson()">← Previous</button>
+            <button class="lesson-complete-btn outlined" id="markComplete" onclick="toggleLessonComplete()">
+                <span class="complete-icon">○</span>
+                <span class="complete-text">Mark Complete</span>
+            </button>
             <button class="nav-btn" id="nextLessonBtn" onclick="nextLesson()">Next →</button>
         </div>
     `;
@@ -1090,7 +1094,7 @@ function setupEventListeners() {
     if (elements.lessonContent) {
         elements.lessonContent.addEventListener('click', (e) => {
             if (e.target.classList.contains('complete-btn') || e.target.textContent.includes('Mark Complete')) {
-                markLessonComplete();
+                toggleLessonComplete();
             }
         });
     }
