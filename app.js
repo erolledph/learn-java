@@ -475,14 +475,12 @@ function initializeResizePanels() {
     let currentResizer = null;
     let startPos = 0;
     let startSize = 0;
+    let isMobile = window.innerWidth <= 768;
     
-    // Helper function to get position from event (mouse or touch)
-    function getPosition(e) {
-        if (e.touches && e.touches.length > 0) {
-            return currentResizer === 'v' ? e.touches[0].clientX : e.touches[0].clientY;
-        }
-        return currentResizer === 'v' ? e.clientX : e.clientY;
-    }
+    // Check if mobile on resize
+    window.addEventListener('resize', function() {
+        isMobile = window.innerWidth <= 768;
+    });
     
     // Load saved sizes
     const saved = localStorage.getItem('panel_sizes');
@@ -490,31 +488,32 @@ function initializeResizePanels() {
         try {
             const sizes = JSON.parse(saved);
             if (sizes.lessonWidth) lessonSection.style.width = sizes.lessonWidth + 'px';
+            if (sizes.lessonHeight) lessonSection.style.height = sizes.lessonHeight + 'px';
             if (sizes.outputHeight) {
                 outputPanel.style.flex = '0 0 ' + sizes.outputHeight + 'px';
             }
         } catch (e) {}
     }
     
-    // Start vertical resize (mouse)
+    // Start vertical resize (lesson vs editor) - mouse
     resizerV.addEventListener('mousedown', function(e) {
         e.preventDefault();
         currentResizer = 'v';
         startPos = e.clientX;
-        startSize = lessonSection.offsetWidth;
-        document.body.style.cursor = 'col-resize';
+        startSize = isMobile ? lessonSection.offsetHeight : lessonSection.offsetWidth;
+        document.body.style.cursor = isMobile ? 'row-resize' : 'col-resize';
         document.body.style.userSelect = 'none';
     });
     
-    // Start vertical resize (touch)
+    // Start vertical resize (lesson vs editor) - touch
     resizerV.addEventListener('touchstart', function(e) {
         e.preventDefault();
         currentResizer = 'v';
         startPos = e.touches[0].clientX;
-        startSize = lessonSection.offsetWidth;
+        startSize = isMobile ? lessonSection.offsetHeight : lessonSection.offsetWidth;
     }, { passive: false });
     
-    // Start horizontal resize (mouse)
+    // Start horizontal resize (editor vs output) - mouse
     resizerH.addEventListener('mousedown', function(e) {
         e.preventDefault();
         currentResizer = 'h';
@@ -524,7 +523,7 @@ function initializeResizePanels() {
         document.body.style.userSelect = 'none';
     });
     
-    // Start horizontal resize (touch)
+    // Start horizontal resize (editor vs output) - touch
     resizerH.addEventListener('touchstart', function(e) {
         e.preventDefault();
         currentResizer = 'h';
@@ -547,10 +546,21 @@ function initializeResizePanels() {
     
     function handleResize(clientX, clientY) {
         if (currentResizer === 'v') {
-            const containerWidth = editorSection.parentElement.offsetWidth;
-            const diff = clientX - startPos;
-            const newWidth = Math.max(180, Math.min(containerWidth * 0.6, startSize + diff));
-            lessonSection.style.width = newWidth + 'px';
+            if (isMobile) {
+                // Mobile: resize height (lesson vs editor stacked vertically)
+                const containerHeight = editorSection.parentElement.offsetHeight;
+                const diff = clientY - startPos;
+                const newHeight = Math.max(80, Math.min(containerHeight * 0.7, startSize + diff));
+                lessonSection.style.height = newHeight + 'px';
+                lessonSection.style.width = '100%';
+            } else {
+                // Desktop: resize width (lesson vs editor side by side)
+                const containerWidth = editorSection.parentElement.offsetWidth;
+                const diff = clientX - startPos;
+                const newWidth = Math.max(180, Math.min(containerWidth * 0.5, startSize + diff));
+                lessonSection.style.width = newWidth + 'px';
+                lessonSection.style.height = '';
+            }
         } else if (currentResizer === 'h') {
             const sectionRect = editorSection.getBoundingClientRect();
             const totalHeight = sectionRect.height;
@@ -584,10 +594,14 @@ function initializeResizePanels() {
     
     function stopResize() {
         if (currentResizer) {
-            localStorage.setItem('panel_sizes', JSON.stringify({
+            const sizes = {
                 lessonWidth: lessonSection.offsetWidth,
                 outputHeight: outputPanel.offsetHeight
-            }));
+            };
+            if (isMobile) {
+                sizes.lessonHeight = lessonSection.offsetHeight;
+            }
+            localStorage.setItem('panel_sizes', JSON.stringify(sizes));
             currentResizer = null;
             document.body.style.cursor = '';
             document.body.style.userSelect = '';
