@@ -2431,17 +2431,54 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
     .editor-section {
         flex: 1;
         min-height: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
     }
     
     .editor-panel {
         flex: 1;
         min-height: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
     }
     
     .output-panel {
-        flex-shrink: 1;
+        flex-shrink: 0 !important;
+        flex-basis: auto !important;
         min-height: 80px;
-        max-height: 35vh;
+        height: 120px;
+        max-height: 40vh;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .output-content {
+        overflow: hidden;
+        height: 100%;
+    }
+    
+    .output-content pre {
+        margin: 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+    
+    /* Prevent CodeMirror from causing layout shifts */
+    .CodeMirror {
+        height: 100% !important;
+        min-height: 0 !important;
+        flex: 1 !important;
+    }
+    
+    .CodeMirror-scroll {
+        min-height: 0 !important;
+        height: 100% !important;
+    }
+    
+    .CodeMirror-sizer {
+        min-height: 0 !important;
     }
     
     /* Touch-friendly resize handles on mobile */
