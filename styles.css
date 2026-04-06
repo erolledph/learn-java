@@ -2365,10 +2365,6 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
         font-size: 11px;
     }
     
-    .resize-handle-v {
-        display: none;
-    }
-    
     .editor-section {
         flex: 1;
         min-height: 0;
@@ -2387,13 +2383,30 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
     
     /* Touch-friendly resize handles on mobile */
     .resize-handle-v {
-        width: 8px;
+        width: 12px;
         cursor: col-resize;
         background: var(--bg-hover);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
-    .resize-handle-v:hover {
+    .resize-handle-v::before {
+        content: '';
+        width: 4px;
+        height: 40px;
+        background: var(--border-secondary);
+        border-radius: 2px;
+    }
+    
+    .resize-handle-v:hover,
+    .resize-handle-v:active {
         background: var(--accent-primary);
+    }
+    
+    .resize-handle-v:hover::before,
+    .resize-handle-v:active::before {
+        background: white;
     }
     
     .resize-handle-h {
