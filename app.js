@@ -176,11 +176,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Check if user has seen welcome before
     const hasSeenWelcome = localStorage.getItem('java_hub_welcomed');
     
-    if (groqService.hasApiKey()) {
-        // API is configured, show welcome modal if first time
-        if (!hasSeenWelcome) {
-            elements.welcomeModal?.classList.add('visible');
-        }
+    if (!hasSeenWelcome) {
+        elements.welcomeModal?.classList.add('visible');
         
         const startBtn = document.getElementById('startLearning');
         if (startBtn) {
@@ -199,9 +196,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (elements.sidebarLeft) elements.sidebarLeft.classList.add('open');
             });
         }
-    } else {
-        // No API, close modal and show basic UI
-        elements.welcomeModal?.classList.remove('visible');
+    } else if (!groqService.hasApiKey()) {
         addWelcomeMessage();
     }
     

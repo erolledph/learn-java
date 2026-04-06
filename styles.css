@@ -1967,17 +1967,20 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
 /* Welcome Modal */
 .welcome-modal {
     width: 480px;
+    max-width: 90vw;
     text-align: center;
+    max-height: 95vh;
+    overflow-y: auto;
 }
 
 .welcome-header {
-    padding: 32px;
+    padding: 10px;
     background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
 }
 
 .welcome-icon {
-    width: 64px;
-    height: 64px;
+    width: 34px;
+    height: 34px;
     margin: 0 auto 16px;
     color: var(--java-orange);
 }
@@ -2002,7 +2005,7 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
-    padding: 24px;
+    padding: 20px;
 }
 
 .feature {
@@ -2030,11 +2033,62 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
     color: var(--text-muted);
 }
 
+.welcome-setup {
+    padding: 0 20px;
+}
+
+.setup-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+}
+
+.setup-icon {
+    font-size: 20px;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.setup-content h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.setup-content p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.setup-content ul {
+    text-align: left;
+    margin: 8px 0;
+    padding-left: 16px;
+}
+
+.setup-content li {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.setup-content li strong {
+    color: var(--text-primary);
+}
+
 .welcome-actions {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding: 0 24px 24px;
+    padding: 0 20px 20px;
 }
 
 .btn-primary-lg {
@@ -2858,6 +2912,25 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
         width: calc(100vw - 16px);
         margin: 8px;
         padding: 16px;
+        max-height: calc(100vh - 16px);
+        overflow-y: auto;
+    }
+    
+    .welcome-setup {
+        padding: 0 16px;
+    }
+    
+    .setup-note {
+        padding: 12px;
+    }
+    
+    .setup-content h3 {
+        font-size: 13px;
+    }
+    
+    .setup-content p,
+    .setup-content li {
+        font-size: 11px;
     }
     
     .welcome-title {
