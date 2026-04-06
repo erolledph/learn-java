@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn Java with an interactive AI tutor. 55 lessons, code editor, and instant feedback.">
+    <meta name="theme-color" content="#0f172a">
+    <title>Java Learning Hub - Learn Java with AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Fira+Code:wght@400;500;700&family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+</head>
+<body>
+    <!-- App Container -->
+    <div class="app">
+        
+        <!-- Top Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 8h1a4 4 0 1 1 0 8h-1"/>
+                        <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/>
+                        <line x1="6" y1="2" x2="6" y2="4"/>
+                        <line x1="10" y1="2" x2="10" y2="4"/>
+                        <line x1="14" y1="2" x2="14" y2="4"/>
+                    </svg>
+                    <span class="logo-text">Java<span class="logo-accent">Hub</span></span>
+                </div>
+                <div class="header-divider"></div>
+                <div class="breadcrumb">
+                    <span class="breadcrumb-module" id="headerModule">Select a lesson</span>
+                    <svg class="breadcrumb-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                    <span class="breadcrumb-lesson" id="headerLesson">Getting Started</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="ai-status">
+                    <span class="ai-status-dot"></span>
+                    <span class="ai-status-text">Byte AI Active</span>
+                </div>
+                <button class="header-btn" id="openSettings" title="Settings">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            
+            <!-- Left Sidebar - Lessons/Curriculum -->
+            <aside class="sidebar" id="sidebarLeft">
+                <div class="sidebar-progress">
+                    <h3 class="sidebar-section-title">Course Progress</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span id="lessonProgress">14 / 55 Lessons</span>
+                        <span class="progress-percent" id="progressText">25%</span>
+                    </div>
+                </div>
+                
+                <div class="sidebar-content" id="sidebarContent">
+                    <!-- Lessons will be rendered here -->
+                </div>
+                
+                <div class="sidebar-footer">
+                    <button class="btn-secondary w-full">Curriculum Overview</button>
+                </div>
+            </aside>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                
+                <!-- Left: Lesson Instructions -->
+                <div class="lesson-section" id="lessonSection">
+                    <div class="lesson-panel" id="lessonPanel">
+                        <div class="lesson-panel-header">
+                            <div class="lesson-panel-title">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                </svg>
+                                <h3>Lesson Instructions</h3>
+                            </div>
+                            <div class="lesson-nav-btns">
+                                <button class="lesson-nav-btn" id="prevLesson" title="Previous">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                    </svg>
+                                </button>
+                                <button class="lesson-nav-btn" id="nextLesson" title="Next">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="lesson-panel-content" id="lessonContent">
+                            <!-- Lesson content will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resize Handle: Lesson ↔ Editor -->
+                <div class="resize-handle-v" id="resizeHandleV"></div>
+
+                <!-- Right: Code Editor + Output -->
+                <div class="editor-section" id="editorSection">
+                    <!-- Code Editor Panel -->
+                    <div class="editor-panel" id="editorPanel">
+                        <div class="editor-tabs">
+                            <div class="editor-tab active">
+                                <span class="editor-tab-icon">{}</span>
+                                <span>Main.java</span>
+                            </div>
+                            <div class="editor-actions">
+                                <button class="btn-icon" id="resetCode" title="Reset">
+                                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                    </svg>
+                                    <span>Reset</span>
+                                </button>
+                                <button class="btn-primary" id="runCode" title="Run Code">
+                                    <svg fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                    <span>Run Code</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="editor-wrapper">
+                            <div id="codeMirrorEditor"></div>
+                        </div>
+                    </div>
+
+                    <!-- Resize Handle: Editor ↔ Output -->
+                    <div class="resize-handle-h" id="resizeHandleH"></div>
+
+                    <!-- Output Panel -->
+                    <div class="output-panel" id="outputPanel">
+                        <div class="output-header">
+                            <div class="output-title">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M4 15V9a2 2 0 012-2h12a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2z"/>
+                                </svg>
+                                <span>Terminal Output</span>
+                            </div>
+                            <button class="output-clear" id="clearOutput">Clear</button>
+                        </div>
+                        <div class="output-content" id="outputContent">
+                            <pre id="output"></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Floating Chat Button -->
+        <button class="chat-toggle-btn" id="chatToggleBtn" title="Chat with Byte AI">
+            <span class="chat-btn-icon">🤖</span>
+            <span class="chat-toggle-badge" id="chatBadge">1</span>
+        </button>
+
+        <!-- Floating Chat Panel -->
+        <div class="floating-chat" id="floatingChat">
+            <div class="floating-chat-header">
+                <div class="floating-chat-avatar">
+                    <span>🤖</span>
+                </div>
+                <div class="floating-chat-info">
+                    <h4>Byte AI</h4>
+                    <span class="status-online">Online</span>
+                </div>
+                <button class="floating-chat-close" id="closeChat">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="floating-chat-messages" id="chatMessages">
+                <!-- Messages will be rendered here -->
+            </div>
+            
+            <div class="floating-chat-typing" id="typingIndicator">
+                <span></span><span></span><span></span>
+            </div>
+            
+            <div class="floating-chat-input">
+                <textarea id="chatInput" placeholder="Ask Byte about your code..." rows="1"></textarea>
+                <button class="send-btn" id="sendMessage">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <footer class="status-bar">
+            <div class="status-left">
+                <span class="status-item">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span>Ready</span>
+                </span>
+            </div>
+            <div class="status-right">
+                <span class="status-item">Java 17</span>
+                <span class="status-item">UTF-8</span>
+                <span class="status-item">Spaces: 4</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Welcome Modal -->
+    <div class="modal" id="welcomeModal">
+        <div class="modal-content welcome-modal">
+            <div class="welcome-header">
+                <div class="welcome-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 8h1a4 4 0 1 1 0 8h-1"/>
+                        <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/>
+                    </svg>
+                </div>
+                <h1>Java Learning Hub</h1>
+                <p>Learn Java with Byte, your AI tutor</p>
+            </div>
+            <div class="welcome-features">
+                <div class="feature">
+                    <span class="feature-icon">📝</span>
+                    <h3>Code Editor</h3>
+                    <p>Write & run Java instantly</p>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">🤖</span>
+                    <h3>Byte AI</h3>
+                    <p>Guides you step by step</p>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">📚</span>
+                    <h3>55 Lessons</h3>
+                    <p>Java fundamentals to advanced</p>
+                </div>
+                <div class="feature">
+                    <span class="feature-icon">💻</span>
+                    <h3>Practice</h3>
+                    <p>Exercises & challenges</p>
+                </div>
+            </div>
+            <div class="welcome-actions">
+                <button id="startLearning" class="btn-primary-lg">
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    Start Guided Learning
+                </button>
+                <button id="browseLessons" class="btn-secondary-lg">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                    Browse Lessons
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content settings-modal">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="close-modal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <h3>API Configuration</h3>
+                    <div class="setting-item">
+                        <label for="groqApiKey">Groq API Key</label>
+                        <div class="input-with-btn">
+                            <input type="password" id="groqApiKey" placeholder="Enter your Groq API key">
+                            <button id="saveApiKey">Save</button>
+                        </div>
+                        <small>Get your free API key from <a href="https://console.groq.com/keys" target="_blank">Groq Console</a></small>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <h3>Editor Settings</h3>
+                    <div class="setting-item">
+                        <label for="fontFamily">Font Family</label>
+                        <select id="fontFamily">
+                            <option value="JetBrains Mono">JetBrains Mono</option>
+                            <option value="Fira Code">Fira Code</option>
+                            <option value="Monaco">Monaco</option>
+                            <option value="Consolas">Consolas</option>
+                            <option value="Source Code Pro">Source Code Pro</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="fontSize">Font Size</label>
+                        <select id="fontSize">
+                            <option value="12">12px</option>
+                            <option value="14" selected>14px</option>
+                            <option value="16">16px</option>
+                            <option value="18">18px</option>
+                            <option value="20">20px</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="setting-actions">
+                    <button id="saveAllSettings" class="btn-primary-full">Save Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/selection/active-line.min.js"></script>
+    <script src="lessons.js"></script>
+    <script src="groq-service.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

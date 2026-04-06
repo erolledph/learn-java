@@ -1,0 +1,13 @@
+{
+  "name": "java-learning-hub",
+  "version": "1.0.0",
+  "description": "Learn Java with an interactive AI tutor",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": ["java", "learning", "tutor"],
+  "author": "",
+  "license": "MIT"
+}
