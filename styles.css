@@ -536,7 +536,6 @@ input, textarea, select {
     justify-content: space-between;
     padding: 8px 16px;
     border-bottom: 1px solid rgba(30, 41, 59, 0.5);
-    background: rgba(11, 17, 32, 0.5);
 }
 
 .lesson-panel-title {
