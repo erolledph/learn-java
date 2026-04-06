@@ -2917,6 +2917,76 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
         max-height: 500px;
     }
     
+    .floating-chat-header {
+        padding: 14px 16px;
+    }
+    
+    .floating-chat-header h4 {
+        font-size: 14px;
+    }
+    
+    .floating-chat-messages {
+        padding: 12px 8px;
+    }
+    
+    .message {
+        margin-bottom: 12px;
+        gap: 8px;
+    }
+    
+    .message.bot-message {
+        margin-right: auto;
+        margin-left: 0;
+    }
+    
+    .message.user-message {
+        margin-left: auto;
+        margin-right: 0;
+    }
+    
+    .message-avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+    
+    .message-content {
+        max-width: 75%;
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+    
+    .floating-chat-input {
+        padding: 12px 12px;
+        gap: 8px;
+    }
+    
+    .floating-chat-input textarea {
+        min-height: 40px;
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+    
+    .floating-chat-input .send-btn {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .floating-chat-input .send-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .floating-chat-typing {
+        padding: 10px 14px;
+        margin-top: 2px;
+    }
+    
+    .floating-chat-typing span {
+        width: 6px;
+        height: 6px;
+    }
+    
     .settings-modal {
         width: calc(100vw - 16px);
         margin: 8px;
