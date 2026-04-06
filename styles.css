@@ -1734,9 +1734,14 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
 .message-content code {
     font-family: var(--font-mono);
     font-size: 13px;
-    background: rgba(0, 0, 0, 0.12);
+    background: rgba(0, 0, 0, 0.25);
     padding: 2px 6px;
     border-radius: 4px;
+    color: var(--text-primary);
+}
+
+.message.user-message .message-content code {
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .message.user-message .message-content code {
@@ -1744,7 +1749,7 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
 }
 
 .message-content pre {
-    background: var(--bg-primary);
+    background: var(--bg-secondary);
     padding: 14px;
     border-radius: 10px;
     font-family: var(--font-mono);
@@ -1752,12 +1757,22 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
     margin: 12px 0;
     overflow-x: auto;
     border: 1px solid var(--border-primary);
+    color: var(--text-primary);
 }
 
 .message-content pre code {
     background: none;
     padding: 0;
 }
+
+/* Syntax highlighting for chat code blocks in dark theme */
+.message-content pre .token.keyword { color: #ff79c6; font-weight: bold; }
+.message-content pre .token.string { color: #50fa7b; }
+.message-content pre .token.comment { color: #6272a4; font-style: italic; }
+.message-content pre .token.number { color: #bd93f9; }
+.message-content pre .token.function { color: #8be9fd; }
+.message-content pre .token.operator { color: #ff79c6; }
+.message-content pre .token.punctuation { color: #f8f8f2; }
 
 .message-content ul,
 .message-content ol {
@@ -3119,6 +3134,60 @@ body.light-theme .message.user-message .message-content {
     color: #ffffff;
 }
 
+body.light-theme .message-content code {
+    background: rgba(0, 0, 0, 0.15);
+    color: var(--text-primary);
+}
+
+body.light-theme .message.user-message .message-content code {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+}
+
+body.light-theme .message-content pre {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #f1f5f9;
+}
+
+body.light-theme .message-content pre code {
+    background: none;
+    color: inherit;
+}
+
+/* Syntax highlighting for chat code blocks in light theme */
+body.light-theme .message-content pre .token.keyword { color: #7c3aed; font-weight: bold; }
+body.light-theme .message-content pre .token.string { color: #059669; }
+body.light-theme .message-content pre .token.comment { color: #6b7280; font-style: italic; }
+body.light-theme .message-content pre .token.number { color: #dc2626; }
+body.light-theme .message-content pre .token.function { color: #2563eb; }
+body.light-theme .message-content pre .token.operator { color: #374151; }
+body.light-theme .message-content pre .token.punctuation { color: #1f2937; }
+
+.copy-code-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.copy-code-btn:hover {
+    opacity: 1;
+}
+
+body.light-theme .copy-code-btn {
+    background: rgba(255, 255, 255, 0.8);
+    color: #1e293b;
+}
+
 body.light-theme .floating-chat-input {
     background: var(--bg-primary);
     border-top: 1px solid var(--border-primary);
@@ -3475,7 +3544,7 @@ body.night-theme .floating-chat {
 }
 
 body.night-theme .floating-chat-header {
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.08) 100%);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(217, 119, 6, 0.15) 100%);
     border-bottom: 1px solid var(--border-primary);
 }
 
@@ -3489,7 +3558,49 @@ body.night-theme .message.user-message .message-content {
     color: #0f0c08;
 }
 
-body.night-theme .floating-chat-input {
+body.night-theme .message-content code {
+    background: rgba(0, 0, 0, 0.4);
+    color: #fef3c7;
+}
+
+body.night-theme .message.user-message .message-content code {
+    background: rgba(0, 0, 0, 0.6);
+    color: #0f0c08;
+}
+
+body.night-theme .message-content pre {
+    background: #1a1410;
+    border: 1px solid #3d3127;
+    color: #fef3c7;
+}
+
+body.night-theme .message-content pre code {
+    background: none;
+    color: #fef3c7 !important;
+}
+
+body.night-theme .message.user-message .message-content pre code {
+    color: #fef3c7 !important;
+}
+
+/* Syntax highlighting for chat code blocks in night theme */
+body.night-theme .message-content pre .token.keyword { color: #fbbf24; font-weight: bold; }
+body.night-theme .message-content pre .token.string { color: #84cc16; }
+body.night-theme .message-content pre .token.comment { color: #a16207; font-style: italic; }
+body.night-theme .message-content pre .token.number { color: #fcd34d; }
+body.night-theme .message-content pre .token.function { color: #fde68a; }
+body.night-theme .message-content pre .token.operator { color: #fbbf24; }
+body.night-theme .message-content pre .token.punctuation { color: #fef3c7; }
+
+body.night-theme .floating-chat-close {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+}
+
+body.night-theme .floating-chat-close:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--accent-error);
+}
     background: var(--bg-primary);
     border-top: 1px solid var(--border-primary);
 }

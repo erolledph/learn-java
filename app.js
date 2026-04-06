@@ -52,13 +52,13 @@ I'll guide you through learning Java step by step. Let's start with the basics!
 A popular programming language used in apps, websites, and games. Known for "Write Once, Run Anywhere".
 
 **Our learning path:**
-1. Hello World
-2. Variables & Data Types
-3. Conditions (If/Else)
-4. Loops
-5. Methods
-6. Arrays
-7. Classes & Objects
+ 1. Hello World
+ 2. Variables & Data Types
+ 3. Conditions (If/Else)
+ 4. Loops
+ 5. Methods
+ 6. Arrays
+ 7. Classes & Objects
 
 Click **Run** to execute the code in the editor, then type "next" to continue!`
     },
@@ -230,11 +230,33 @@ window.addEventListener('unhandledrejection', (event) => {
 function addWelcomeMessage() {
     addChatMessage(`Hi! I'm Byte, your Java tutor! ☕
 
-I'm here to help you learn Java step by step.
+I'll guide you through learning Java step by step. Let's start with the basics!
 
-**Quick tip:** Click the **Lessons** button in the sidebar to start learning!
+**What is Java?**
+A popular programming language used in apps, websites, and games. Known for "Write Once, Run Anywhere".
 
-Or type a question below and I'll help you out!`, 'bot');
+**Our learning path:**
+- Hello World
+- Variables & Data Types
+- Conditions (If/Else)
+- Loops
+- Methods
+- Arrays
+- Classes & Objects
+
+Click **Run** to execute the code in the editor, then type "next" to continue!`, 'bot');
+}
+
+function openChatWindow() {
+    const floatingChat = document.getElementById('floatingChat');
+    const chatBadge = document.getElementById('chatBadge');
+    if (floatingChat && !floatingChat.classList.contains('visible')) {
+        floatingChat.classList.add('visible');
+        if (chatBadge) chatBadge.classList.add('hidden');
+    }
+    if (elements.chatInput) {
+        elements.chatInput.focus();
+    }
 }
 
 // Start guided learning mode
@@ -869,7 +891,7 @@ function explainLessonWithAI(lesson) {
     
     prompt += `\n\nPlease give a clear explanation with a simple example. Make it encouraging and fun!`;
     
-    // Add to chat and trigger AI response
+    openChatWindow();
     elements.chatInput.value = prompt;
     sendChatMessage();
 }
@@ -884,6 +906,7 @@ function askAIAboutCode(code) {
 ${code}
 \`\`\``;
     
+    openChatWindow();
     elements.chatInput.value = prompt;
     sendChatMessage();
 }
@@ -894,6 +917,7 @@ function askAboutConcept(concept) {
     
     const prompt = `Can you explain what "${concept}" means in Java? Please give a simple explanation and maybe a small example.`;
     
+    openChatWindow();
     elements.chatInput.value = prompt;
     sendChatMessage();
 }
@@ -916,6 +940,7 @@ function suggestPractice(type) {
             break;
     }
     
+    openChatWindow();
     elements.chatInput.value = prompt;
     sendChatMessage();
 }
@@ -1044,11 +1069,13 @@ function setupEventListeners() {
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('quick-btn')) {
             const question = e.target.dataset.question;
+            openChatWindow();
             if (elements.chatInput) elements.chatInput.value = question;
             sendChatMessage();
         }
         if (e.target.classList.contains('suggestion-btn')) {
             const text = e.target.dataset.text;
+            openChatWindow();
             if (elements.chatInput) elements.chatInput.value = text;
             sendChatMessage();
         }
