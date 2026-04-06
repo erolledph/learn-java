@@ -650,6 +650,78 @@ input, textarea, select {
     height: 16px;
 }
 
+.lesson-complete-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 500;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+    height: 28px;
+}
+
+.lesson-complete-btn.outlined {
+    background: transparent;
+    border: 1.5px solid var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.lesson-complete-btn.outlined:hover {
+    background: var(--bg-active);
+}
+
+.lesson-complete-btn.completed {
+    background: var(--accent-success);
+    border: 1.5px solid var(--accent-success);
+    color: white;
+}
+
+.lesson-complete-btn.completed:hover {
+    opacity: 0.9;
+}
+
+.lesson-complete-btn.completed:hover {
+    background: transparent;
+    color: var(--accent-success);
+    border: 1.5px solid var(--accent-success);
+}
+
+.complete-icon {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.complete-text {
+    display: inline;
+}
+
+/* Light theme */
+body.light-theme .lesson-complete-btn.outlined {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+body.light-theme .lesson-complete-btn.completed {
+    background: var(--accent-success);
+    border-color: var(--accent-success);
+    color: white;
+}
+
+/* Night theme */
+body.night-theme .lesson-complete-btn.outlined {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+body.night-theme .lesson-complete-btn.completed {
+    background: var(--accent-success);
+    border-color: var(--accent-success);
+    color: #0f0c08;
+}
+
 .lesson-panel-content {
     flex: 1;
     padding: 16px 20px;
@@ -2726,6 +2798,15 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
     .nav-btn {
         padding: 8px 16px;
         font-size: 12px;
+    }
+    
+    .lesson-complete-btn {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+    
+    .lesson-complete-btn .complete-text {
+        display: none;
     }
 }
 

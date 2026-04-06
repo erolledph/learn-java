@@ -755,6 +755,9 @@ function loadLesson(lesson) {
     // Update navigation buttons
     updateNavigationButtons();
     
+    // Update complete button state
+    updateCompleteButton();
+    
     // Clear output
     elements.output.textContent = 'Ready to run Java code...';
     elements.output.className = '';
@@ -1024,6 +1027,9 @@ function setupEventListeners() {
     // Navigation buttons
     safeAddEvent('prevLesson', 'click', previousLesson);
     safeAddEvent('nextLesson', 'click', nextLesson);
+    
+    // Mark complete button
+    safeAddEvent('markComplete', 'click', toggleLessonComplete);
     
     // Chat input
     safeAddEvent('sendMessage', 'click', sendChatMessage);
@@ -1743,6 +1749,51 @@ function nextLesson() {
     
     if (currentIndex < currentModule.lessons.length - 1) {
         loadLesson(currentModule.lessons[currentIndex + 1]);
+    }
+}
+
+// Toggle lesson completion
+function toggleLessonComplete() {
+    if (!state.currentLesson) return;
+    
+    const lessonId = state.currentLesson.id;
+    const arr = [...state.progress.completedLessons];
+    
+    if (arr.includes(lessonId)) {
+        const index = arr.indexOf(lessonId);
+        arr.splice(index, 1);
+        showToast('Lesson unmarked', 'info');
+    } else {
+        arr.push(lessonId);
+        showToast('Lesson completed!', 'success');
+    }
+    
+    state.progress.completedLessons = arr;
+    saveProgress();
+    updateProgressBar();
+    updateCompleteButton();
+    renderSidebar('lessons');
+}
+
+// Update complete button state
+function updateCompleteButton() {
+    const btn = document.getElementById('markComplete');
+    if (!btn || !state.currentLesson) return;
+    
+    const isCompleted = state.progress.completedLessons.includes(state.currentLesson.id);
+    const icon = btn.querySelector('.complete-icon');
+    const text = btn.querySelector('.complete-text');
+    
+    if (isCompleted) {
+        btn.classList.add('completed');
+        btn.classList.remove('outlined');
+        icon.textContent = '✓';
+        text.textContent = 'Completed';
+    } else {
+        btn.classList.remove('completed');
+        btn.classList.add('outlined');
+        icon.textContent = '○';
+        text.textContent = 'Mark Complete';
     }
 }
 
