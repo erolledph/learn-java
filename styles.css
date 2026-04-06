@@ -520,6 +520,14 @@ input, textarea, select {
     background: var(--accent-primary);
 }
 
+/* Touch-friendly resize handles (visible on mobile) */
+.resize-handle-v::after,
+.resize-handle-h::after {
+    content: '';
+    position: absolute;
+    background: transparent;
+}
+
 /* Lesson Panel */
 .lesson-panel {
     flex: 1;
@@ -2361,8 +2369,40 @@ input, textarea, select {
         max-height: 35vh;
     }
     
+    /* Touch-friendly resize handles on mobile */
+    .resize-handle-v {
+        width: 8px;
+        cursor: col-resize;
+        background: var(--bg-hover);
+    }
+    
+    .resize-handle-v:hover {
+        background: var(--accent-primary);
+    }
+    
     .resize-handle-h {
-        display: none;
+        height: 12px;
+        cursor: row-resize;
+        background: var(--bg-hover);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .resize-handle-h:hover {
+        background: var(--accent-primary);
+    }
+    
+    .resize-handle-h::before {
+        content: '';
+        width: 40px;
+        height: 4px;
+        background: var(--border-secondary);
+        border-radius: 2px;
+    }
+    
+    .resize-handle-h:hover::before {
+        background: white;
     }
     
     /* Editor Panel Header */

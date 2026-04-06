@@ -476,6 +476,14 @@ function initializeResizePanels() {
     let startPos = 0;
     let startSize = 0;
     
+    // Helper function to get position from event (mouse or touch)
+    function getPosition(e) {
+        if (e.touches && e.touches.length > 0) {
+            return currentResizer === 'v' ? e.touches[0].clientX : e.touches[0].clientY;
+        }
+        return currentResizer === 'v' ? e.clientX : e.clientY;
+    }
+    
     // Load saved sizes
     const saved = localStorage.getItem('panel_sizes');
     if (saved) {
@@ -488,59 +496,93 @@ function initializeResizePanels() {
         } catch (e) {}
     }
     
-    // Start vertical resize
-    resizerV.onmousedown = function(e) {
+    // Start vertical resize (mouse)
+    resizerV.addEventListener('mousedown', function(e) {
         e.preventDefault();
         currentResizer = 'v';
         startPos = e.clientX;
         startSize = lessonSection.offsetWidth;
         document.body.style.cursor = 'col-resize';
         document.body.style.userSelect = 'none';
-    };
+    });
     
-    // Start horizontal resize
-    resizerH.onmousedown = function(e) {
+    // Start vertical resize (touch)
+    resizerV.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        currentResizer = 'v';
+        startPos = e.touches[0].clientX;
+        startSize = lessonSection.offsetWidth;
+    }, { passive: false });
+    
+    // Start horizontal resize (mouse)
+    resizerH.addEventListener('mousedown', function(e) {
         e.preventDefault();
         currentResizer = 'h';
         startPos = e.clientY;
         startSize = outputPanel.offsetHeight;
         document.body.style.cursor = 'row-resize';
         document.body.style.userSelect = 'none';
-    };
+    });
     
-    // Move handler
-    document.onmousemove = function(e) {
+    // Start horizontal resize (touch)
+    resizerH.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        currentResizer = 'h';
+        startPos = e.touches[0].clientY;
+        startSize = outputPanel.offsetHeight;
+    }, { passive: false });
+    
+    // Move handler (mouse)
+    document.addEventListener('mousemove', function(e) {
         if (!currentResizer) return;
-        
+        handleResize(e.clientX, e.clientY);
+    });
+    
+    // Move handler (touch)
+    document.addEventListener('touchmove', function(e) {
+        if (!currentResizer) return;
+        e.preventDefault();
+        handleResize(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: false });
+    
+    function handleResize(clientX, clientY) {
         if (currentResizer === 'v') {
             const containerWidth = editorSection.parentElement.offsetWidth;
-            const diff = e.clientX - startPos;
-            const newWidth = Math.max(200, Math.min(containerWidth * 0.5, startSize + diff));
+            const diff = clientX - startPos;
+            const newWidth = Math.max(180, Math.min(containerWidth * 0.6, startSize + diff));
             lessonSection.style.width = newWidth + 'px';
         } else if (currentResizer === 'h') {
             const sectionRect = editorSection.getBoundingClientRect();
             const totalHeight = sectionRect.height;
             const minOutputHeight = 40;
-            const maxOutputHeight = totalHeight * 0.5;
+            const maxOutputHeight = totalHeight * 0.6;
             
-            const diff = e.clientY - startPos;
+            const diff = clientY - startPos;
             let newOutputHeight = startSize - diff;
             
             newOutputHeight = Math.max(minOutputHeight, Math.min(maxOutputHeight, newOutputHeight));
             outputPanel.style.flex = '0 0 ' + newOutputHeight + 'px';
         }
         
-        // Refresh CodeMirror to resize properly
         setTimeout(function() {
             if (state.editor) {
                 state.editor.refresh();
                 state.editor.focus();
             }
         }, 10);
-    };
+    }
     
-    // Stop handler
-    document.onmouseup = function() {
+    // Stop handler (mouse)
+    document.addEventListener('mouseup', function() {
+        stopResize();
+    });
+    
+    // Stop handler (touch)
+    document.addEventListener('touchend', function() {
+        stopResize();
+    });
+    
+    function stopResize() {
         if (currentResizer) {
             localStorage.setItem('panel_sizes', JSON.stringify({
                 lessonWidth: lessonSection.offsetWidth,
@@ -550,7 +592,7 @@ function initializeResizePanels() {
             document.body.style.cursor = '';
             document.body.style.userSelect = '';
         }
-    };
+    }
     
     // Clear saved sizes on window resize to allow responsive behavior
     let resizeTimeout;
