@@ -43,6 +43,31 @@
     --transition-normal: 0.25s ease;
 }
 
+/* Night/Amber Theme Variables */
+body.night-theme {
+    --bg-primary: #1a1410;
+    --bg-secondary: #0f0c08;
+    --bg-tertiary: #2d2319;
+    --bg-hover: #3d3127;
+    --bg-active: rgba(251, 191, 36, 0.1);
+    
+    --text-primary: #fef3c7;
+    --text-secondary: #fcd34d;
+    --text-muted: #b45309;
+    
+    --accent-primary: #f59e0b;
+    --accent-secondary: #d97706;
+    --accent-success: #84cc16;
+    --accent-warning: #fbbf24;
+    --accent-error: #ef4444;
+    
+    --java-orange: #f8981d;
+    --java-blue: #5382a1;
+    
+    --border-primary: #2d2319;
+    --border-secondary: #3d3127;
+}
+
 /* Reset */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -2309,6 +2334,160 @@ body.light-theme .setting-item label {
 
 body.light-theme .modal-header h2 {
     color: var(--text-primary);
+}
+
+/* Theme Selector */
+.theme-selector {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.theme-option {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 8px;
+    background: var(--bg-tertiary);
+    border: 2px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.theme-option:hover {
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+}
+
+.theme-option.active {
+    border-color: var(--accent-primary);
+    background: var(--bg-active);
+}
+
+.theme-preview {
+    width: 48px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid var(--border-secondary);
+}
+
+.theme-preview.dark {
+    background: linear-gradient(135deg, #0f172a 50%, #1e293b 50%);
+}
+
+.theme-preview.light {
+    background: linear-gradient(135deg, #ffffff 50%, #f1f5f9 50%);
+}
+
+.theme-preview.night {
+    background: linear-gradient(135deg, #1a1410 50%, #2d2319 50%);
+}
+
+.theme-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.theme-option.active .theme-label {
+    color: var(--accent-primary);
+}
+
+/* Night Theme Overrides */
+body.night-theme .CodeMirror {
+    background: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+body.night-theme .CodeMirror-gutters {
+    background: var(--bg-secondary) !important;
+    border-right: 1px solid var(--border-primary) !important;
+}
+
+body.night-theme .CodeMirror-linenumber {
+    color: var(--text-muted) !important;
+}
+
+body.night-theme .CodeMirror-selected {
+    background: var(--bg-active) !important;
+}
+
+body.night-theme .header {
+    background: var(--bg-primary);
+    border-bottom-color: var(--border-primary);
+}
+
+body.night-theme .sidebar,
+body.night-theme .lesson-section,
+body.night-theme .lesson-panel,
+body.night-theme .output-panel {
+    background: var(--bg-secondary);
+    border-color: var(--border-primary);
+}
+
+body.night-theme .lesson-item:hover {
+    background: var(--bg-hover);
+}
+
+body.night-theme .lesson-item.active {
+    background: var(--bg-active);
+    border-left-color: var(--accent-primary);
+}
+
+body.night-theme .floating-chat {
+    background: var(--bg-primary);
+    border-color: var(--border-primary);
+}
+
+body.night-theme .floating-chat-header {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(217, 119, 6, 0.05) 100%);
+}
+
+body.night-theme .message.bot-message .message-content {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+body.night-theme .floating-chat-input {
+    background: var(--bg-primary);
+}
+
+body.night-theme .floating-chat-input textarea {
+    background: var(--bg-secondary);
+    border-color: var(--border-primary);
+    color: var(--text-primary);
+}
+
+body.night-theme .settings-modal {
+    background: var(--bg-primary);
+}
+
+body.night-theme .setting-group h3 {
+    color: var(--text-primary);
+}
+
+body.night-theme .setting-item label {
+    color: var(--text-secondary);
+}
+
+body.night-theme .modal-header h2 {
+    color: var(--text-primary);
+}
+
+body.night-theme .modal-header .close-modal {
+    color: var(--text-secondary);
+}
+
+body.night-theme .theme-option {
+    background: var(--bg-tertiary);
+    border-color: var(--border-primary);
+}
+
+body.night-theme .theme-option.active {
+    border-color: var(--accent-primary);
 }
 
 /* ============================================

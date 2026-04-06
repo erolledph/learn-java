@@ -160,6 +160,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadProgress();
     calculateTotalLessons();
     setupEventListeners();
+    initTheme();
+    loadThemeFromSettings();
     renderSidebar('lessons');
     updateProgressBar();
     
@@ -1714,6 +1716,15 @@ function loadSettingsValues() {
     document.getElementById('fontFamily').value = localStorage.getItem('editor_font_family') || 'JetBrains Mono';
     document.getElementById('fontSize').value = localStorage.getItem('editor_font_size') || '14';
     
+    // Load theme selection
+    const savedTheme = localStorage.getItem('app_theme') || 'dark';
+    document.querySelectorAll('.theme-option').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.theme === savedTheme) {
+            btn.classList.add('active');
+        }
+    });
+    
     // Apply saved settings to editor
     const savedFontFamily = localStorage.getItem('editor_font_family') || 'JetBrains Mono';
     const savedFontSize = localStorage.getItem('editor_font_size') || '14';
@@ -1876,3 +1887,47 @@ document.addEventListener('keydown', (e) => {
         elements.welcomeModal.classList.remove('visible');
     }
 });
+
+// Theme Management
+function initTheme() {
+    const savedTheme = localStorage.getItem('app_theme') || 'dark';
+    applyTheme(savedTheme);
+    
+    document.querySelectorAll('.theme-option').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const theme = btn.dataset.theme;
+            applyTheme(theme);
+            localStorage.setItem('app_theme', theme);
+            
+            document.querySelectorAll('.theme-option').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+}
+
+function applyTheme(theme) {
+    document.body.classList.remove('light-theme', 'night-theme');
+    
+    if (theme === 'light') {
+        document.body.classList.add('light-theme');
+    } else if (theme === 'night') {
+        document.body.classList.add('night-theme');
+    }
+    
+    if (state.editor) {
+        state.editor.refresh();
+    }
+}
+
+function loadThemeFromSettings() {
+    const savedTheme = localStorage.getItem('app_theme') || 'dark';
+    
+    document.querySelectorAll('.theme-option').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.theme === savedTheme) {
+            btn.classList.add('active');
+        }
+    });
+    
+    applyTheme(savedTheme);
+}
