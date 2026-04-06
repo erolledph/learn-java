@@ -512,10 +512,14 @@ function initializeResizePanels() {
     if (saved) {
         try {
             const sizes = JSON.parse(saved);
-            if (sizes.lessonWidth) lessonSection.style.width = sizes.lessonWidth + 'px';
-            if (sizes.lessonHeight) lessonSection.style.height = sizes.lessonHeight + 'px';
+            if (sizes.lessonWidth && !isMobile) lessonSection.style.width = sizes.lessonWidth + 'px';
+            if (sizes.lessonHeight && isMobile) lessonSection.style.height = sizes.lessonHeight + 'px';
             if (sizes.outputHeight) {
-                outputPanel.style.flex = '0 0 ' + sizes.outputHeight + 'px';
+                if (isMobile) {
+                    outputPanel.style.height = sizes.outputHeight + 'px';
+                } else {
+                    outputPanel.style.flex = '0 0 ' + sizes.outputHeight + 'px';
+                }
             }
         } catch (e) {}
     }
@@ -595,16 +599,21 @@ function initializeResizePanels() {
                 lessonSection.style.height = '';
             }
         } else if (currentResizer === 'h') {
-            const sectionRect = editorSection.getBoundingClientRect();
-            const totalHeight = sectionRect.height;
-            const minOutputHeight = 40;
-            const maxOutputHeight = totalHeight * 0.6;
+            const containerRect = editorSection.getBoundingClientRect();
+            const minOutputHeight = 60;
+            const maxOutputHeight = containerRect.height * 0.7;
             
             const diff = clientY - startPos;
             let newOutputHeight = startSize - diff;
             
             newOutputHeight = Math.max(minOutputHeight, Math.min(maxOutputHeight, newOutputHeight));
-            outputPanel.style.flex = '0 0 ' + newOutputHeight + 'px';
+            
+            // Use height directly for mobile, flex for desktop
+            if (isMobile) {
+                outputPanel.style.height = newOutputHeight + 'px';
+            } else {
+                outputPanel.style.flex = '0 0 ' + newOutputHeight + 'px';
+            }
         }
         
         // Only refresh editor on mouse, not on every touchmove
@@ -635,6 +644,7 @@ function initializeResizePanels() {
             };
             if (isMobile) {
                 sizes.lessonHeight = lessonSection.offsetHeight;
+                sizes.outputHeight = outputPanel.offsetHeight;
             }
             localStorage.setItem('panel_sizes', JSON.stringify(sizes));
             currentResizer = null;
@@ -648,8 +658,10 @@ function initializeResizePanels() {
     window.addEventListener('resize', function() {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(function() {
+            isMobile = window.innerWidth <= 768;
             if (window.innerWidth < 768) {
                 outputPanel.style.flex = '';
+                outputPanel.style.height = '';
                 lessonSection.style.width = '';
                 localStorage.removeItem('panel_sizes');
             }
