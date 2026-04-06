@@ -2,6 +2,10 @@
 
 Learn Java with an interactive AI tutor - **Java runs directly in your browser!**
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub last commit](https://img.shields.io/github/last-commit/erolledph/learn-java)](https://github.com/erolledph/learn-java/commits/main)
+[![GitHub issues](https://img.shields.io/github/issues/erolledph/learn-java)](https://github.com/erolledph/learn-java/issues)
+
 ## Quick Start
 
 ```bash
@@ -19,7 +23,7 @@ Then open **http://localhost:8080** in your browser.
 - Explains Java concepts and helps debug code
 
 ### 💻 Run Java in Browser
-- Click **▶️ Run** to execute Java code
+- Click **Run** to execute Java code
 - Uses Judge0 CE API for compilation
 - No downloads or installations needed!
 
@@ -27,6 +31,27 @@ Then open **http://localhost:8080** in your browser.
 - 8 progressive modules (Basics → Advanced)
 - W3Schools-based curriculum
 - Progress tracking with localStorage
+
+### 🎨 Beautiful Themes
+- **Dark** - Deep blue/purple tones
+- **Light** - Clean white background
+- **Night** - Warm amber for easy nighttime reading
+
+### 📱 Mobile-Friendly
+- Fully responsive design
+- Touch-friendly resize handles
+- Works on tablets and phones
+
+### ♿ Accessible
+- ARIA labels and roles
+- Keyboard navigation
+- Screen reader support
+- Focus indicators
+
+### 🚀 PWA Ready
+- Offline support (service worker)
+- Install to home screen
+- Fast loading
 
 ## Development
 
@@ -46,9 +71,11 @@ Java/
 ├── lessons.js          # 53 lessons across 8 modules
 ├── groq-service.js     # Groq API integration
 ├── server.js           # Node.js static server
+├── sw.js              # Service worker for offline support
+├── manifest.json       # PWA manifest
 ├── package.json        # Dependencies and scripts
 ├── AGENTS.md           # Agent documentation
-└── java rerefence/     # W3Schools source materials (~489 HTML files)
+└── java rerefence/     # W3Schools source materials
 ```
 
 ## Architecture
@@ -76,29 +103,13 @@ const state = {
 - **Groq**: `llama-3.3-70b-versatile` model, 14k requests/day
 - **Judge0**: `https://ce.judge0.com`, Language ID 62 (Java)
 
-## Discoveries & History
+## Browser Support
 
-1. **Direct file:// vs server** - Opening index.html directly causes CORS issues with CDN resources. Must use `npm run dev`
-2. **Array mutation issue** - Using `arr = state.progress.completedLessons` local variable fixed the mark/unmark lesson completion bug
-3. **Chat history accumulation** - Cleared chat history when switching lessons to reduce API token usage
-4. **API key storage** - Uses localStorage, not hardcoded
-
-## Accomplished
-
-- ✅ 53 lessons across 8 modules based on W3Schools
-- ✅ CodeMirror editor with Dracula-style syntax highlighting
-- ✅ Groq API integration for AI tutoring
-- ✅ Judge0 API for Java code execution
-- ✅ Dark theme with colorful syntax colors
-- ✅ Progress tracking with localStorage
-- ✅ Settings modal for API key input
-- ✅ Lesson navigation (prev/next buttons)
-
-## Pending Tasks
-
-- 🔧 Fix CodeMirror syntax highlighting - Keywords showing as plain white, only strings are green
-- 🔧 Test lesson navigation end-to-end
-- 🔧 Verify code execution with various Java programs
+- Chrome 80+
+- Firefox 75+
+- Safari 13+
+- Edge 80+
+- Mobile browsers (iOS Safari, Chrome Mobile)
 
 ## Keyboard Shortcuts
 
@@ -110,4 +121,8 @@ const state = {
 
 ## License
 
-MIT License
+MIT License - feel free to use for learning!
+
+---
+
+**Happy Learning!** ☕🚀

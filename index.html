@@ -18,6 +18,10 @@
     <meta name="msapplication-navbutton-color" content="#0f172a">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23f97316'/><text x='50' y='68' font-size='55' font-weight='bold' text-anchor='middle' fill='white'>J</text></svg>">
     <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23f97316'/><text x='50' y='68' font-size='55' font-weight='bold' text-anchor='middle' fill='white'>J</text></svg>">
@@ -43,24 +47,30 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://erolledph.github.io/learn-java/">
     
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://api.groq.com">
+    <link rel="preconnect" href="https://ce.judge0.com">
+    
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Fira+Code:wght@400;500;700&family=Source+Code+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
 </head>
 <body>
     <!-- App Container -->
-    <div class="app">
+    <div class="app" role="application" aria-label="Java Learning Hub Application">
         
         <!-- Top Header -->
-        <header class="header">
+        <header class="header" role="banner">
             <div class="header-left">
-                <button class="mobile-menu-btn" id="mobileMenuBtn" title="Menu">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" title="Menu" aria-label="Open navigation menu" role="button">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
                 </button>
-                <div class="logo">
-                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <div class="logo" role="img" aria-label="Java Learning Hub logo">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <path d="M17 8h1a4 4 0 1 1 0 8h-1"/>
                         <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/>
                         <line x1="6" y1="2" x2="6" y2="4"/>
@@ -69,22 +79,22 @@
                     </svg>
                     <span class="logo-text">Java<span class="logo-accent">Hub</span></span>
                 </div>
-                <div class="header-divider"></div>
-                <div class="breadcrumb">
-                    <span class="breadcrumb-module" id="headerModule">Select a lesson</span>
-                    <svg class="breadcrumb-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="header-divider" aria-hidden="true"></div>
+                <nav class="breadcrumb" aria-label="Current location">
+                    <span class="breadcrumb-module" id="headerModule" aria-live="polite">Select a lesson</span>
+                    <svg class="breadcrumb-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                     </svg>
                     <span class="breadcrumb-lesson" id="headerLesson">Getting Started</span>
-                </div>
+                </nav>
             </div>
             <div class="header-right">
-                <div class="ai-status">
-                    <span class="ai-status-dot"></span>
+                <div class="ai-status" role="status" aria-live="polite" aria-label="AI tutor status">
+                    <span class="ai-status-dot" aria-hidden="true"></span>
                     <span class="ai-status-text">Byte AI Active</span>
                 </div>
-                <button class="header-btn" id="openSettings" title="Settings">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button class="header-btn" id="openSettings" title="Settings" aria-label="Open settings" role="button">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                     </svg>
@@ -93,10 +103,10 @@
         </header>
         
         <!-- Mobile Sidebar Overlay -->
-        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        <div class="sidebar-overlay" id="sidebarOverlay" role="presentation"></div>
 
         <!-- Main Content -->
-        <main class="main">
+        <main class="main" role="main">
             
             <!-- Left Sidebar - Lessons/Curriculum -->
             <aside class="sidebar" id="sidebarLeft">
@@ -167,38 +177,38 @@
                             <div class="editor-actions">
                                 <button class="btn-icon" id="resetCode" title="Reset">
                                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" aria-hidden="true"/>
                                     </svg>
                                     <span>Reset</span>
                                 </button>
-                                <button class="btn-primary" id="runCode" title="Run Code">
-                                    <svg fill="currentColor" viewBox="0 0 24 24">
+                                <button class="btn-primary" id="runCode" title="Run Code" aria-label="Run Java code" role="button">
+                                    <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                         <path d="M8 5v14l11-7z"/>
                                     </svg>
                                     <span>Run Code</span>
                                 </button>
                             </div>
                         </div>
-                        <div class="editor-wrapper">
+                        <div class="editor-wrapper" role="textbox" aria-label="Java code editor" aria-multiline="true">
                             <div id="codeMirrorEditor"></div>
                         </div>
                     </div>
 
                     <!-- Resize Handle: Editor ↔ Output -->
-                    <div class="resize-handle-h" id="resizeHandleH"></div>
+                    <div class="resize-handle-h" id="resizeHandleH" role="separator" aria-orientation="horizontal" aria-label="Resize output panel"></div>
 
                     <!-- Output Panel -->
-                    <div class="output-panel" id="outputPanel">
+                    <div class="output-panel" id="outputPanel" role="region" aria-label="Code output">
                         <div class="output-header">
                             <div class="output-title">
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M4 15V9a2 2 0 012-2h12a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2z"/>
                                 </svg>
                                 <span>Terminal Output</span>
                             </div>
-                            <button class="output-clear" id="clearOutput">Clear</button>
+                            <button class="output-clear" id="clearOutput" aria-label="Clear output">Clear</button>
                         </div>
-                        <div class="output-content" id="outputContent">
+                        <div class="output-content" id="outputContent" role="log" aria-live="polite" aria-label="Program output">
                             <pre id="output"></pre>
                         </div>
                     </div>
@@ -207,44 +217,45 @@
         </main>
 
         <!-- Floating Chat Button -->
-        <button class="chat-toggle-btn" id="chatToggleBtn" title="Chat with Byte AI">
-            <span class="chat-btn-icon">🤖</span>
-            <span class="chat-toggle-badge" id="chatBadge">1</span>
+        <button class="chat-toggle-btn" id="chatToggleBtn" title="Chat with Byte AI" aria-label="Open chat with Byte AI tutor" role="button">
+            <span class="chat-btn-icon" aria-hidden="true">🤖</span>
+            <span class="chat-toggle-badge" id="chatBadge" aria-hidden="true">1</span>
         </button>
 
         <!-- Floating Chat Panel -->
-        <div class="floating-chat" id="floatingChat">
+        <div class="floating-chat" id="floatingChat" role="dialog" aria-label="Chat with Byte AI" aria-modal="false">
             <div class="floating-chat-header">
-                <div class="floating-chat-avatar">
+                <div class="floating-chat-avatar" aria-hidden="true">
                     <span>🤖</span>
                 </div>
                 <div class="floating-chat-info">
                     <h4>Byte AI</h4>
-                    <span class="status-online">Online</span>
+                    <span class="status-online" role="status" aria-live="polite">Online</span>
                 </div>
-                <button class="floating-chat-close" id="closeChat">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button class="floating-chat-close" id="closeChat" aria-label="Close chat">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
                 </button>
             </div>
             
-            <div class="floating-chat-messages" id="chatMessages">
+            <div class="floating-chat-messages" id="chatMessages" role="log" aria-live="polite" aria-label="Chat messages">
                 <!-- Messages will be rendered here -->
             </div>
             
-            <div class="floating-chat-typing" id="typingIndicator">
+            <div class="floating-chat-typing" id="typingIndicator" role="status" aria-live="polite" aria-label="AI is typing">
                 <span></span><span></span><span></span>
             </div>
             
-            <div class="floating-chat-input">
-                <textarea id="chatInput" placeholder="Ask Byte about your code..." rows="1"></textarea>
-                <button class="send-btn" id="sendMessage">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <form class="floating-chat-input" onsubmit="event.preventDefault(); sendChatMessage();">
+                <label for="chatInput" class="sr-only">Type your message</label>
+                <textarea id="chatInput" placeholder="Ask Byte about your code..." rows="1" aria-label="Type your message"></textarea>
+                <button type="submit" class="send-btn" id="sendMessage" aria-label="Send message">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
                 </button>
-            </div>
+            </form>
         </div>
 
         <!-- Status Bar -->

@@ -8,7 +8,7 @@ Java Learning Hub is an interactive web-based platform for learning Java program
 
 ### ☕ Direct Java Execution
 - Java code runs directly in your browser
-- Uses online compiler API (Judge0)
+- Uses Judge0 CE API (ce.judge0.com)
 - No Java installation required!
 - Fast and reliable execution
 
@@ -19,30 +19,50 @@ Java Learning Hub is an interactive web-based platform for learning Java program
 - Helps debug code and explains concepts
 
 ### 💻 Code Editor
-- Monaco-style CodeMirror editor
+- CodeMirror editor with Dracula theme
 - Java syntax highlighting
 - Auto-indentation
 - Line numbers
-- Keyboard shortcuts
+- Multiple font family options
 
 ### 📚 Learning Curriculum
-- 55 comprehensive lessons
-- 10 modules from basics to advanced
-- Progress tracking
-- Practice exercises
+- 53 comprehensive lessons
+- 8 modules from basics to advanced
+- Progress tracking with localStorage
+- W3Schools-based content
+
+### 🎨 Theme Support
+- Dark theme (default)
+- Light theme
+- Night/Amber theme for easy reading
+
+### 📱 Responsive Design
+- Mobile-friendly layout
+- Touch-friendly resize handles
+- Works on all screen sizes
+
+### ♿ Accessibility
+- ARIA labels and roles
+- Keyboard navigation
+- Screen reader support
+- Focus indicators
+
+### 🚀 PWA
+- Service worker for offline support
+- Web app manifest
+- Installable on home screen
 
 ## Architecture
 
 ### Java Execution Flow
 
 ```
-User clicks Run → Code sent to API → Compiled & Executed → Output displayed
+User clicks Run → Code sent to Judge0 API → Compiled & Executed → Output displayed
 ```
 
-The app uses the Judge0 API for compilation and execution:
+The app uses the Judge0 CE API for compilation and execution:
 - Language ID: 62 (Java)
 - Timeout: 10 seconds
-- Memory limit: 128MB
 
 ### AI Tutor Integration
 
@@ -59,11 +79,14 @@ The AI tutor has context awareness:
 
 ```
 ├── index.html        # Main application
-├── styles.css       # Dark theme styling
+├── styles.css        # Styling with theme support
 ├── app.js           # Core application logic
-├── groq-service.js  # Groq API integration
-├── lessons.js       # 55 lesson curriculum
-├── java-runner.js   # Optional local runner
+├── groq-service.js   # Groq API integration
+├── lessons.js       # 53 lesson curriculum
+├── server.js        # Node.js static server
+├── sw.js            # Service worker for offline
+├── manifest.json    # PWA manifest
+├── package.json     # Dependencies and scripts
 ├── AGENTS.md        # This documentation
 └── README.md        # User guide
 ```
@@ -73,11 +96,11 @@ The AI tutor has context awareness:
 ### Groq API
 - **Model**: `llama-3.3-70b-versatile`
 - **Rate Limits**: 14,000 requests/day, 30 requests/minute
-- **API Key**: Stored in localStorage
+- **API Key**: Stored in localStorage (user provides)
 
 ### Java Compiler API
-- **Primary**: Judge0 API (api.judge0.com)
-- **Fallback**: TIO.run API
+- **Primary**: Judge0 CE API (ce.judge0.com)
+- **Language ID**: 62 (Java)
 
 ## State Management
 

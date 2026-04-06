@@ -1,13 +1,28 @@
 {
   "name": "java-learning-hub",
   "version": "1.0.0",
-  "description": "Learn Java with an interactive AI tutor",
+  "description": "Learn Java programming with an interactive AI tutor. 53 lessons, built-in code editor, instant code execution.",
   "main": "server.js",
   "scripts": {
     "dev": "node server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "echo \"No tests configured\""
   },
-  "keywords": ["java", "learning", "tutor"],
-  "author": "",
-  "license": "MIT"
+  "keywords": [
+    "java",
+    "learning",
+    "tutor",
+    "education",
+    "programming",
+    "pwa"
+  ],
+  "author": "Java Learning Hub",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erolledph/learn-java"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
 }

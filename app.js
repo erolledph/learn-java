@@ -204,6 +204,31 @@ document.addEventListener('DOMContentLoaded', async () => {
         elements.welcomeModal?.classList.remove('visible');
         addWelcomeMessage();
     }
+    
+    // Register Service Worker for PWA
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then((registration) => {
+                    console.log('SW registered:', registration.scope);
+                })
+                .catch((error) => {
+                    console.log('SW registration failed:', error);
+                });
+        });
+    }
+});
+
+// Global error handler
+window.addEventListener('error', (event) => {
+    console.error('Global error:', event.error);
+    showToast('An error occurred. Please refresh the page.', 'error');
+});
+
+// Unhandled promise rejection handler
+window.addEventListener('unhandledrejection', (event) => {
+    console.error('Unhandled rejection:', event.reason);
+    showToast('An error occurred. Please refresh the page.', 'error');
 });
 
 // Add welcome message to chat
