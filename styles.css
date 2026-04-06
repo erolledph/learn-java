@@ -1234,7 +1234,7 @@ input, textarea, select {
     background: var(--bg-primary);
 }
 
-/* Cursor */
+/* Cursor - Dark Theme (Default) */
 .CodeMirror-cursor {
     border-left: 2px solid #f8f8f2 !important;
 }
@@ -1249,6 +1249,22 @@ input, textarea, select {
 
 .CodeMirror.cm-focused .CodeMirror-cursor {
     border-left: 2px solid #f8f8f2 !important;
+}
+
+/* Cursor - Light Theme */
+body.light-theme .CodeMirror-cursor,
+body.light-theme .CodeMirror-focused .CodeMirror-cursor,
+body.light-theme .CodeMirror div.CodeMirror-secondarycursor,
+body.light-theme .CodeMirror.cm-focused .CodeMirror-cursor {
+    border-left: 2px solid #1e293b !important;
+}
+
+/* Cursor - Night/Amber Theme */
+body.night-theme .CodeMirror-cursor,
+body.night-theme .CodeMirror-focused .CodeMirror-cursor,
+body.night-theme .CodeMirror div.CodeMirror-secondarycursor,
+body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
+    border-left: 2px solid #fef3c7 !important;
 }
 
 /* Output Panel */
