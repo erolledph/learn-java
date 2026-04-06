@@ -526,6 +526,24 @@ input, textarea, select {
     cursor: col-resize;
     flex-shrink: 0;
     transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Vertical resize handle indicator - always visible */
+.resize-handle-v::before {
+    content: '';
+    width: 2px;
+    height: 30px;
+    background: var(--text-muted);
+    border-radius: 1px;
+    opacity: 0.5;
+}
+
+.resize-handle-v:hover::before {
+    background: white;
+    opacity: 1;
 }
 
 .resize-handle-v:hover {
@@ -539,12 +557,28 @@ input, textarea, select {
     cursor: row-resize;
     flex-shrink: 0;
     transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.resize-handle-h:hover {
-    background: var(--accent-primary);
+/* Horizontal resize handle indicator - always visible */
+.resize-handle-h::before {
+    content: '';
+    width: 30px;
+    height: 2px;
+    background: var(--text-muted);
+    border-radius: 1px;
+    opacity: 0.5;
 }
 
+.resize-handle-h:hover::before,
+.resize-handle-h:active::before {
+    background: white;
+    opacity: 1;
+}
+
+.resize-handle-h:hover,
 .resize-handle-h:active {
     background: var(--accent-primary);
 }
@@ -2426,11 +2460,12 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
     
     .resize-handle-v::before {
         content: '';
-        width: 40px;
+        width: 50px;
         height: 4px;
-        background: var(--border-secondary);
+        background: var(--text-muted);
         border-radius: 2px;
-        transition: background 0.1s;
+        opacity: 0.6;
+        transition: background 0.1s, opacity 0.1s;
     }
     
     .resize-handle-v:hover,
@@ -2441,6 +2476,7 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
     .resize-handle-v:hover::before,
     .resize-handle-v:active::before {
         background: white;
+        opacity: 1;
     }
     
     .resize-handle-h {
@@ -2460,14 +2496,18 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
     
     .resize-handle-h::before {
         content: '';
-        width: 40px;
+        width: 50px;
         height: 4px;
-        background: var(--border-secondary);
+        background: var(--text-muted);
         border-radius: 2px;
+        opacity: 0.6;
+        transition: background 0.1s, opacity 0.1s;
     }
     
-    .resize-handle-h:hover::before {
+    .resize-handle-h:hover::before,
+    .resize-handle-h:active::before {
         background: white;
+        opacity: 1;
     }
     
     /* Editor Panel Header */
