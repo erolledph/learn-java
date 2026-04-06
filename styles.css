@@ -2391,6 +2391,8 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
+        transition: background 0.1s;
+        touch-action: none;
     }
     
     .resize-handle-v::before {
@@ -2399,6 +2401,7 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
         height: 4px;
         background: var(--border-secondary);
         border-radius: 2px;
+        transition: background 0.1s;
     }
     
     .resize-handle-v:hover,
@@ -2418,6 +2421,8 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: background 0.1s;
+        touch-action: none;
     }
     
     .resize-handle-h:hover {

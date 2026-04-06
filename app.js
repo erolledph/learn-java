@@ -509,8 +509,16 @@ function initializeResizePanels() {
     resizerV.addEventListener('touchstart', function(e) {
         e.preventDefault();
         currentResizer = 'v';
-        startPos = e.touches[0].clientX;
-        startSize = isMobile ? lessonSection.offsetHeight : lessonSection.offsetWidth;
+        const touch = e.touches[0];
+        if (isMobile) {
+            // For mobile, get position relative to content-area
+            const containerRect = editorSection.parentElement.getBoundingClientRect();
+            startPos = touch.clientY - containerRect.top;
+            startSize = lessonSection.offsetHeight;
+        } else {
+            startPos = touch.clientX;
+            startSize = lessonSection.offsetWidth;
+        }
     }, { passive: false });
     
     // Start horizontal resize (editor vs output) - mouse
@@ -548,11 +556,11 @@ function initializeResizePanels() {
         if (currentResizer === 'v') {
             if (isMobile) {
                 // Mobile: resize height (lesson vs editor stacked vertically)
-                const containerHeight = editorSection.parentElement.offsetHeight;
-                const diff = clientY - startPos;
-                const newHeight = Math.max(80, Math.min(containerHeight * 0.7, startSize + diff));
+                const containerRect = editorSection.parentElement.getBoundingClientRect();
+                const currentPos = clientY - containerRect.top;
+                const diff = currentPos - startPos;
+                const newHeight = Math.max(80, Math.min(containerRect.height * 0.7, startSize + diff));
                 lessonSection.style.height = newHeight + 'px';
-                lessonSection.style.width = '100%';
             } else {
                 // Desktop: resize width (lesson vs editor side by side)
                 const containerWidth = editorSection.parentElement.offsetWidth;
@@ -574,12 +582,14 @@ function initializeResizePanels() {
             outputPanel.style.flex = '0 0 ' + newOutputHeight + 'px';
         }
         
-        setTimeout(function() {
-            if (state.editor) {
-                state.editor.refresh();
-                state.editor.focus();
-            }
-        }, 10);
+        // Only refresh editor on mouse, not on every touchmove
+        if (currentResizer === 'h' || !isMobile) {
+            setTimeout(function() {
+                if (state.editor) {
+                    state.editor.refresh();
+                }
+            }, 10);
+        }
     }
     
     // Stop handler (mouse)
