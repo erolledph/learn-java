@@ -1688,54 +1688,12 @@ async function sendChatMessage() {
             addChatMessage(errorMessage, 'bot');
         } else {
             addChatMessage(response.message, 'bot');
-            
-            // Add follow-up suggestions
-            setTimeout(() => {
-                addFollowUpSuggestions();
-            }, 500);
         }
         
     } catch (error) {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
         addChatMessage(`😕 I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot');
-    }
-}
-
-// Add follow-up suggestions
-function addFollowUpSuggestions() {
-    if (state.isAITyping) return;
-    
-    const suggestions = [
-        { text: 'Show me an example', action: 'Can you show me a code example?' },
-        { text: 'Explain more', action: 'Can you explain that in more detail?' },
-        { text: 'Give me a challenge', action: 'Give me a small challenge to practice!' },
-        { text: 'Next lesson', action: 'What should I learn next?' }
-    ];
-    
-    const html = `
-        <div class="follow-up-suggestions">
-            <span class="suggestions-label">Quick replies:</span>
-            <div class="suggestion-buttons">
-                ${suggestions.map(s => 
-                    `<button class="suggestion-btn" data-text="${s.action}">${s.text}</button>`
-                ).join('')}
-            </div>
-        </div>
-    `;
-    
-    // Add to last message
-    const lastMessage = elements.chatMessages.lastElementChild;
-    if (lastMessage) {
-        lastMessage.querySelector('.message-content').insertAdjacentHTML('beforeend', html);
-        
-        // Add click handlers
-        lastMessage.querySelectorAll('.suggestion-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                elements.chatInput.value = btn.dataset.text;
-                sendChatMessage();
-            });
-        });
     }
 }
 

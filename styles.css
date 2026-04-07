@@ -2868,9 +2868,6 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
         font-size: 11px;
     }
     
-    .lesson-complete-btn .complete-text {
-        display: none;
-    }
 }
 
 /* Small Mobile */
