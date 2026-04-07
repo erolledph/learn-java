@@ -1691,7 +1691,7 @@ async function sendChatMessage() {
         elements.typingIndicator.classList.remove('visible');
         
         if (response.error) {
-            const errorMessage = `🤖 Oops! I couldn't get a response from Groq.\n\nPlease check your internet connection or API key, then try again.`;
+            const errorMessage = `🤖 Oops! I couldn't get a response.\n\nPlease check your internet connection or API key, then try again.`;
             console.error('Groq service error:', response.message);
             addChatMessage(errorMessage, 'bot');
         } else {
