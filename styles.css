@@ -762,22 +762,118 @@ body.night-theme .lesson-complete-btn.completed {
 .lesson-panel-content code {
     font-family: var(--font-mono);
     font-size: 12px;
-    background: var(--bg-secondary);
     padding: 2px 6px;
     border-radius: 4px;
     color: var(--accent-primary);
 }
 
-.lesson-panel-content pre {
-    background: var(--bg-primary);
-    padding: 12px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-primary);
-    font-family: var(--font-mono);
-    font-size: 12px;
+/* Code Window (VS Code style) */
+.code-window {
+    background: #1e1e1e;
+    border-radius: 6px;
+    overflow: hidden;
     margin: 12px 0;
-    overflow-x: auto;
 }
+
+.code-header {
+    display: flex;
+    gap: 6px;
+    padding: 10px 12px;
+    border-bottom: 1px solid #3c3c3c;
+    background: #1e1e1e;
+}
+
+.code-header .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.code-header .dot.red { background: #ff5f56; }
+.code-header .dot.yellow { background: #ffbd2e; }
+.code-header .dot.green { background: #27c93f; }
+
+.code-window pre,
+.code-window .code-body,
+.snippet-container pre {
+    background: #1e1e1e;
+    padding: 12px;
+    margin: 0;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 13px;
+    overflow-x: auto;
+    line-height: 1.6;
+    color: #d4d4d4;
+    white-space: pre-wrap;
+}
+
+.snippet-container {
+    margin: 12px 0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.snippet-container .code-header {
+    display: flex;
+    gap: 6px;
+    padding: 10px 12px;
+    border-bottom: 1px solid #3c3c3c;
+    background: #1e1e1e;
+}
+
+.snippet-container .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.snippet-container .dot.red { background: #ff5f56; }
+.snippet-container .dot.yellow { background: #ffbd2e; }
+.snippet-container .dot.green { background: #27c93f; }
+
+/* Syntax colors */
+.code-window .keyword { color: #569cd6; }
+.code-window .type { color: #4ec9b0; }
+.code-window .method { color: #dcdcaa; }
+.code-window .string { color: #ce9178; }
+.code-window .comment { color: #6a9955; }
+.code-window .number { color: #b5cea8; }
+
+/* Syntax colors for HTML snippet */
+.snippet-container pre {
+    background: #1e1e1e;
+    padding: 12px;
+    margin: 0;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 13px;
+    overflow-x: auto;
+    line-height: 1.6;
+    color: #d4d4d4;
+}
+
+.snippet-container .code-header {
+    display: flex;
+    gap: 6px;
+    padding: 10px 12px;
+    border-bottom: 1px solid #3c3c3c;
+    background: #1e1e1e;
+}
+
+.snippet-container .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.snippet-container .dot.red { background: #ff5f56; }
+.snippet-container .dot.yellow { background: #ffbd2e; }
+.snippet-container .dot.green { background: #27c93f; }
+
+.snippet-container .k { color: #569cd6; }   /* keyword */
+.snippet-container .v { color: #b5cea8; }  /* value/number */
+.snippet-container .s { color: #ce9178; }   /* string */
+.snippet-container .m { color: #dcdcaa; }   /* method */
+.snippet-container .c { color: #6a9955; }   /* comment */
 
 /* Lesson Content Blocks */
 .lesson-block {

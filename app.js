@@ -2,6 +2,11 @@
 // Java Learning Hub - Main Application
 // ============================================
 
+// Just escape basic HTML - snippet already contains rendered HTML
+function highlightJava(code) {
+    return code;
+}
+
 // Global state
 const state = {
     currentLesson: null,
@@ -813,11 +818,26 @@ function renderInteractiveLesson(lesson) {
         </div>
     `;
     
-    if (content.description) {
-        html += `<div class="lesson-block description">
-            <h4>📖 What is ${lesson.title}?</h4>
-            <p>${content.description}</p>
-        </div>`;
+    function wrapInClass(code) {
+        var lines = code.split('\n');
+        var indented = lines.map(function(line) { return '    ' + line; }).join('\n');
+        return 'public class Main {\n    public static void main(String[] args) {\n' + indented + '\n    }\n}';
+    }
+    
+if (content.description) {
+        var snippetCode = content.snippet ? wrapInClass(content.snippet) : '';
+        html += '<div class="lesson-block description">' +
+            '<h4>📖 What is ' + lesson.title + '?</h4>' +
+            '<p>' + content.description + '</p>' +
+            (content.snippet ? '<div class="code-window">' +
+                '<div class="code-header">' +
+                    '<span class="dot red"></span>' +
+                    '<span class="dot yellow"></span>' +
+                    '<span class="dot green"></span>' +
+                '</div>' +
+                '<pre><code>' + snippetCode + '</code></pre>' +
+            '</div>' : '') +
+        '</div>';
     }
     
     if (content.keyPoints) {

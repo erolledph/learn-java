@@ -18,18 +18,14 @@ const JAVA_CURRICULUM = {
                     title: "Introduction",
                     duration: "15 min",
                     content: {
-                        description: "Java is a powerful, high-level, object-oriented programming language that was designed from the ground up to be platform-independent. This means you can write Java code once and run it on virtually any device that has a Java Virtual Machine (JVM) installed, whether it's Windows, macOS, Linux, or even mobile devices. Java's 'write once, run anywhere' philosophy eliminates the need to rewrite code for different platforms, making it incredibly versatile for everything from web applications to Android apps to enterprise systems. Java combines the best features of languages like C++ and Smalltalk while being easier to learn and use.",
+                        description: "Java is a powerful, high-level, object-oriented programming language designed to be platform-independent. Write once, run anywhere on any device with JVM.",
+                        snippet: "System.out.println(\"Hello, World!\");",
                         keyPoints: [
-                            "Java is owned by Oracle Corporation and was originally developed by Sun Microsystems in 1995",
-                            "Platform-independent through the Java Virtual Machine (JVM) which translates bytecode to machine code",
-                            "Widely used in Android mobile app development, enterprise applications, web servers, and embedded systems",
-                            "Syntax is similar to C++ but with simplified features and automatic memory management",
-                            "Strong static typing prevents many common programming errors",
-                            "Built-in garbage collection automatically manages memory, reducing memory leaks",
-                            "Rich standard library provides ready-to-use classes for common tasks",
-                            "Supports multithreading for concurrent programming",
-                            "Backward compatible - newer versions can run older Java programs",
-                            "Active community with extensive documentation and learning resources"
+                            "Owned by Oracle, developed by Sun Microsystems in 1995",
+                            "Platform-independent through Java Virtual Machine (JVM)",
+                            "Widely used in Android apps, enterprise and web applications",
+                            "Syntax similar to C++ with automatic memory management",
+                            "Strong static typing prevents many common errors"
                         ]
                     },
                     example: `public class Main {
@@ -44,18 +40,14 @@ const JAVA_CURRICULUM = {
                     title: "Java Syntax",
                     duration: "15 min",
                     content: {
-                        description: "Java syntax refers to the set of rules that define how Java programs must be written to be correctly interpreted by the compiler and JVM. These rules ensure that your code is structured in a way that the Java compiler can understand and convert into executable bytecode. Every Java program follows strict syntactic conventions, including proper use of semicolons to terminate statements, curly braces to define code blocks, and specific keywords that have reserved meanings. Understanding these rules is fundamental to writing correct Java code and avoiding compilation errors.",
+                        description: "Java syntax is the set of rules defining how code must be written. Case-sensitive, uses semicolons to end statements and curly braces for code blocks.",
+                        snippet: "int x = 5;\nint y = 6;\nSystem.out.println(x + y);",
                         keyPoints: [
-                            "Java is case-sensitive - 'Main' and 'main' are different identifiers",
-                            "Class names should start with an uppercase letter and use PascalCase (e.g., MyClass)",
-                            "Method names should start with lowercase and use camelCase (e.g., myMethod)",
-                            "The main method with signature `public static void main(String[] args)` is required for program execution",
-                            "Every statement must end with a semicolon (;) except for blocks and control structures",
-                            "Code blocks (methods, loops, conditionals) are enclosed in curly braces { }",
-                            "Whitespace (spaces, tabs, newlines) is ignored but improves readability",
-                            "String literals must be enclosed in double quotes \" \"",
-                            "Comments are ignored by the compiler but essential for code documentation",
-                            "Package declarations must be the first non-comment line in a file"
+                            "Java is case-sensitive - 'Main' and 'main' are different",
+                            "Class names use PascalCase, method names use camelCase",
+                            "main method required: public static void main(String[] args)",
+                            "Statements end with semicolon (;)",
+                            "Code blocks enclosed in curly braces { }"
                         ]
                     },
                     example: `public class Main {
@@ -73,18 +65,14 @@ const JAVA_CURRICULUM = {
                     title: "Output",
                     duration: "10 min",
                     content: {
-                        description: "Output in Java refers to displaying information to the user through the console or other output streams. The most common way to produce output is using the System.out.println() method, which sends text to the standard output stream (usually the console window). Java provides several methods for different output needs, from simple text printing to formatted output. Understanding how to effectively display information is crucial for debugging programs, showing results to users, and creating interactive applications. Output methods are part of Java's standard library and don't require any imports.",
+                        description: "Output displays information to users via console. System.out.println() prints text with a newline. Use + to concatenate strings with variables.",
+                        snippet: "System.out.println(\"Hello World\");\nSystem.out.println(\"Math: \" + (5 + 5));",
                         keyPoints: [
-                            "System.out.println() prints the specified content and adds a newline character at the end",
-                            "System.out.print() prints content without adding a newline, allowing multiple outputs on the same line",
-                            "System.out.printf() allows formatted output using format specifiers like %d for integers, %f for floats",
-                            "The + operator concatenates strings and converts other types to strings automatically",
-                            "Parentheses can be used to control the order of operations in concatenated expressions",
-                            "Multiple variables and literals can be combined in a single output statement",
-                            "Escape sequences like \\n (newline) and \\t (tab) can be used within strings",
-                            "Output can include the results of calculations and method calls",
-                            "Different data types (int, double, boolean, String) can all be printed directly",
-                            "Output is buffered and may not appear immediately - use System.out.flush() if needed"
+                            "System.out.println() prints with newline",
+                            "System.out.print() prints without newline",
+                            "System.out.printf() for formatted output",
+                            "Use + to concatenate strings",
+                            "Escape sequences: \\n (newline), \\t (tab)"
                         ]
                     },
                     example: `public class Main {
@@ -101,18 +89,13 @@ const JAVA_CURRICULUM = {
                     title: "Comments",
                     duration: "10 min",
                     content: {
-                        description: "Comments are an essential part of writing maintainable and readable Java code. They allow programmers to add explanatory text within the source code that is completely ignored by the Java compiler during compilation. Comments serve multiple purposes: explaining complex logic, documenting the purpose of methods and classes, providing context for future maintainers, and temporarily disabling code during debugging. Good commenting practices make code more professional and easier to understand, especially when working in teams or returning to code after months of absence. Java supports several types of comments, each suited for different documentation needs.",
+                        description: "Comments are explanations ignored by the compiler. Use // for single-line and /* */ for multi-line comments to document code.",
+                        snippet: "// This is a single-line comment\n/* This is a\n   multi-line comment */",
                         keyPoints: [
-                            "Single-line comments start with // and continue to the end of the line",
-                            "Multi-line comments are enclosed between /* and */ and can span multiple lines",
-                            "Documentation comments use /** */ format and can generate API documentation with javadoc",
-                            "Comments are completely ignored by the compiler and don't affect program execution",
-                            "Use comments to explain why code exists, not just what it does",
-                            "Comments can be used to temporarily disable code during testing and debugging",
-                            "Well-commented code is easier to maintain and debug",
-                            "Comments should be kept up-to-date when code changes",
-                            "Avoid obvious comments that just restate what the code clearly does",
-                            "Use consistent commenting style throughout your codebase"
+                            "// for single-line comments",
+                            "/* */ for multi-line comments",
+                            "/** */ for documentation comments",
+                            "Ignored by compiler - no effect on execution"
                         ]
                     },
                     example: `public class Main {
@@ -142,18 +125,14 @@ const JAVA_CURRICULUM = {
                     title: "Variables",
                     duration: "15 min",
                     content: {
-                        description: "Variables are fundamental building blocks in Java programming that serve as named containers for storing data values. Unlike some programming languages that allow you to create variables without specifying their type, Java requires explicit type declaration. This strong typing helps prevent many common programming errors and makes Java code more reliable and maintainable. Variables can store various types of data including numbers, text, and true/false values. Once declared, variables can be assigned values and reassigned as needed throughout your program. Understanding variables is crucial because they allow your programs to work with dynamic data and create interactive applications.",
+                        description: "Variables are named containers for storing data values. Java requires explicit type declaration - declare type before using.",
+                        snippet: "String name = \"John\";\nint age = 25;\ndouble gpa = 3.5;\nboolean isStudent = true;",
                         keyPoints: [
-                            "Declaration syntax: `dataType variableName;` or `dataType variableName = initialValue;`",
-                            "Common primitive types: int (integers), double (decimals), boolean (true/false), char (single characters)",
-                            "Reference types: String (text), arrays, objects - these store references to memory locations",
-                            "Variables can be declared first and assigned values later: `int x; x = 5;`",
-                            "Multiple variables of the same type can be declared together: `int a, b, c;`",
-                            "The `final` keyword creates constants that cannot be reassigned after initialization",
-                            "Variable names should be descriptive and follow camelCase convention (e.g., `studentName`)",
-                            "Variables have scope - they can only be used within the block where they're declared",
-                            "Local variables must be initialized before use (except in special cases)",
-                            "Variables store data in memory and can be modified during program execution"
+                            "Syntax: dataType variableName; or dataType variableName = value;",
+                            "Common types: int, double, boolean, char, String",
+                            "Use final for constants: final int X = 10;",
+                            "Names should be descriptive (camelCase)",
+                            "Must be initialized before use"
                         ]
                     },
                     example: `public class Main {
@@ -176,11 +155,12 @@ const JAVA_CURRICULUM = {
                     title: "Print Variables",
                     duration: "10 min",
                     content: {
-                        description: "Displaying variable values is a crucial part of Java programming, whether for debugging, showing results to users, or creating interactive applications. Java provides flexible ways to combine text and variable values using string concatenation. The + operator serves dual purposes: mathematical addition for numbers and string concatenation when combined with text. Understanding how Java handles different data types during output operations prevents common mistakes and helps create professional-looking program output. Proper formatting makes your programs more user-friendly and easier to debug.",
+                        description: "Display variable values using System.out.println(). Use + to concatenate text with variables or perform math.",
+                        snippet: "String name = \"John\";\nint age = 25;\nSystem.out.println(\"Hello \" + name);\nSystem.out.println(\"Age: \" + age);",
                         keyPoints: [
                             "Use + to concatenate text and variables",
                             "System.out.println(x) prints variable value",
-                            "System.out.println(\"Text \" + x) combines text"
+                            "Math: x + y adds numbers"
                         ]
                     },
                     example: `public class Main {
@@ -203,18 +183,12 @@ const JAVA_CURRICULUM = {
                     title: "Declare Multiple Variables",
                     duration: "10 min",
                     content: {
-                        description: "Java provides concise syntax for declaring multiple variables of the same data type in a single statement, which can make your code more readable and reduce redundancy. This feature is particularly useful when you need to create several variables that serve related purposes, such as coordinates, dimensions, or related numeric values. You can declare multiple variables with or without initial values, and mix initialization styles as needed. This approach helps keep related variables grouped together and reduces the amount of repetitive type declarations in your code.",
+                        description: "Declare multiple variables of the same type in one statement using commas. Group related variables together.",
+                        snippet: "int x = 5, y = 10, z = 15;\nString firstName = \"John\", lastName = \"Doe\";",
                         keyPoints: [
-                            "Basic syntax: `dataType var1, var2, var3;` declares multiple variables without initialization",
-                            "With initialization: `dataType var1 = value1, var2 = value2, var3 = value3;`",
-                            "Mixed style: `dataType var1 = value1, var2, var3 = value3;` (some initialized, some not)",
-                            "All variables must be of the same data type in a single declaration statement",
-                            "Each initialized variable gets its own value, separated by commas",
-                            "Improves code readability by grouping related variables",
-                            "Reduces repetitive type declarations in your code",
-                            "Variables can be declared across multiple lines for better formatting",
-                            "Initialization can use expressions, not just literal values",
-                            "Scope rules apply to all variables in the declaration (all have the same scope)"
+                            "Syntax: dataType var1, var2, var3;",
+                            "With values: dataType var1 = val1, var2 = val2;",
+                            "All must be same data type"
                         ]
                     },
                     example: `public class Main {
@@ -233,18 +207,14 @@ const JAVA_CURRICULUM = {
                     title: "Identifiers",
                     duration: "10 min",
                     content: {
-                        description: "Identifiers are the names you give to variables, methods, classes, and other program elements in Java. They serve as human-readable labels that make your code understandable and maintainable. Java has strict rules about what constitutes a valid identifier, designed to prevent ambiguity and ensure code clarity. Good identifier naming is a crucial aspect of writing professional Java code. Following naming conventions makes your code more readable for other developers and helps prevent naming conflicts. Identifiers must be unique within their scope and should convey the purpose or meaning of what they represent.",
+                        description: "Identifiers are names for variables, methods, classes. Must start with letter, underscore or $. Case-sensitive.",
+                        snippet: "int myVariable = 5;\nint _age = 25;\nint $price = 99;",
                         keyPoints: [
-                            "Must begin with a letter (a-z, A-Z), underscore (_), or dollar sign ($)",
-                            "Cannot start with a number (0-9) - digits can only appear after the first character",
-                            "Can contain letters, digits, underscores, and dollar signs - no other special characters",
-                            "Are case-sensitive: `myVariable`, `MyVariable`, and `MYVARIABLE` are all different identifiers",
-                            "Cannot be Java reserved keywords like `class`, `int`, `if`, `for`, `while`, `public`, etc.",
-                            "Should follow naming conventions: camelCase for variables/methods, PascalCase for classes",
-                            "Should be descriptive and meaningful - prefer `studentName` over `x` or `var1`",
-                            "Length is theoretically unlimited but should be reasonable for readability",
-                            "Underscore can be used but is typically reserved for constants or special cases",
-                            "Dollar sign is allowed but rarely used in practice (mainly for generated code)"
+                            "Start with letter, underscore (_), or dollar ($)",
+                            "Cannot start with a number",
+                            "Case-sensitive: myVar and MyVar are different",
+                            "Cannot use Java keywords",
+                            "Use camelCase for variables, PascalCase for classes"
                         ]
                     },
                     example: `public class Main {
@@ -270,18 +240,14 @@ const JAVA_CURRICULUM = {
                     title: "Data Types",
                     duration: "15 min",
                     content: {
-                        description: "Java's type system is one of its most important features, providing strong typing that helps prevent errors and ensures reliable code execution. Data types in Java are divided into two main categories: primitive types and reference types. Primitive types are the basic building blocks that store simple values directly in memory, while reference types store references to objects that contain more complex data. Understanding the different data types and their characteristics is essential for choosing the right type for each variable and ensuring your programs use memory efficiently. Each data type has specific memory requirements and capabilities that make it suitable for different kinds of data.",
+                        description: "Java has primitive types (int, double, boolean, char) and reference types (String, arrays, objects).",
+                        snippet: "int i = 100000;\ndouble d = 19.99;\nboolean isFun = true;\nchar grade = 'A';\nString name = \"John\";",
                         keyPoints: [
-                            "Primitive types are the basic data types built into Java: byte, short, int, long, float, double, boolean, char",
-                            "Reference types (non-primitive) include String, arrays, and all class types - they store memory addresses",
-                            "Integer primitives: byte (8-bit, -128 to 127), short (16-bit, -32K to 32K), int (32-bit, -2B to 2B), long (64-bit, huge range)",
-                            "Floating-point primitives: float (32-bit, ~7 decimal digits precision), double (64-bit, ~15 decimal digits precision)",
-                            "boolean stores only true or false values, perfect for conditional logic",
-                            "char stores single Unicode characters (16-bit, supports international characters)",
-                            "String is a reference type that represents sequences of characters",
-                            "Primitive types have default values (0, false, etc.) while reference types default to null",
-                            "Choosing the right data type affects memory usage and performance",
-                            "Type conversion (casting) may be needed when assigning between different types"
+                            "Primitives: byte, short, int, long, float, double, boolean, char",
+                            "Reference types: String, arrays, objects",
+                            "Integer: int (32-bit), long (64-bit)",
+                            "Decimal: double (64-bit), float (32-bit)",
+                            "boolean: true or false only"
                         ]
                     },
                     example: `public class Main {
@@ -314,18 +280,14 @@ const JAVA_CURRICULUM = {
                     title: "Numbers",
                     duration: "15 min",
                     content: {
-                        description: "Java offers a rich set of numeric data types designed to handle different ranges and precision requirements. Choosing the right numeric type is crucial for memory efficiency and preventing overflow errors. The language provides both integer types for whole numbers and floating-point types for decimal values. Each type has specific memory requirements and range limitations that make it suitable for different use cases. Understanding these types helps you write more efficient and reliable code, especially when dealing with large numbers, precise calculations, or memory-constrained environments.",
+                        description: "Numeric types: int for integers, double for decimals. Use L suffix for long, f for float.",
+                        snippet: "int i = 1000000;\nlong bigNum = 15000000000L;\ndouble price = 19.99;\nfloat tax = 0.08f;\ndouble exp = 35e3;  // 35000",
                         keyPoints: [
-                            "int is the most common integer type (32-bit, range -2.1 billion to +2.1 billion) - perfect for most counting and indexing",
-                            "long handles very large integers (64-bit) - use 'L' suffix for literals, ideal for timestamps, large counts, or file sizes",
-                            "short (16-bit) and byte (8-bit) save memory for small ranges but are rarely used due to int's efficiency",
-                            "double is the default for decimal numbers (64-bit floating-point) - provides ~15 decimal digits of precision",
-                            "float uses less memory (32-bit) but has less precision (~7 decimal digits) - add 'f' suffix to literals",
-                            "Scientific notation uses 'e' or 'E' for exponents: 35e3 means 35 × 10³ = 35,000",
-                            "Negative exponents work too: 12e-3 means 12 × 10⁻³ = 0.012",
-                            "BigDecimal provides arbitrary precision for financial calculations where rounding errors can't be tolerated",
-                            "Integer overflow wraps around silently - use long for large numbers to prevent this",
-                            "Floating-point arithmetic can have precision issues - BigDecimal helps for exact decimal calculations"
+                            "int: most common integer (32-bit)",
+                            "long: very large integers, use L suffix",
+                            "double: default decimal (64-bit)",
+                            "float: less precise, use f suffix",
+                            "Scientific: 35e3 = 35000"
                         ]
                     },
                     example: `public class Main {
@@ -354,18 +316,13 @@ const JAVA_CURRICULUM = {
                     title: "Booleans",
                     duration: "10 min",
                     content: {
-                        description: "The boolean data type is fundamental to programming logic, representing binary states that control program flow and decision-making. In Java, boolean variables can only hold two possible values: true or false. This simplicity makes booleans incredibly powerful for implementing conditional logic, loops, and any scenario requiring yes/no or on/off decisions. Boolean values are the foundation of all conditional statements and are frequently the result of comparison operations. Understanding how to work with booleans is essential for creating programs that can make decisions and respond differently based on conditions.",
+                        description: "boolean stores true or false. Used for conditions, comparisons, and logical operations.",
+                        snippet: "boolean isJavaFun = true;\nSystem.out.println(x > y);  // true/false\nif (isJavaFun) { ... }",
                         keyPoints: [
-                            "boolean is a primitive type that stores only two values: true or false (case-sensitive)",
-                            "Default value for boolean fields is false (local variables must be explicitly initialized)",
-                            "Comparison operators (==, !=, <, >, <=, >=) always return boolean values",
-                            "Logical operators (&& and, || or, ! not) work with boolean values",
-                            "Used extensively in control structures: if statements, while loops, for loops",
-                            "Method return types can be boolean for functions that check conditions",
-                            "Boolean expressions can be combined using parentheses for complex logic",
-                            "Short-circuit evaluation: && stops at first false, || stops at first true",
-                            "Can be used directly in assignments or returned from methods",
-                            "Essential for implementing flags, switches, and state management"
+                            "boolean stores true or false",
+                            "Comparison operators return boolean",
+                            "Logical operators: && (and), || (or), ! (not)",
+                            "Used in if/while statements"
                         ]
                     },
                     example: `public class Main {
@@ -396,18 +353,13 @@ const JAVA_CURRICULUM = {
                     title: "Characters",
                     duration: "10 min",
                     content: {
-                        description: "The char data type represents single characters and is one of Java's primitive types. Characters in Java are stored as 16-bit Unicode values, allowing representation of characters from virtually any written language in the world. This Unicode support makes Java applications truly international. Characters are enclosed in single quotes and can represent letters, digits, symbols, and even control characters. Understanding character handling is important for text processing, input validation, and working with international character sets.",
+                        description: "char stores single characters in single quotes. Supports Unicode - any language character.",
+                        snippet: "char grade = 'A';\nchar symbol = '!';\nchar unicode = '\\u0041';  // 'A'",
                         keyPoints: [
-                            "char is a 16-bit primitive type storing single Unicode characters",
-                            "Characters must be enclosed in single quotes: 'A', 'x', '!', '9'",
-                            "Supports the full Unicode character set, including international characters and symbols",
-                            "Can store any Unicode character using escape sequences like '\\u0041' for 'A'",
-                            "Common escape sequences: '\\n' (newline), '\\t' (tab), '\\\\' (backslash), '\\\"' (double quote)",
-                            "Character literals can include any printable character or Unicode escape sequence",
-                            "Memory usage is fixed at 2 bytes per character regardless of the character stored",
-                            "Can be used in arithmetic operations (characters have underlying numeric values)",
-                            "Often used for parsing text, validating input, and character-based operations",
-                            "Different from String which represents sequences of characters"
+                            "Use single quotes: 'A', 'x', '!'",
+                            "16-bit Unicode support",
+                            "Escape sequences: \\n, \\t, \\\\",
+                            "Different from String (double quotes)"
                         ]
                     },
                     example: `public class Main {
@@ -433,18 +385,14 @@ const JAVA_CURRICULUM = {
                     title: "Non-Primitive Types",
                     duration: "10 min",
                     content: {
-                        description: "Non-primitive types, also called reference types, are more complex data structures that store references to objects rather than storing values directly. These types include Strings, arrays, and custom classes. Unlike primitive types that have fixed memory sizes and store values directly, reference types can vary in size and provide rich functionality through methods. They can be assigned null, meaning they don't currently reference any object. Understanding reference types is crucial for working with text, collections of data, and custom objects in Java applications.",
+                        description: "Reference types store references to objects (not values). String, arrays, and custom classes are reference types.",
+                        snippet: "String text = \"Hello\";\ntext.length();\ntext.toUpperCase();\nString[] cars = {\"Volvo\", \"BMW\"};",
                         keyPoints: [
-                            "Reference types store memory addresses that point to objects, not the objects themselves",
-                            "String is a reference type (despite starting with lowercase) that represents sequences of characters",
-                            "Arrays are reference types that can hold multiple values of the same type",
-                            "Custom classes you create are reference types with their own properties and methods",
-                            "Reference variables can be null, indicating they don't point to any object",
-                            "Have built-in methods for manipulation (String has length(), substring(), etc.)",
-                            "Memory management is handled by Java's garbage collector",
-                            "Can be passed to methods and returned from methods",
-                            "Support inheritance and polymorphism (for class types)",
-                            "More flexible than primitives but use more memory due to object overhead"
+                            "Store memory addresses, not values",
+                            "String: text methods like length(), toUpperCase()",
+                            "Arrays: multiple values of same type",
+                            "Can be null",
+                            "Have built-in methods"
                         ]
                     },
                     example: `public class Main {
@@ -482,18 +430,13 @@ const JAVA_CURRICULUM = {
                     title: "Type Casting",
                     duration: "15 min",
                     content: {
-                        description: "Type casting is the process of converting a value from one data type to another in Java. This is often necessary when working with different numeric types or when you need to treat a value as a different type for a specific operation. Java supports two main types of casting: widening (automatic) and narrowing (explicit). Widening conversions are safe and happen automatically, while narrowing conversions require explicit casting syntax and may result in data loss. Understanding type casting is essential for working with mixed data types and preventing compilation errors.",
+                        description: "Type casting converts between data types. Widening (int to double) is automatic. Narrowing requires explicit (double to int).",
+                        snippet: "int myInt = 9;\ndouble myDouble = myInt;  // auto\ndouble d = 9.78;\nint i = (int) d;  // manual, 9",
                         keyPoints: [
-                            "Widening casting (automatic): Converting smaller types to larger types (e.g., int to double) - no data loss",
-                            "Narrowing casting (explicit): Converting larger types to smaller types (e.g., double to int) - requires manual syntax",
-                            "Casting syntax: (targetType) value - the parentheses and target type are required for explicit casting",
-                            "Precision loss can occur during narrowing: decimal parts are truncated, not rounded",
-                            "Overflow can happen when casting to types with smaller ranges (e.g., long to int)",
-                            "Reference type casting works between related classes (upcasting/downcasting) using similar syntax",
-                            "Primitive casting doesn't change the actual value, just how it's interpreted",
-                            "Type promotion happens automatically in expressions mixing different numeric types",
-                            "Casting is evaluated at compile-time for primitives, runtime for reference types",
-                            "Use casting judiciously - prefer widening conversions when possible to avoid data loss"
+                            "Widening: smaller to larger (automatic)",
+                            "Narrowing: larger to smaller (manual with (type))",
+                            "Syntax: (targetType) value",
+                            "Precision may be lost in narrowing"
                         ]
                     },
                     example: `public class Main {
@@ -532,18 +475,14 @@ const JAVA_CURRICULUM = {
                     title: "Operators",
                     duration: "15 min",
                     content: {
-                        description: "Operators are special symbols that perform operations on variables and values in Java. They form the building blocks of expressions and are essential for performing calculations, making comparisons, and controlling program flow. Java provides a rich set of operators categorized by their functionality: arithmetic for math, assignment for storing values, comparison for testing relationships, logical for combining conditions, and more. Understanding operator precedence and associativity is crucial for writing correct expressions that evaluate as expected.",
+                        description: "Operators perform operations: arithmetic (+ - * / %), comparison (== != < >), logical (&& || !), ternary (?:).",
+                        snippet: "int x = 10, y = 5;\nx + y;   // 15\nx == y;  // false\nx > 3 && y < 10;  // true\nString r = (x > 5) ? \"Big\" : \"Small\";",
                         keyPoints: [
-                            "Arithmetic operators: + (add), - (subtract), * (multiply), / (divide), % (modulo), ++ (increment), -- (decrement)",
-                            "Assignment operators: = (assign), += (add and assign), -= (subtract and assign), *= (multiply and assign), /= (divide and assign), %= (modulo and assign)",
-                            "Comparison operators: == (equal), != (not equal), > (greater), < (less), >= (greater or equal), <= (less or equal) - all return boolean",
-                            "Logical operators: && (AND), || (OR), ! (NOT) - work with boolean values and support short-circuit evaluation",
-                            "Ternary operator: condition ? valueIfTrue : valueIfFalse - compact if-else alternative",
-                            "Bitwise operators: & (AND), | (OR), ^ (XOR), ~ (NOT), << (left shift), >> (right shift) - work with individual bits",
-                            "Operator precedence determines evaluation order: arithmetic > comparison > logical > assignment",
-                            "Parentheses () can override precedence and clarify complex expressions",
-                            "String concatenation uses + operator when combined with strings",
-                            "Increment/decrement can be prefix (++x) or postfix (x++) with different evaluation timing"
+                            "Arithmetic: + - * / % ++ --",
+                            "Comparison: == != < > <= >=",
+                            "Logical: && (and), || (or), ! (not)",
+                            "Ternary: condition ? true : false",
+                            "Assignment: += -= *= /="
                         ]
                     },
                     example: `public class Main {
@@ -579,18 +518,14 @@ const JAVA_CURRICULUM = {
                     title: "Strings",
                     duration: "15 min",
                     content: {
-                        description: "Strings in Java are objects that represent sequences of characters and form the foundation of text manipulation in Java applications. Unlike primitive types, strings are reference types that come with a rich set of built-in methods for searching, modifying, and analyzing text. Java's String class is immutable, meaning once created, a string's content cannot be changed, which provides thread safety and enables efficient memory usage through string interning. Understanding string operations is essential for processing user input, formatting output, and working with textual data in real-world applications.",
+                        description: "Strings are objects with built-in methods. Use double quotes. Immutable - methods return new strings.",
+                        snippet: "String s = \"Hello\";\ns.length();\ns.toUpperCase();\ns.indexOf(\"o\");\ns.substring(0, 5);",
                         keyPoints: [
-                            "Strings are objects created using double quotes: String s = \"Hello World\"",
-                            "String class provides numerous methods: length(), toUpperCase(), toLowerCase(), indexOf(), substring()",
-                            "Strings are immutable - methods return new strings rather than modifying the original",
-                            "String concatenation uses + operator or concat() method for joining strings",
-                            "indexOf() finds the position of substrings, returning -1 if not found",
-                            "substring() extracts portions of strings using start and optional end indices",
-                            "String comparison uses equals() method, not == operator (which compares references)",
-                            "Escape sequences like \\n (newline), \\t (tab), \\\" (quote), and \\\\ (backslash) handle special characters",
-                            "StringBuilder and StringBuffer provide mutable string manipulation for performance-critical code",
-                            "Regular expressions via matches() and replaceAll() enable powerful pattern matching and text processing"
+                            "Use double quotes: \"Hello\"",
+                            "Methods: length(), toUpperCase(), toLowerCase()",
+                            "indexOf(), substring() for searching",
+                            "equals() for comparison (not ==)",
+                            "Immutable - creates new strings"
                         ]
                     },
                     example: `public class Main {
@@ -635,18 +570,15 @@ const JAVA_CURRICULUM = {
                     title: "Math",
                     duration: "15 min",
                     content: {
-                        description: "Java's Math class is a comprehensive utility library that provides static methods and constants for performing mathematical operations ranging from basic arithmetic to advanced trigonometric and logarithmic functions. As a core part of Java's standard library, the Math class offers precise mathematical computations that are essential for scientific computing, game development, financial applications, and any domain requiring accurate numerical calculations. The class includes fundamental constants like π (pi) and e (Euler's number), making it a one-stop solution for mathematical programming needs.",
+                        description: "Math class provides static methods for math operations: max, min, abs, sqrt, pow, random.",
+                        snippet: "Math.PI;\nMath.max(5, 10);\nMath.min(3, 8);\nMath.abs(-5);\nMath.sqrt(64);  // 8\nMath.pow(2, 3);  // 8\nMath.random();  // 0.0 to 1.0",
                         keyPoints: [
-                            "Math class contains only static methods and constants - no instantiation needed",
-                            "Math.PI and Math.E provide precise values of fundamental mathematical constants",
-                            "Basic comparison methods: Math.max(a,b), Math.min(a,b) for finding extrema values",
-                            "Absolute value function Math.abs(x) removes negative signs and works with all numeric types",
-                            "Square root calculation via Math.sqrt(x) computes principal square root for non-negative numbers",
-                            "Power function Math.pow(base, exponent) raises numbers to any power including fractional exponents",
-                            "Rounding methods: Math.round() (rounds to nearest integer), Math.floor() (rounds down), Math.ceil() (rounds up)",
-                            "Random number generation with Math.random() produces pseudorandom doubles between 0.0 and 1.0",
-                            "Trigonometric functions: Math.sin(), Math.cos(), Math.tan(), Math.asin(), Math.acos(), Math.atan()",
-                            "Exponential and logarithmic functions: Math.exp(), Math.log(), Math.log10() for advanced calculations"
+                            "Static class - no instantiation needed",
+                            "Math.PI, Math.E for constants",
+                            "Math.max(), Math.min() for comparison",
+                            "Math.abs() for absolute value",
+                            "Math.sqrt(), Math.pow() for powers",
+                            "Math.random() for random 0.0-1.0"
                         ]
                     },
                     example: `public class Main {
@@ -700,18 +632,13 @@ const JAVA_CURRICULUM = {
                     title: "If-Else",
                     duration: "15 min",
                     content: {
-                        description: "Conditional statements are the decision-making backbone of Java programs, allowing code execution to branch based on boolean conditions. The if-else construct evaluates expressions that must resolve to true or false, determining which code blocks execute. This fundamental control structure enables programs to respond differently to various inputs, states, and conditions. Understanding conditional logic is essential for implementing business rules, input validation, error handling, and any scenario requiring different behaviors based on runtime conditions.",
+                        description: "if-else executes code based on boolean conditions. Use else if for multiple conditions.",
+                        snippet: "if (score >= 90) {\n    grade = \"A\";\n} else if (score >= 80) {\n    grade = \"B\";\n} else {\n    grade = \"F\";\n}",
                         keyPoints: [
-                            "if statement evaluates a boolean condition and executes code block only if condition is true",
-                            "else clause provides alternative execution path when if condition evaluates to false",
-                            "else if chains multiple conditions in sequence, checking each until one is true",
-                            "Conditions can use comparison operators (==, !=, <, >, <=, >=) and logical operators (&&, ||, !)",
-                            "Ternary operator (condition ? valueIfTrue : valueIfFalse) provides compact if-else for assignments",
-                            "Nested if statements allow complex decision trees with multiple levels of conditions",
-                            "Boolean expressions can combine multiple conditions using logical AND (&&) and OR (||)",
-                            "Short-circuit evaluation optimizes performance by stopping evaluation when result is determined",
-                            "Code blocks use curly braces {} to group multiple statements under each condition",
-                            "Proper indentation and brace placement improves code readability and prevents logic errors"
+                            "if (condition) { code }",
+                            "else { code } for alternative",
+                            "else if for multiple conditions",
+                            "Ternary: condition ? true : false"
                         ]
                     },
                     example: `public class Main {
@@ -780,18 +707,14 @@ const JAVA_CURRICULUM = {
                     title: "Switch",
                     duration: "15 min",
                     content: {
-                        description: "Switch statements provide an elegant alternative to long if-else chains when you need to execute different code based on a single variable's value. Unlike if-else statements that evaluate various conditions, switch statements compare the value of an expression against multiple case labels, executing the code associated with the first matching case. This structure is particularly useful for menu-driven programs, state machines, and any scenario where a variable can have one of several discrete values. Modern Java versions have enhanced switch with more concise syntax and new capabilities.",
+                        description: "Switch executes code based on variable value. Compare against multiple case labels. Use break to prevent fall-through.",
+                        snippet: "switch(day) {\n    case 1: dayName = \"Mon\"; break;\n    case 2: dayName = \"Tue\"; break;\n    default: dayName = \"Unknown\";\n}",
                         keyPoints: [
-                            "switch statement evaluates an expression once and compares it against multiple case labels",
-                            "case labels define specific values to match against the switch expression",
-                            "break statement prevents fall-through execution to subsequent cases",
-                            "default case handles situations where no case matches (similar to else in if-else)",
-                            "Supported data types: int, char, byte, short, String, and enum types",
-                            "Java 14+ enhanced switch uses arrow syntax (->) for more concise case blocks",
-                            "Multiple case labels can be combined with commas for shared code execution",
-                            "Fall-through behavior allows multiple cases to execute the same code block",
-                            "Switch expressions (Java 14+) can return values directly",
-                            "More efficient than long if-else chains for many discrete value comparisons"
+                            "switch(variable) { case value: }",
+                            "break prevents fall-through",
+                            "default for unmatched values",
+                            "Supports int, char, String, enum",
+                            "Java 14+: arrow syntax (->)"
                         ]
                     },
                     example: `public class Main {
@@ -899,18 +822,13 @@ const JAVA_CURRICULUM = {
                     title: "While Loop",
                     duration: "15 min",
                     content: {
-                        description: "While loops provide a fundamental mechanism for repetitive execution based on a condition that is evaluated before each iteration. Unlike for loops that are ideal when you know the number of iterations in advance, while loops excel when the number of repetitions depends on runtime conditions or external factors. The loop continues executing as long as the condition remains true, making it perfect for scenarios like reading user input until a sentinel value is entered, processing collections of unknown size, or implementing polling mechanisms. The do-while variant ensures at least one execution before condition checking.",
+                        description: "While loops repeat while condition is true. do-while runs at least once. Modify condition inside loop!",
+                        snippet: "while (i > 0) {\n    System.out.println(i);\n    i--;\n}\n\n// do-while: runs at least once\ndo {\n    System.out.println(i);\n    i--;\n} while (i > 0);",
                         keyPoints: [
-                            "while loop evaluates condition before each iteration - may never execute if condition starts false",
-                            "do-while loop executes code block first, then checks condition - guarantees at least one iteration",
-                            "Condition must be a boolean expression that can change during loop execution",
-                            "Infinite loops occur when condition never becomes false - requires break statement or condition change",
-                            "Loop control variables should be modified within the loop to eventually make condition false",
-                            "While loops are ideal for indefinite iteration when iteration count is unknown beforehand",
-                            "Can be used for input validation, waiting for events, or processing streams of data",
-                            "break statement exits the loop immediately, continue skips to next iteration",
-                            "Nested while loops create complex iteration patterns but increase complexity",
-                            "While loops are more flexible than for loops but require careful condition management"
+                            "while (condition) { code }",
+                            "do { code } while (condition); - runs once minimum",
+                            "Modify condition inside loop",
+                            "break exits, continue skips iteration"
                         ]
                     },
                     example: `public class Main {
@@ -1014,18 +932,14 @@ const JAVA_CURRICULUM = {
                     title: "For Loop",
                     duration: "15 min",
                     content: {
-                        description: "For loops are the most commonly used iteration construct in Java, designed for situations where you know in advance how many times code should execute. The classic for loop combines three essential elements - initialization, condition checking, and iteration - into a single, readable statement. This structure makes for loops ideal for counting, traversing arrays with known sizes, and any scenario requiring a predetermined number of iterations. The compact syntax reduces errors and makes the loop's purpose immediately clear to other developers reading the code.",
+                        description: "For loops repeat a fixed number of times. Syntax: init; condition; increment. Ideal for counting and arrays.",
+                        snippet: "for (int i = 1; i <= 5; i++) {\n    System.out.println(i);\n}\n\n// For-each\nfor (String car : cars) {\n    System.out.println(car);\n}",
                         keyPoints: [
-                            "for loop consists of three parts: initialization, condition, and increment/decrement",
-                            "Initialization executes once at the beginning, typically declaring and initializing a counter variable",
-                            "Condition is evaluated before each iteration - loop continues while condition is true",
-                            "Increment/decrement executes after each iteration, typically updating the counter variable",
-                            "All three parts are optional but semicolons are required: for(;;) creates an infinite loop",
-                            "Loop variable scope is limited to the for loop block, preventing variable pollution",
-                            "Multiple variables can be declared/initialized in the initialization section",
-                            "Complex conditions and increments are possible, not just simple counters",
-                            "Nested for loops create multi-dimensional iteration patterns (matrices, grids, etc.)",
-                            "Enhanced for-each loops provide simpler syntax for array/collection iteration"
+                            "for (init; condition; increment)",
+                            "Init: int i = 1",
+                            "Condition: i <= 5",
+                            "Increment: i++",
+                            "For-each: for (type item : collection)"
                         ]
                     },
                     example: `public class Main {
@@ -1353,18 +1267,14 @@ const JAVA_CURRICULUM = {
                     title: "Arrays",
                     duration: "15 min",
                     content: {
-                        description: "Arrays are fundamental data structures in Java that allow you to store multiple values of the same type in a single variable with fixed size. They provide efficient, indexed access to elements and are the building blocks for more complex data structures. Arrays in Java are objects with a fixed length that cannot be changed after creation, making them perfect for scenarios where you know the exact number of elements needed. Understanding arrays is crucial for working with collections of data and implementing algorithms that require ordered storage and fast access.",
+                        description: "Arrays store multiple values of same type with fixed size. Zero-based indexing. Access via index.",
+                        snippet: "int[] nums = {1, 2, 3, 4, 5};\nnums[0];  // 1\nnums.length;  // 5\n\nString[] cars = {\"Volvo\", \"BMW\"};\ncars[1] = \"Ford\";",
                         keyPoints: [
-                            "Arrays store multiple values of the same primitive or reference type in contiguous memory locations",
-                            "Fixed size determined at creation time - cannot be resized (use ArrayList for dynamic sizing)",
-                            "Zero-based indexing: first element at index 0, last element at index length-1",
-                            "Declaration syntax: type[] arrayName or type arrayName[] (both valid)",
-                            "Initialization methods: new type[size], {val1, val2, val3}, or combination approach",
-                            "All array elements are automatically initialized to default values (0, false, null)",
-                            "Array length accessed via .length property (not a method like in Strings)",
-                            "ArrayIndexOutOfBoundsException thrown when accessing invalid indices",
-                            "Arrays can be passed to methods and returned from methods as parameters",
-                            "Multidimensional arrays possible but increase complexity and memory usage"
+                            "type[] name = {values}",
+                            "type[] name = new type[size]",
+                            "Zero-based: index 0 is first",
+                            ".length for size",
+                            "Fixed size - use ArrayList for dynamic"
                         ]
                     },
                     example: `public class Main {
@@ -1709,12 +1619,13 @@ const JAVA_CURRICULUM = {
                     title: "Methods",
                     duration: "15 min",
                     content: {
-                        description: "Methods are blocks of code that perform specific tasks. They can be called by name and can return values.",
+                        description: "Methods are reusable code blocks. Define with return type, call by name. static methods belong to class.",
+                        snippet: "static void greet() {\n    System.out.println(\"Hello!\");\n}\n\nstatic int add(int a, int b) {\n    return a + b;\n}",
                         keyPoints: [
-                            "Define: returnType methodName() { }",
-                            "void if no return value",
-                            "Call by: methodName()",
-                            "Methods can be called multiple times"
+                            "Define: returnType name() { }",
+                            "void if no return",
+                            "Call: methodName()",
+                            "return sends value back"
                         ]
                     },
                     example: `public class Main {
@@ -1743,12 +1654,13 @@ const JAVA_CURRICULUM = {
                     title: "Method Parameters",
                     duration: "15 min",
                     content: {
-                        description: "Methods can accept parameters (arguments) to work with different values. Parameters are declared in parentheses.",
+                        description: "Methods accept parameters (arguments). Declare in method signature, pass when calling.",
+                        snippet: "greet(\"John\", 25);\n\nstatic void greet(String name, int age) {\n    System.out.println(\"Hello \" + name);\n}",
                         keyPoints: [
-                            "Parameters declared in method signature",
-                            "Arguments passed when calling",
-                            "Can have multiple parameters",
-                            "return keyword sends value back"
+                            "Declare in signature: type paramName",
+                            "Pass when calling: method(arg)",
+                            "Multiple: type1 p1, type2 p2",
+                            "return sends value back"
                         ]
                     },
                     example: `public class Main {
