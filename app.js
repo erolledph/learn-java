@@ -250,9 +250,12 @@ Click **Run** to execute the code in the editor, then type "next" to continue!`,
 function openChatWindow() {
     const floatingChat = document.getElementById('floatingChat');
     const chatBadge = document.getElementById('chatBadge');
+    const chatToggleBtn = document.getElementById('chatToggleBtn');
+
     if (floatingChat && !floatingChat.classList.contains('visible')) {
         floatingChat.classList.add('visible');
         if (chatBadge) chatBadge.classList.add('hidden');
+        if (chatToggleBtn) chatToggleBtn.classList.add('hidden');
     }
     if (elements.chatInput) {
         elements.chatInput.focus();
@@ -870,79 +873,131 @@ function renderInteractiveLesson(lesson) {
     return html;
 }
 
+// Helper to simulate a quick AI response without making an API call
+function simulateQuickResponse(userPrompt, botResponse) {
+    openChatWindow();
+    addChatMessage(userPrompt, 'user');
+
+    state.isAITyping = true;
+    elements.typingIndicator.classList.add('visible');
+
+    // Simulate slight delay for realism
+    setTimeout(() => {
+        state.isAITyping = false;
+        elements.typingIndicator.classList.remove('visible');
+        addChatMessage(botResponse, 'bot');
+        setTimeout(() => {
+            addFollowUpSuggestions();
+        }, 500);
+    }, 600);
+}
+
 // Ask AI to explain the lesson
 function explainLessonWithAI(lesson) {
     if (state.isAITyping) return;
     
-    const context = lesson.content;
-    let prompt = `Can you explain the concept of "${lesson.title}" in a beginner-friendly way?`;
+    const userPrompt = `Can you explain the concept of "${lesson.title}"?`;
+    let response = `Here's a quick explanation of **${lesson.title}**: \n\n`;
     
-    if (context.description) {
-        prompt += `\n\nThe lesson describes it as: ${context.description}`;
+    if (lesson.content && lesson.content.description) {
+        response += `${lesson.content.description}\n\n`;
     }
-    
-    if (context.keyPoints) {
-        prompt += `\n\nKey points to cover:\n${context.keyPoints.map(p => `- ${p}`).join('\n')}`;
-    }
-    
     if (lesson.explanation) {
-        prompt += `\n\nThe basic explanation is: ${lesson.explanation}`;
+        response += `*${lesson.explanation}*\n\n`;
+    }
+    if (lesson.content && lesson.content.keyPoints) {
+        response += `### Key points:\n`;
+        response += lesson.content.keyPoints.map(p => `- ${p}`).join('\n');
+    }
+    if (!lesson.content?.description && !lesson.explanation) {
+        response += "I'm sorry, I don't have a pre-generated explanation for this lesson. Try asking me a specific question in the chat!";
     }
     
-    prompt += `\n\nPlease give a clear explanation with a simple example. Make it encouraging and fun!`;
-    
-    openChatWindow();
-    elements.chatInput.value = prompt;
-    sendChatMessage();
+    simulateQuickResponse(userPrompt, response);
 }
 
 // Ask AI about specific code
 function askAIAboutCode(code) {
     if (state.isAITyping) return;
     
-    const prompt = `Can you explain this Java code line by line? I'm learning and want to understand what each part does:
-
-\`\`\`java
-${code}
-\`\`\``;
+    const userPrompt = `Explain this code:\n\`\`\`java\n${code}\n\`\`\``;
     
-    openChatWindow();
-    elements.chatInput.value = prompt;
-    sendChatMessage();
+    let response = `This code is from the **${state.currentLesson?.title || 'current'}** lesson example.\n\n`;
+
+    if (state.currentLesson && state.currentLesson.explanation) {
+        response += `Here is what this code does:\n\n${state.currentLesson.explanation}\n\n`;
+    } else {
+        response += `This code demonstrates the basic usage of the concepts covered in this lesson.
+- Ensure you have a \`public class Main\`
+- Execution starts in \`public static void main(String[] args)\`
+
+Try modifying the values and clicking **Run Code** to see how the output changes!`;
+    }
+
+    simulateQuickResponse(userPrompt, response);
 }
 
 // Ask about a specific concept
 function askAboutConcept(concept) {
     if (state.isAITyping) return;
     
-    const prompt = `Can you explain what "${concept}" means in Java? Please give a simple explanation and maybe a small example.`;
+    const userPrompt = `What does "${concept}" mean?`;
+    let response = `**${concept}** is a key concept in Java.\n\n`;
     
-    openChatWindow();
-    elements.chatInput.value = prompt;
-    sendChatMessage();
+    if (state.currentLesson && state.currentLesson.content && state.currentLesson.content.keyPoints) {
+        // Try to find a key point that mentions this concept
+        const relevantPoints = state.currentLesson.content.keyPoints.filter(p => p.toLowerCase().includes(concept.toLowerCase()));
+        if (relevantPoints.length > 0) {
+            response += `From our current lesson:\n`;
+            response += relevantPoints.map(p => `- ${p}`).join('\n');
+        } else {
+            response += `It's related to the current topic of **${state.currentLesson.title}**. If you need a more detailed definition, feel free to ask me specifically in the chat!`;
+        }
+    } else {
+        response += `This is related to our current topic. Try experimenting with the code to see how it works!`;
+    }
+
+    simulateQuickResponse(userPrompt, response);
 }
 
 // Suggest practice exercises
 function suggestPractice(type) {
     if (state.isAITyping) return;
     
-    let prompt = '';
+    let userPrompt = '';
+    let response = '';
     
     switch(type) {
         case 'modify':
-            prompt = `For the current lesson on "${state.currentLesson?.title}", can you suggest 3 simple modifications I could try to the example code? Give me specific changes to make!`;
+            userPrompt = `Suggest modifications for ${state.currentLesson?.title}`;
+            response = `Here are 3 simple modifications you can try with the current example:
+1. Change the variable names to something else (make sure to update them everywhere they are used!)
+2. Change the values being assigned to the variables. What happens if you use a negative number or a different string?
+3. Add a new \`System.out.println()\` statement to print out a combination of your variables.`;
             break;
         case 'challenge':
-            prompt = `Give me a small coding challenge related to "${state.currentLesson?.title}". Make it beginner-friendly and give me hints!`;
+            userPrompt = `Give me a challenge for ${state.currentLesson?.title}`;
+            response = `**Mini Challenge: ${state.currentLesson?.title}**\n\nTry to write a completely new program from scratch that uses the concepts from this lesson.
+- Clear the editor completely.
+- Write the basic class structure \`public class Main { public static void main(String[] args) { ... } }\`
+- Implement something completely different than the example, but using the same concepts!`;
             break;
         case 'quiz':
-            prompt = `Give me a quick 3-question quiz about "${state.currentLesson?.title}" to test my understanding. Include the answers!`;
+            userPrompt = `Give me a quick quiz about ${state.currentLesson?.title}`;
+
+            // Try to generate a quiz from key points
+            if (state.currentLesson && state.currentLesson.content && state.currentLesson.content.keyPoints && state.currentLesson.content.keyPoints.length >= 2) {
+                const kp1 = state.currentLesson.content.keyPoints[0];
+                const kp2 = state.currentLesson.content.keyPoints[1];
+
+                response = `**Quick Quiz: ${state.currentLesson.title}**\n\nBased on what we've learned, true or false?\n\n1. ${kp1}\n2. ${kp2}\n\n*Answers: Both are TRUE based on the lesson's key points!*`;
+            } else {
+                response = `**Quick Quiz: ${state.currentLesson?.title}**\n\n1. What is the main concept of this lesson?\n2. How do you implement it in code?\n3. What are the common mistakes to avoid?\n\n*Review the lesson description and key points to check your answers!*`;
+            }
             break;
     }
     
-    openChatWindow();
-    elements.chatInput.value = prompt;
-    sendChatMessage();
+    simulateQuickResponse(userPrompt, response);
 }
 
 // Navigation buttons
@@ -1001,10 +1056,12 @@ function setupEventListeners() {
     safeAddEvent('chatToggleBtn', 'click', () => {
         const floatingChat = document.getElementById('floatingChat');
         const chatBadge = document.getElementById('chatBadge');
+        const chatToggleBtn = document.getElementById('chatToggleBtn');
         if (floatingChat) {
             floatingChat.classList.toggle('visible');
-            if (floatingChat.classList.contains('visible') && chatBadge) {
-                chatBadge.classList.add('hidden');
+            if (floatingChat.classList.contains('visible')) {
+                if (chatBadge) chatBadge.classList.add('hidden');
+                if (chatToggleBtn) chatToggleBtn.classList.add('hidden');
             }
         }
     });
@@ -1012,8 +1069,10 @@ function setupEventListeners() {
     // Close Chat button
     safeAddEvent('closeChat', 'click', () => {
         const floatingChat = document.getElementById('floatingChat');
+        const chatToggleBtn = document.getElementById('chatToggleBtn');
         if (floatingChat) {
             floatingChat.classList.remove('visible');
+            if (chatToggleBtn) chatToggleBtn.classList.remove('hidden');
         }
     });
     
@@ -1658,10 +1717,7 @@ function addChatMessage(content, type) {
     // Format content with proper markdown
     const formattedContent = formatMarkdown(content);
     
-    const avatarIcon = type === 'bot' ? '🤖' : '👤';
-    
     messageDiv.innerHTML = `
-        <div class="message-avatar">${avatarIcon}</div>
         <div class="message-content">
             ${formattedContent}
         </div>
