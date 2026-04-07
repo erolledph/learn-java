@@ -360,8 +360,6 @@ function updateTeachingProgress() {
     if (elements.progressText) {
         elements.progressText.textContent = progress + '%';
     }
-    
-    document.getElementById('lessonProgress').textContent = `Step ${current} of ${total}`;
 }
 
 // Initialize DOM element references
@@ -881,12 +879,18 @@ function renderInteractiveLesson(lesson) {
     // Navigation
     html += `
         <div class="lesson-navigation">
-            <button class="nav-btn" id="prevLessonBtn" onclick="previousLesson()">← Previous</button>
+            <button class="nav-btn" id="prevLessonBtn" onclick="previousLesson()">
+                <span class="arrow">←</span>
+                <span class="btn-text">Previous</span>
+            </button>
             <button class="lesson-complete-btn outlined" id="markComplete" data-action="toggle-complete" onclick="toggleLessonComplete()">
                 <span class="complete-icon">○</span>
                 <span class="complete-text">Mark Complete</span>
             </button>
-            <button class="nav-btn" id="nextLessonBtn" onclick="nextLesson()">Next →</button>
+            <button class="nav-btn" id="nextLessonBtn" onclick="nextLesson()">
+                <span class="btn-text">Next</span>
+                <span class="arrow">→</span>
+            </button>
         </div>
     `;
     
@@ -1126,8 +1130,12 @@ function setupEventListeners() {
     safeAddEvent('prevLesson', 'click', previousLesson);
     safeAddEvent('nextLesson', 'click', nextLesson);
     
-    // Mark complete button
-    safeAddEvent('markComplete', 'click', toggleLessonComplete);
+    // Mark complete button with delegation
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('[data-action="toggle-complete"]')) {
+            toggleLessonComplete();
+        }
+    });
     
     // Chat input
     safeAddEvent('sendMessage', 'click', sendChatMessage);
