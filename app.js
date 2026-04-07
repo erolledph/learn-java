@@ -886,9 +886,6 @@ function simulateQuickResponse(userPrompt, botResponse) {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
         addChatMessage(botResponse, 'bot');
-        setTimeout(() => {
-            addFollowUpSuggestions();
-        }, 500);
     }, 600);
 }
 
