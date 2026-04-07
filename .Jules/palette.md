@@ -1,3 +1,7 @@
-## 2026-04-07 - Async Button Loading State Pattern
-**Learning:** For async operations like code execution, simply changing text isn't enough; the button must be explicitly disabled to prevent multiple submissions, and visual feedback (opacity/cursor) is required for accessibility.
-**Action:** Always add `:disabled` CSS states alongside JavaScript logic when implementing async loading buttons.
+## 2024-05-24 - Missing disabled states on navigation controls
+**Learning:** Found an accessibility and UX issue where disabled states (like previous/next buttons) were functionally disabled but visually identical to active states, leading to confusing interactions.
+**Action:** Always ensure that disabled states are visually distinct (using opacity and cursor: not-allowed) and disable hover effects to provide clear feedback to the user.
+
+## 2024-05-24 - Missing disabled states on navigation controls
+**Learning:** Found an accessibility and UX issue where disabled states (like previous/next buttons) were functionally disabled but visually identical to active states, leading to confusing interactions.
+**Action:** Always ensure that disabled states are visually distinct (using opacity and cursor: not-allowed) and disable hover effects to provide clear feedback to the user.
