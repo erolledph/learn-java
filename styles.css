@@ -1690,11 +1690,12 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
 }
 
 .message-content {
-    max-width: 85%;
+    width: fit-content;
+    max-width: 90%;
     padding: 14px 18px;
     font-size: 14px;
     line-height: 1.6;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .message.bot-message .message-content {
@@ -2937,7 +2938,8 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
     }
     
     .message-content {
-        max-width: 85%;
+        width: fit-content;
+        max-width: 100%;
         padding: 10px 14px;
         font-size: 13px;
     }
