@@ -1138,6 +1138,7 @@ body.night-theme .lesson-complete-btn.completed {
     transform: translateY(-1px);
 }
 
+<<<<<<< HEAD
 /* Primary Button - Disabled */
 .btn-primary:disabled {
     cursor: not-allowed;
@@ -1146,6 +1147,8 @@ body.night-theme .lesson-complete-btn.completed {
     box-shadow: none;
 }
 
+=======
+>>>>>>> 2d709c1 (Fix AI chat error handling, lesson completion toggle, and improve chat header avatar)
 /* Primary Button Icon */
 .btn-primary svg {
     width: 12px;
@@ -1591,6 +1594,18 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
 
 .floating-chat-info {
     flex: 1;
+}
+
+.chat-avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(99, 102, 241, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    font-size: 24px;
 }
 
 .floating-chat-info h4 {
