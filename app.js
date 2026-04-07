@@ -37,7 +37,8 @@ const elements = {
     lessonContent: null,
     lessonTitle: null,
     progressFill: null,
-    progressText: null
+    progressText: null,
+    runCodeBtn: null
 };
 
 // Teaching curriculum - Step by step Java learning path
@@ -377,6 +378,7 @@ function initializeElements() {
     elements.progressText = document.getElementById('progressText');
     elements.aiStatus = document.querySelector('.ai-status-text');
     elements.typingIndicator = document.getElementById('typingIndicator');
+    elements.runCodeBtn = document.getElementById('runCode');
 }
 
 // Apply syntax highlighting colors dynamically
@@ -1352,6 +1354,12 @@ async function runCode() {
     elements.output.textContent = 'Running...';
     elements.output.className = '';
     
+    if (elements.runCodeBtn) {
+        elements.runCodeBtn.disabled = true;
+        const span = elements.runCodeBtn.querySelector('span');
+        if (span) span.textContent = 'Running...';
+    }
+
     try {
         // Try Judge0 CE API (primary)
         let result = await runJavaJudge0(code);
@@ -1371,6 +1379,12 @@ async function runCode() {
                 elements.output.className = 'error';
                 showToast('Connection failed!', 'error');
             }
+        }
+    } finally {
+        if (elements.runCodeBtn) {
+            elements.runCodeBtn.disabled = false;
+            const span = elements.runCodeBtn.querySelector('span');
+            if (span) span.textContent = 'Run Code';
         }
     }
 }

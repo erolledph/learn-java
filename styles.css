@@ -1138,6 +1138,14 @@ body.night-theme .lesson-complete-btn.completed {
     transform: translateY(-1px);
 }
 
+/* Primary Button - Disabled */
+.btn-primary:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+    box-shadow: none;
+}
+
 /* Primary Button Icon */
 .btn-primary svg {
     width: 12px;
