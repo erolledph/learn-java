@@ -925,10 +925,27 @@ function simulateQuickResponse(userPrompt, botResponse) {
     state.isAITyping = true;
     elements.typingIndicator.classList.add('visible');
 
+    // Disable chat input
+    if (elements.chatInput) {
+        elements.chatInput.disabled = true;
+        elements.chatInput.placeholder = "Byte is thinking...";
+    }
+    const sendBtn = document.getElementById('sendMessage');
+    if (sendBtn) sendBtn.disabled = true;
+
     // Simulate slight delay for realism
     setTimeout(() => {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
+
+        // Re-enable chat input
+        if (elements.chatInput) {
+            elements.chatInput.disabled = false;
+            elements.chatInput.placeholder = "Ask Byte about your code...";
+            elements.chatInput.focus();
+        }
+        if (sendBtn) sendBtn.disabled = false;
+
         addChatMessage(botResponse, 'bot');
     }, 600);
 }
@@ -1685,6 +1702,17 @@ async function sendChatMessage() {
     state.isAITyping = true;
     elements.typingIndicator.classList.add('visible');
     
+    // Disable chat input
+    if (elements.chatInput) {
+        elements.chatInput.disabled = true;
+        elements.chatInput.placeholder = "Byte is thinking...";
+    }
+    const sendBtn = document.getElementById('sendMessage');
+    if (sendBtn) sendBtn.disabled = true;
+
+    // Force a small delay to allow UI to update disabled state before heavy async tasks
+    await new Promise(resolve => setTimeout(resolve, 50));
+
     try {
         // Add current code context
         const currentCode = state.editor.getValue();
@@ -1710,6 +1738,14 @@ async function sendChatMessage() {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
         
+        // Re-enable chat input
+        if (elements.chatInput) {
+            elements.chatInput.disabled = false;
+            elements.chatInput.placeholder = "Ask Byte about your code...";
+            elements.chatInput.focus();
+        }
+        if (sendBtn) sendBtn.disabled = false;
+
         if (response.error) {
             const errorMessage = `🤖 Oops! I couldn't get a response.\n\nPlease check your internet connection or API key, then try again.`;
             console.error('Groq service error:', response.message);
@@ -1721,6 +1757,15 @@ async function sendChatMessage() {
     } catch (error) {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
+
+        // Re-enable chat input
+        if (elements.chatInput) {
+            elements.chatInput.disabled = false;
+            elements.chatInput.placeholder = "Ask Byte about your code...";
+            elements.chatInput.focus();
+        }
+        if (sendBtn) sendBtn.disabled = false;
+
         addChatMessage(`😕 I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot');
     }
 }
