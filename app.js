@@ -924,12 +924,18 @@ function simulateQuickResponse(userPrompt, botResponse) {
 
     state.isAITyping = true;
     elements.typingIndicator.classList.add('visible');
+    const sendBtn = document.getElementById('sendMessage');
+    if (elements.chatInput) elements.chatInput.disabled = true;
+    if (sendBtn) sendBtn.disabled = true;
 
     // Simulate slight delay for realism
     setTimeout(() => {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
+        if (elements.chatInput) elements.chatInput.disabled = false;
+        if (sendBtn) sendBtn.disabled = false;
         addChatMessage(botResponse, 'bot');
+        if (elements.chatInput) elements.chatInput.focus();
     }, 600);
 }
 
@@ -1684,6 +1690,9 @@ async function sendChatMessage() {
     // Show typing indicator
     state.isAITyping = true;
     elements.typingIndicator.classList.add('visible');
+    const sendBtn = document.getElementById('sendMessage');
+    if (elements.chatInput) elements.chatInput.disabled = true;
+    if (sendBtn) sendBtn.disabled = true;
     
     try {
         // Add current code context
@@ -1709,6 +1718,9 @@ async function sendChatMessage() {
         // Hide typing indicator
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
+        if (elements.chatInput) elements.chatInput.disabled = false;
+        if (sendBtn) sendBtn.disabled = false;
+        if (elements.chatInput) elements.chatInput.focus();
         
         if (response.error) {
             const errorMessage = `🤖 Oops! I couldn't get a response.\n\nPlease check your internet connection or API key, then try again.`;
@@ -1721,6 +1733,8 @@ async function sendChatMessage() {
     } catch (error) {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
+        if (elements.chatInput) elements.chatInput.disabled = false;
+        if (sendBtn) sendBtn.disabled = false;
         addChatMessage(`😕 I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot');
     }
 }
