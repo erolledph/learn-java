@@ -1958,6 +1958,12 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
+.floating-chat-input textarea:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: var(--bg-tertiary);
+}
+
 .floating-chat-input textarea::placeholder {
     color: var(--text-muted);
 }
@@ -1983,6 +1989,13 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
 
 .floating-chat-input .send-btn:active {
     transform: scale(0.95);
+}
+
+.floating-chat-input .send-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 .floating-chat-input .send-btn svg {
