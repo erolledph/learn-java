@@ -925,11 +925,21 @@ function simulateQuickResponse(userPrompt, botResponse) {
     state.isAITyping = true;
     elements.typingIndicator.classList.add('visible');
 
+    const sendBtn = document.getElementById('sendMessage');
+    if (elements.chatInput) elements.chatInput.disabled = true;
+    if (sendBtn) sendBtn.disabled = true;
+
     // Simulate slight delay for realism
     setTimeout(() => {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
         addChatMessage(botResponse, 'bot');
+
+        if (elements.chatInput) {
+            elements.chatInput.disabled = false;
+            elements.chatInput.focus();
+        }
+        if (sendBtn) sendBtn.disabled = false;
     }, 600);
 }
 
@@ -1431,6 +1441,7 @@ async function runCode() {
             elements.runCodeBtn.disabled = false;
             const span = elements.runCodeBtn.querySelector('span');
             if (span) span.textContent = 'Run Code';
+            elements.runCodeBtn.focus();
         }
     }
 }
@@ -1685,6 +1696,10 @@ async function sendChatMessage() {
     state.isAITyping = true;
     elements.typingIndicator.classList.add('visible');
     
+    const sendBtn = document.getElementById('sendMessage');
+    if (elements.chatInput) elements.chatInput.disabled = true;
+    if (sendBtn) sendBtn.disabled = true;
+
     try {
         // Add current code context
         const currentCode = state.editor.getValue();
@@ -1722,6 +1737,12 @@ async function sendChatMessage() {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
         addChatMessage(`😕 I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot');
+    } finally {
+        if (elements.chatInput) {
+            elements.chatInput.disabled = false;
+            elements.chatInput.focus();
+        }
+        if (sendBtn) sendBtn.disabled = false;
     }
 }
 
