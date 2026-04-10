@@ -45,7 +45,8 @@ const elements = {
     lessonTitle: null,
     progressFill: null,
     progressText: null,
-    runCodeBtn: null
+    runCodeBtn: null,
+    sendBtn: null
 };
 
 // Teaching curriculum - Step by step Java learning path
@@ -384,6 +385,7 @@ function initializeElements() {
     elements.aiStatus = document.querySelector('.ai-status-text');
     elements.typingIndicator = document.getElementById('typingIndicator');
     elements.runCodeBtn = document.getElementById('runCode');
+    elements.sendBtn = document.getElementById('sendMessage');
 }
 
 // Apply syntax highlighting colors dynamically
@@ -925,10 +927,22 @@ function simulateQuickResponse(userPrompt, botResponse) {
     state.isAITyping = true;
     elements.typingIndicator.classList.add('visible');
 
+    // Disable inputs
+    if (elements.chatInput) elements.chatInput.disabled = true;
+    if (elements.sendBtn) elements.sendBtn.disabled = true;
+
     // Simulate slight delay for realism
     setTimeout(() => {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
+
+        // Re-enable inputs
+        if (elements.chatInput) {
+            elements.chatInput.disabled = false;
+            elements.chatInput.focus();
+        }
+        if (elements.sendBtn) elements.sendBtn.disabled = false;
+
         addChatMessage(botResponse, 'bot');
     }, 600);
 }
@@ -1685,6 +1699,10 @@ async function sendChatMessage() {
     state.isAITyping = true;
     elements.typingIndicator.classList.add('visible');
     
+    // Disable inputs
+    if (elements.chatInput) elements.chatInput.disabled = true;
+    if (elements.sendBtn) elements.sendBtn.disabled = true;
+
     try {
         // Add current code context
         const currentCode = state.editor.getValue();
@@ -1710,6 +1728,13 @@ async function sendChatMessage() {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
         
+        // Re-enable inputs
+        if (elements.chatInput) {
+            elements.chatInput.disabled = false;
+            elements.chatInput.focus();
+        }
+        if (elements.sendBtn) elements.sendBtn.disabled = false;
+
         if (response.error) {
             const errorMessage = `🤖 Oops! I couldn't get a response.\n\nPlease check your internet connection or API key, then try again.`;
             console.error('Groq service error:', response.message);
@@ -1721,6 +1746,14 @@ async function sendChatMessage() {
     } catch (error) {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
+
+        // Re-enable inputs
+        if (elements.chatInput) {
+            elements.chatInput.disabled = false;
+            elements.chatInput.focus();
+        }
+        if (elements.sendBtn) elements.sendBtn.disabled = false;
+
         addChatMessage(`😕 I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot');
     }
 }
