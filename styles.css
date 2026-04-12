@@ -1985,6 +1985,18 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
     transform: scale(0.95);
 }
 
+.floating-chat-input .send-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+    box-shadow: none;
+}
+
+.floating-chat-input textarea:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
 .floating-chat-input .send-btn svg {
     width: 20px;
     height: 20px;
