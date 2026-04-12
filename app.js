@@ -386,50 +386,6 @@ function initializeElements() {
     elements.runCodeBtn = document.getElementById('runCode');
 }
 
-// Apply syntax highlighting colors dynamically
-function applySyntaxColors() {
-    setTimeout(() => {
-        const editorContent = document.querySelector('#codeMirrorEditor .CodeMirror-scroll');
-        if (editorContent) {
-            // Style keywords
-            editorContent.querySelectorAll('.cm-keyword, .cm-atom, .cm-def, .cm-type, .cm-builtin').forEach(el => {
-                el.style.color = '#ff79c6';
-                el.style.fontWeight = 'bold';
-            });
-            // Style strings
-            editorContent.querySelectorAll('.cm-string, .cm-string-2, .cm-quote').forEach(el => {
-                el.style.color = '#50fa7b';
-            });
-            // Style numbers
-            editorContent.querySelectorAll('.cm-number, .cm-atom, .cm-bracket').forEach(el => {
-                el.style.color = '#ffb86c';
-            });
-            // Style methods
-            editorContent.querySelectorAll('.cm-def, .cm-property').forEach(el => {
-                el.style.color = '#8be9fd';
-            });
-            // Style operators
-            editorContent.querySelectorAll('.cm-operator').forEach(el => {
-                el.style.color = '#ff79c6';
-            });
-            // Style comments
-            editorContent.querySelectorAll('.cm-comment').forEach(el => {
-                el.style.color = '#6272a4';
-                el.style.fontStyle = 'italic';
-            });
-            // Style braces {}
-            editorContent.querySelectorAll('.cm-brace').forEach(el => {
-                el.style.color = '#ff79c6';
-                el.style.fontWeight = 'bold';
-            });
-            // Style all other text
-            editorContent.querySelectorAll('.cm-variable, .cm-variable-2, .cm-punctuation').forEach(el => {
-                el.style.color = '#f8f8f2';
-            });
-        }
-    }, 100);
-}
-
 // Initialize CodeMirror editor
 function initializeEditor() {
     const editorElement = document.getElementById('codeMirrorEditor');
@@ -450,11 +406,9 @@ function initializeEditor() {
         viewportMargin: Infinity
     });
     
-    // Apply syntax highlighting colors
-    applySyntaxColors();
-    
-    // Re-apply colors on changes
-    state.editor.on('change', applySyntaxColors);
+    // Performance optimization: Avoid layout thrashing.
+    // Do NOT manually query DOM and apply inline styles on change.
+    // CodeMirror handles syntax highlighting via native styles.css classes (e.g., .cm-keyword).
     
     // Set initial size
     state.editor.setSize("100%", "100%");
