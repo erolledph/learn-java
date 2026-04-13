@@ -1,4 +1,4 @@
-// ============================================
+﻿// ============================================
 // Java Learning Hub - Main Application
 // ============================================
 
@@ -38,7 +38,7 @@ const elements = {
     sidebarTitle: null,
     chatMessages: null,
     chatInput: null,
-    sendChatBtn: null,
+    sendMessageBtn: null,
     settingsModal: null,
     welcomeModal: null,
     lessonPanel: null,
@@ -54,7 +54,7 @@ const elements = {
 const teachingPath = [
     {
         topic: "Welcome",
-        message: `Hi! I'm Byte, your Java tutor! ☕
+        message: `Hi! I'm Byte, your Java tutor! â˜•
 
 I'll guide you through learning Java step by step. Let's start with the basics!
 
@@ -74,7 +74,7 @@ Click **Run** to execute the code in the editor, then type "next" to continue!`
     },
     {
         topic: "Hello World",
-        message: `Your first Java program is ready! 🎉
+        message: `Your first Java program is ready! ðŸŽ‰
 
 The code uses \`System.out.println()\` to print text.
 
@@ -87,7 +87,7 @@ Key rules:
     },
     {
         topic: "Variables",
-        message: `Variables store data in your program. 📦
+        message: `Variables store data in your program. ðŸ“¦
 
 \`\`\`java
 String name = "Java";   // Text
@@ -102,7 +102,7 @@ Try modifying the variables in the editor!`
     },
     {
         topic: "Conditions",
-        message: `**If/Else** lets programs make decisions! 🔀
+        message: `**If/Else** lets programs make decisions! ðŸ”€
 
 \`\`\`java
 int age = 18;
@@ -117,7 +117,7 @@ if (age >= 18) {
     },
     {
         topic: "Loops",
-        message: `**Loops** repeat code automatically! 🔄
+        message: `**Loops** repeat code automatically! ðŸ”„
 
 \`\`\`java
 for (int i = 1; i <= 5; i++) {
@@ -129,7 +129,7 @@ This prints 1, 2, 3, 4, 5 automatically!`
     },
     {
         topic: "Methods",
-        message: `**Methods** are reusable blocks of code! 🧩
+        message: `**Methods** are reusable blocks of code! ðŸ§©
 
 \`\`\`java
 static void greet() {
@@ -145,20 +145,20 @@ Methods help organize and reuse code!`
     },
     {
         topic: "Summary",
-        message: `Congratulations! 🎉 You've completed the Java basics!
+        message: `Congratulations! ðŸŽ‰ You've completed the Java basics!
 
 **What you've learned:**
-✅ Hello World
-✅ Variables & Data Types
-✅ If/Else Conditions
-✅ Loops
-✅ Methods
+âœ… Hello World
+âœ… Variables & Data Types
+âœ… If/Else Conditions
+âœ… Loops
+âœ… Methods
 
 **Next steps:**
 - Explore lessons in the sidebar
 - Ask me anything about Java!
 
-Keep practicing! 🚀`
+Keep practicing! ðŸš€`
     }
 ];
 
@@ -238,7 +238,7 @@ window.addEventListener('unhandledrejection', (event) => {
 
 // Add welcome message to chat
 function addWelcomeMessage() {
-    addChatMessage(`Hi! I'm Byte, your Java tutor! ☕
+    addChatMessage(`Hi! I'm Byte, your Java tutor! â˜•
 
 I'll guide you through learning Java step by step. Let's start with the basics!
 
@@ -377,7 +377,7 @@ function initializeElements() {
     elements.sidebarContent = document.getElementById('sidebarContent');
     elements.chatMessages = document.getElementById('chatMessages');
     elements.chatInput = document.getElementById('chatInput');
-    elements.sendChatBtn = document.getElementById('sendMessage');
+    elements.sendMessageBtn = document.getElementById('sendMessage');
     elements.settingsModal = document.getElementById('settingsModal');
     elements.welcomeModal = document.getElementById('welcomeModal');
     elements.lessonPanel = document.querySelector('.lesson-panel');
@@ -701,7 +701,7 @@ function saveCode() {
     const filename = state.currentLesson?.id || 'main';
     localStorage.setItem(`java_code_${filename}`, code);
     localStorage.setItem('java_code_current', code);
-    showToast('Code saved! 💾', 'success');
+    showToast('Code saved! ðŸ’¾', 'success');
 }
 
 // Load saved code
@@ -735,7 +735,7 @@ function loadLesson(lesson) {
     
     state.currentLesson = lesson;
     
-    // ⚡ Bolt Optimization: Cache curriculum indices in global state
+    // âš¡ Bolt Optimization: Cache curriculum indices in global state
     // Why: Prevents redundant O(N) nested array lookups during navigation events
     // Impact: Changes navigation lookup time from O(N) to O(1)
     let foundModule = null;
@@ -808,9 +808,9 @@ function renderInteractiveLesson(lesson) {
     const content = lesson.content;
     let html = `
         <div class="lesson-interactive-header">
-            <div class="lesson-badge">📚 ${lesson.duration || '15 min'}</div>
+            <div class="lesson-badge">ðŸ“š ${lesson.duration || '15 min'}</div>
             <button class="ai-explain-btn" onclick="explainLessonWithAI(state.currentLesson)">
-                🤖 Ask Byte to Explain
+                ðŸ¤– Ask Byte to Explain
             </button>
         </div>
     `;
@@ -824,7 +824,7 @@ function renderInteractiveLesson(lesson) {
 if (content.description) {
         var snippetCode = content.snippet ? wrapInClass(content.snippet) : '';
         html += '<div class="lesson-block description">' +
-            '<h4>📖 What is ' + lesson.title + '?</h4>' +
+            '<h4>ðŸ“– What is ' + lesson.title + '?</h4>' +
             '<p>' + content.description + '</p>' +
             (content.snippet ? '<div class="code-window">' +
                 '<div class="code-header">' +
@@ -839,7 +839,7 @@ if (content.description) {
     
     if (content.keyPoints) {
         html += `<div class="lesson-block key-points">
-            <h4>🎯 Key Points</h4>
+            <h4>ðŸŽ¯ Key Points</h4>
             <ul>
                 ${content.keyPoints.map(p => `<li>${p}</li>`).join('')}
             </ul>
@@ -849,7 +849,7 @@ if (content.description) {
     if (content.types || content.pillars) {
         const items = content.types || content.pillars;
         html += `<div class="lesson-block concepts">
-            <h4>💡 Concepts</h4>
+            <h4>ðŸ’¡ Concepts</h4>
             <div class="concept-chips">
                 ${items.map(item => {
                     const name = typeof item === 'string' ? item.split(' - ')[0] : item.name;
@@ -861,21 +861,21 @@ if (content.description) {
     
     if (lesson.example) {
         html += `<div class="lesson-block code-example">
-            <h4>💻 Code Example</h4>
+            <h4>ðŸ’» Code Example</h4>
             <p>The code below is already in the editor. Try running it!</p>
             <div class="example-actions">
-                <button class="action-primary" onclick="runCode()">▶️ Run Code</button>
-                <button class="action-secondary" onclick="askAIAboutCode(state.currentLesson.example)">🤖 Explain This Code</button>
+                <button class="action-primary" onclick="runCode()">â–¶ï¸ Run Code</button>
+                <button class="action-secondary" onclick="askAIAboutCode(state.currentLesson.example)">ðŸ¤– Explain This Code</button>
             </div>
         </div>`;
     }
     
     if (lesson.explanation) {
         html += `<div class="lesson-block explanation">
-            <h4>💬 Byte's Explanation</h4>
+            <h4>ðŸ’¬ Byte's Explanation</h4>
             <p>${lesson.explanation}</p>
             <button class="ai-more-btn" onclick="explainLessonWithAI(state.currentLesson)">
-                🤖 Get More Details from Byte
+                ðŸ¤– Get More Details from Byte
             </button>
         </div>`;
     }
@@ -883,12 +883,12 @@ if (content.description) {
     // Interactive challenges
     html += `
         <div class="lesson-block practice">
-            <h4>🎮 Practice Time!</h4>
+            <h4>ðŸŽ® Practice Time!</h4>
             <p>Ready to try it yourself? Modify the code and run it!</p>
             <div class="practice-suggestions">
-                <button class="practice-btn" onclick="suggestPractice('modify')">✏️ Suggest Modifications</button>
-                <button class="practice-btn" onclick="suggestPractice('challenge')">🎯 Give Me a Challenge</button>
-                <button class="practice-btn" onclick="suggestPractice('quiz')">📝 Quick Quiz</button>
+                <button class="practice-btn" onclick="suggestPractice('modify')">âœï¸ Suggest Modifications</button>
+                <button class="practice-btn" onclick="suggestPractice('challenge')">ðŸŽ¯ Give Me a Challenge</button>
+                <button class="practice-btn" onclick="suggestPractice('quiz')">ðŸ“ Quick Quiz</button>
             </div>
         </div>
     `;
@@ -897,16 +897,16 @@ if (content.description) {
     html += `
         <div class="lesson-navigation">
             <button class="nav-btn" id="prevLessonBtn" onclick="previousLesson()">
-                <span class="arrow">←</span>
+                <span class="arrow">â†</span>
                 <span class="btn-text">Previous</span>
             </button>
             <button class="lesson-complete-btn outlined" id="markComplete" data-action="toggle-complete" onclick="toggleLessonComplete()">
-                <span class="complete-icon">○</span>
+                <span class="complete-icon">â—‹</span>
                 <span class="complete-text">Mark Complete</span>
             </button>
             <button class="nav-btn" id="nextLessonBtn" onclick="nextLesson()">
                 <span class="btn-text">Next</span>
-                <span class="arrow">→</span>
+                <span class="arrow">â†’</span>
             </button>
         </div>
     `;
@@ -1069,7 +1069,7 @@ function updateNavigationButtons() {
     
     if (!prevBtn || !nextBtn) return;
     
-    // ⚡ Bolt Optimization: Use cached indices for O(1) button state evaluation
+    // âš¡ Bolt Optimization: Use cached indices for O(1) button state evaluation
     // Impact: Eliminates a full curriculum scan on every lesson load
     const currentModuleIndex = state.currentModuleIndex;
     const currentIndex = state.currentLessonIndex;
@@ -1259,7 +1259,7 @@ function renderSidebar(type) {
                 <div class="module-header ${isExpanded ? 'expanded' : ''}" data-module="${module.id}">
                     <span class="module-icon">${module.icon}</span>
                     <span class="module-title">${module.title}</span>
-                    <span class="module-arrow">▶</span>
+                    <span class="module-arrow">â–¶</span>
                 </div>
                 <div class="lesson-list">
             `;
@@ -1272,7 +1272,7 @@ function renderSidebar(type) {
                     <div class="lesson-item ${isCompleted ? 'completed' : ''} ${isActive ? 'active' : ''}" 
                          data-lesson-id="${lesson.id}" 
                          data-module-id="${module.id}">
-                        <span class="lesson-status">${isCompleted ? '✓' : '○'}</span>
+                        <span class="lesson-status">${isCompleted ? 'âœ“' : 'â—‹'}</span>
                         <span class="lesson-title">${lesson.title}</span>
                     </div>
                 `;
@@ -1310,7 +1310,7 @@ function renderSidebar(type) {
             html += `
                 <div class="exercise-item ${isCompleted ? 'completed' : ''}" 
                      data-exercise-id="${exercise.id}">
-                    <span class="exercise-icon">💻</span>
+                    <span class="exercise-icon">ðŸ’»</span>
                     <div class="exercise-info">
                         <span class="exercise-title">${exercise.title}</span>
                         <span class="exercise-difficulty ${exercise.difficulty}">${exercise.difficulty}</span>
@@ -1366,7 +1366,7 @@ function loadExercise(exercise) {
         <pre class="code-block">Expected Output:
 ${exercise.lesson.content.description || 'See the code comments for instructions.'}</pre>
         <button class="complete-btn" style="margin-top: 16px; padding: 8px 16px; background: var(--accent-success); color: white; border: none; border-radius: 4px; cursor: pointer;">
-            Mark Complete ✓
+            Mark Complete âœ“
         </button>
     `;
     
@@ -1708,10 +1708,6 @@ async function sendChatMessage() {
     elements.typingIndicator.classList.add('visible');
     if (elements.chatInput) elements.chatInput.disabled = true;
     if (elements.sendMessageBtn) elements.sendMessageBtn.disabled = true;
-    
-const sendBtn = document.getElementById('sendMessage');
-    if (elements.chatInput) elements.chatInput.disabled = true;
-    if (elements.sendMessageBtn) elements.sendMessageBtn.disabled = true;
     if (sendBtn) sendBtn.disabled = true;
 
     try {
@@ -1743,9 +1739,6 @@ const sendBtn = document.getElementById('sendMessage');
             elements.chatInput.focus();
         }
         if (elements.sendMessageBtn) elements.sendMessageBtn.disabled = false;
-        
-        // Re-enable chat input
-        if (elements.chatInput) {
             elements.chatInput.disabled = false;
             elements.chatInput.placeholder = "Ask Byte about your code...";
             elements.chatInput.focus();
@@ -1753,7 +1746,7 @@ const sendBtn = document.getElementById('sendMessage');
         if (sendBtn) sendBtn.disabled = false;
 
         if (response.error) {
-            const errorMessage = `🤖 Oops! I couldn't get a response.\n\nPlease check your internet connection or API key, then try again.`;
+            const errorMessage = `ðŸ¤– Oops! I couldn't get a response.\n\nPlease check your internet connection or API key, then try again.`;
             console.error('Groq service error:', response.message);
             addChatMessage(errorMessage, 'bot');
         } else {
@@ -1769,7 +1762,7 @@ const sendBtn = document.getElementById('sendMessage');
             elements.chatInput.focus();
         }
         if (elements.sendMessageBtn) elements.sendMessageBtn.disabled = false;
-        addChatMessage(`😕 I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot');
+        addChatMessage(`ðŸ˜• I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot');
     } finally {
         if (elements.chatInput) {
             elements.chatInput.disabled = false;
@@ -1803,13 +1796,13 @@ function addChatMessage(content, type) {
         pre.style.position = 'relative';
         const copyBtn = document.createElement('button');
         copyBtn.className = 'copy-code-btn';
-        copyBtn.innerHTML = '📋';
+        copyBtn.innerHTML = 'ðŸ“‹';
         copyBtn.title = 'Copy code';
         copyBtn.onclick = () => {
             const code = pre.querySelector('code')?.textContent || pre.textContent;
             navigator.clipboard.writeText(code);
-            copyBtn.innerHTML = '✓';
-            setTimeout(() => copyBtn.innerHTML = '📋', 1500);
+            copyBtn.innerHTML = 'âœ“';
+            setTimeout(() => copyBtn.innerHTML = 'ðŸ“‹', 1500);
         };
         pre.appendChild(copyBtn);
     });
@@ -1884,7 +1877,7 @@ function formatMarkdown(content) {
 
 // Navigation
 function previousLesson() {
-    // ⚡ Bolt Optimization: O(1) retrieval using cached indices
+    // âš¡ Bolt Optimization: O(1) retrieval using cached indices
     // Impact: Replaces O(N) lookup, making navigation instantly responsive
     if (state.currentLessonIndex === -1 || state.currentModuleIndex === -1) return;
 
@@ -1909,7 +1902,7 @@ function previousLesson() {
 }
 
 function nextLesson() {
-    // ⚡ Bolt Optimization: O(1) retrieval using cached indices
+    // âš¡ Bolt Optimization: O(1) retrieval using cached indices
     // Impact: Replaces O(N) lookup, making navigation instantly responsive
     if (state.currentLessonIndex === -1 || state.currentModuleIndex === -1) return;
 
@@ -1972,12 +1965,12 @@ function updateCompleteButton() {
     if (isCompleted) {
         btn.classList.add('completed');
         btn.classList.remove('outlined');
-        icon.textContent = '✓';
+        icon.textContent = 'âœ“';
         text.textContent = 'Completed';
     } else {
         btn.classList.remove('completed');
         btn.classList.add('outlined');
-        icon.textContent = '○';
+        icon.textContent = 'â—‹';
         text.textContent = 'Mark Complete';
     }
 }
