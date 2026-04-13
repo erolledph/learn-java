@@ -45,7 +45,8 @@ const elements = {
     lessonTitle: null,
     progressFill: null,
     progressText: null,
-    runCodeBtn: null
+    runCodeBtn: null,
+    sendMessageBtn: null
 };
 
 // Teaching curriculum - Step by step Java learning path
@@ -384,6 +385,7 @@ function initializeElements() {
     elements.aiStatus = document.querySelector('.ai-status-text');
     elements.typingIndicator = document.getElementById('typingIndicator');
     elements.runCodeBtn = document.getElementById('runCode');
+    elements.sendMessageBtn = document.getElementById('sendMessage');
 }
 
 // Apply syntax highlighting colors dynamically
@@ -1685,6 +1687,9 @@ async function sendChatMessage() {
     state.isAITyping = true;
     elements.typingIndicator.classList.add('visible');
     
+    if (elements.chatInput) elements.chatInput.disabled = true;
+    if (elements.sendMessageBtn) elements.sendMessageBtn.disabled = true;
+
     try {
         // Add current code context
         const currentCode = state.editor.getValue();
@@ -1722,6 +1727,14 @@ async function sendChatMessage() {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
         addChatMessage(`😕 I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot');
+    } finally {
+        if (elements.chatInput) {
+            elements.chatInput.disabled = false;
+            elements.chatInput.focus();
+        }
+        if (elements.sendMessageBtn) {
+            elements.sendMessageBtn.disabled = false;
+        }
     }
 }
 
