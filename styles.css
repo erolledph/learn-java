@@ -1978,6 +1978,11 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
     color: var(--text-muted);
 }
 
+.floating-chat-input textarea:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 .floating-chat-input .send-btn {
     width: 44px;
     height: 44px;

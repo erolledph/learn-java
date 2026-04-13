@@ -876,6 +876,9 @@ function simulateQuickResponse(userPrompt, botResponse) {
 
     state.isAITyping = true;
     elements.typingIndicator.classList.add('visible');
+    const sendBtn = document.getElementById('sendMessage');
+    if (elements.chatInput) elements.chatInput.disabled = true;
+    if (sendBtn) sendBtn.disabled = true;
 
     // Disable chat input
     if (elements.chatInput) {
@@ -889,16 +892,10 @@ function simulateQuickResponse(userPrompt, botResponse) {
     setTimeout(() => {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
-
-        // Re-enable chat input
-        if (elements.chatInput) {
-            elements.chatInput.disabled = false;
-            elements.chatInput.placeholder = "Ask Byte about your code...";
-            elements.chatInput.focus();
-        }
+        if (elements.chatInput) elements.chatInput.disabled = false;
         if (sendBtn) sendBtn.disabled = false;
-
         addChatMessage(botResponse, 'bot');
+        if (elements.chatInput) elements.chatInput.focus();
     }, 600);
 }
 
@@ -1653,8 +1650,9 @@ async function sendChatMessage() {
     // Show typing indicator
     state.isAITyping = true;
     elements.typingIndicator.classList.add('visible');
+    const sendBtn = document.getElementById('sendMessage');
     if (elements.chatInput) elements.chatInput.disabled = true;
-    if (elements.sendChatBtn) elements.sendChatBtn.disabled = true;
+    if (sendBtn) sendBtn.disabled = true;
     
     // Disable chat input
     if (elements.chatInput) {
@@ -1692,7 +1690,7 @@ async function sendChatMessage() {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
         if (elements.chatInput) elements.chatInput.disabled = false;
-        if (elements.sendChatBtn) elements.sendChatBtn.disabled = false;
+        if (sendBtn) sendBtn.disabled = false;
         if (elements.chatInput) elements.chatInput.focus();
         
         // Re-enable chat input
@@ -1715,8 +1713,7 @@ async function sendChatMessage() {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
         if (elements.chatInput) elements.chatInput.disabled = false;
-        if (elements.sendChatBtn) elements.sendChatBtn.disabled = false;
-        if (elements.chatInput) elements.chatInput.focus();
+        if (sendBtn) sendBtn.disabled = false;
         addChatMessage(`😕 I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot');
     }
 }
