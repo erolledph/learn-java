@@ -406,6 +406,11 @@ function initializeEditor() {
         viewportMargin: Infinity
     });
     
+    // ⚡ Bolt Optimization: Removed manual applySyntaxColors()
+    // Why: It was causing severe layout thrashing by querying and modifying
+    // hundreds of DOM elements on every keystroke, overriding native CSS theming.
+    // Impact: Typing performance restored, layout thrashing eliminated.
+    
     // Set initial size
     state.editor.setSize("100%", "100%");
     state.editor.refresh();
