@@ -406,10 +406,9 @@ function initializeEditor() {
         viewportMargin: Infinity
     });
     
-    // ⚡ Bolt Optimization: Removed manual applySyntaxColors()
-    // Why: It was causing severe layout thrashing by querying and modifying
-    // hundreds of DOM elements on every keystroke, overriding native CSS theming.
-    // Impact: Typing performance restored, layout thrashing eliminated.
+    // Performance optimization: Avoid layout thrashing.
+    // Do NOT manually query DOM and apply inline styles on change.
+    // CodeMirror handles syntax highlighting via native styles.css classes (e.g., .cm-keyword).
     
     // Set initial size
     state.editor.setSize("100%", "100%");
