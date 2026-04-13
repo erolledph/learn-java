@@ -890,6 +890,10 @@ function simulateQuickResponse(userPrompt, botResponse) {
     const sendBtn = document.getElementById('sendMessage');
     if (sendBtn) sendBtn.disabled = true;
 
+    const sendBtn = document.getElementById('sendMessage');
+    if (elements.chatInput) elements.chatInput.disabled = true;
+    if (sendBtn) sendBtn.disabled = true;
+
     // Simulate slight delay for realism
     setTimeout(() => {
         state.isAITyping = false;
@@ -897,7 +901,12 @@ function simulateQuickResponse(userPrompt, botResponse) {
         if (elements.chatInput) elements.chatInput.disabled = false;
         if (sendBtn) sendBtn.disabled = false;
         addChatMessage(botResponse, 'bot');
-        if (elements.chatInput) elements.chatInput.focus();
+
+        if (elements.chatInput) {
+            elements.chatInput.disabled = false;
+            elements.chatInput.focus();
+        }
+        if (sendBtn) sendBtn.disabled = false;
     }, 600);
 }
 
@@ -1399,6 +1408,7 @@ async function runCode() {
             elements.runCodeBtn.disabled = false;
             const span = elements.runCodeBtn.querySelector('span');
             if (span) span.textContent = 'Run Code';
+            elements.runCodeBtn.focus();
         }
     }
 }
@@ -1655,16 +1665,9 @@ async function sendChatMessage() {
     if (elements.chatInput) elements.chatInput.disabled = true;
     if (elements.sendMessageBtn) elements.sendMessageBtn.disabled = true;
     
-    // Disable chat input
-    if (elements.chatInput) {
-        elements.chatInput.disabled = true;
-        elements.chatInput.placeholder = "Byte is thinking...";
-    }
     const sendBtn = document.getElementById('sendMessage');
+    if (elements.chatInput) elements.chatInput.disabled = true;
     if (sendBtn) sendBtn.disabled = true;
-
-    // Force a small delay to allow UI to update disabled state before heavy async tasks
-    await new Promise(resolve => setTimeout(resolve, 50));
 
     try {
         // Add current code context
@@ -1721,6 +1724,12 @@ async function sendChatMessage() {
         }
         if (elements.sendMessageBtn) elements.sendMessageBtn.disabled = false;
         addChatMessage(`😕 I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot');
+    } finally {
+        if (elements.chatInput) {
+            elements.chatInput.disabled = false;
+            elements.chatInput.focus();
+        }
+        if (sendBtn) sendBtn.disabled = false;
     }
 }
 
