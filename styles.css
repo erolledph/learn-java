@@ -2011,19 +2011,14 @@ body.night-theme .CodeMirror.cm-focused .CodeMirror-cursor {
     cursor: not-allowed;
     transform: none;
     box-shadow: none;
+    background: var(--surface-3);
+    color: var(--text-muted);
 }
 
 .floating-chat-input textarea:disabled {
     opacity: 0.7;
     cursor: not-allowed;
     background-color: var(--bg-secondary);
-}
-
-.floating-chat-input .send-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
 }
 
 .floating-chat-input .send-btn svg {

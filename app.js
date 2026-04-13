@@ -387,8 +387,7 @@ function initializeElements() {
     elements.aiStatus = document.querySelector('.ai-status-text');
     elements.typingIndicator = document.getElementById('typingIndicator');
     elements.runCodeBtn = document.getElementById('runCode');
-    elements.sendMessageBtn = document.getElementById('sendMessage');
-}
+    elements.sendMessageBtn = document.getElementById('sendMessage');      
 
 // Apply syntax highlighting colors dynamically
 function applySyntaxColors() {
@@ -938,15 +937,16 @@ function simulateQuickResponse(userPrompt, botResponse) {
     if (elements.chatInput) elements.chatInput.disabled = true;
     if (sendBtn) sendBtn.disabled = true;
 
+    // Disable inputs
+    if (elements.chatInput) elements.chatInput.disabled = true;
+    if (elements.sendBtn) elements.sendBtn.disabled = true;
+
     // Simulate slight delay for realism
     setTimeout(() => {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
         if (elements.chatInput) elements.chatInput.disabled = false;
         if (sendBtn) sendBtn.disabled = false;
-        addChatMessage(botResponse, 'bot');
-
-        if (elements.chatInput) {
             elements.chatInput.disabled = false;
             elements.chatInput.focus();
         }
@@ -1763,6 +1763,7 @@ const sendBtn = document.getElementById('sendMessage');
     } catch (error) {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
+        // Re-enable inputs
         if (elements.chatInput) {
             elements.chatInput.disabled = false;
             elements.chatInput.focus();
