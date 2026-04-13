@@ -406,9 +406,7 @@ function initializeEditor() {
         viewportMargin: Infinity
     });
     
-    // Performance optimization: Avoid layout thrashing.
-    // Do NOT manually query DOM and apply inline styles on change.
-    // CodeMirror handles syntax highlighting via native styles.css classes (e.g., .cm-keyword).
+    // ⚡ Bolt Optimization: Removed redundant O(N) DOM manipulation for syntax highlighting that caused layout thrashing on every keystroke. CodeMirror handles this natively via CSS themes.
     
     // Set initial size
     state.editor.setSize("100%", "100%");
