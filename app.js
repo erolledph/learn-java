@@ -281,7 +281,7 @@ function startGuidedLearning() {
     
     setTimeout(() => {
         elements.typingIndicator.classList.remove('visible');
-        addChatMessage(teachingPath[0].message, 'bot');
+        addChatMessage(teachingPath[0].message, 'bot', true);
     }, 800);
 }
 
@@ -1691,14 +1691,14 @@ async function sendChatMessage() {
             if (state.teachingStep > 0) {
                 state.teachingStep--;
                 loadCodeForStep(state.teachingStep);
-                addChatMessage(teachingPath[state.teachingStep].message, 'bot');
+                addChatMessage(teachingPath[state.teachingStep].message, 'bot', true);
                 updateTeachingProgress();
             }
             return;
         }
         if (lowerMsg === 'exit' || lowerMsg === 'stop' || lowerMsg === 'quit') {
             state.isTeachingMode = false;
-            addChatMessage("You've exited guided learning mode. You can explore lessons from the sidebar or ask me anything about Java!", 'bot');
+            addChatMessage("You've exited guided learning mode. You can explore lessons from the sidebar or ask me anything about Java!", 'bot', true);
             return;
         }
     }
@@ -1748,9 +1748,9 @@ async function sendChatMessage() {
         if (response.error) {
             const errorMessage = `ðŸ¤– Oops! I couldn't get a response.\n\nPlease check your internet connection or API key, then try again.`;
             console.error('Groq service error:', response.message);
-            addChatMessage(errorMessage, 'bot');
+            addChatMessage(errorMessage, 'bot', true);
         } else {
-            addChatMessage(response.message, 'bot');
+            addChatMessage(response.message, 'bot', true);
         }
         
     } catch (error) {
@@ -1762,7 +1762,7 @@ async function sendChatMessage() {
             elements.chatInput.focus();
         }
         if (elements.sendMessageBtn) elements.sendMessageBtn.disabled = false;
-        addChatMessage(`ðŸ˜• I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot');
+        addChatMessage(`ðŸ˜• I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot', true);
     } finally {
         if (elements.chatInput) {
             elements.chatInput.disabled = false;
@@ -1774,38 +1774,73 @@ async function sendChatMessage() {
     }
 }
 
-// Add message to chat with proper markdown formatting
-function addChatMessage(content, type) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `message ${type}-message`;
+// Typewriter effect for messages
+function typeWriter(element, htmlContent, speed = 15) {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = htmlContent;
+    const plainText = tempDiv.textContent;
+    let htmlIndex = 0;
+    let displayHtml = '';
     
-    // Format content with proper markdown
-    const formattedContent = formatMarkdown(content);
+    element.innerHTML = '';
+    element.classList.add('typing');
     
-    messageDiv.innerHTML = `
-        <div class="message-content">
-            ${formattedContent}
-        </div>
-    `;
-    
-    elements.chatMessages.appendChild(messageDiv);
-    elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
-    
-    // Add click handlers for code copy buttons
+    function type() {
+        if (htmlIndex < htmlContent.length) {
+            displayHtml += htmlContent[htmlIndex];
+            element.innerHTML = displayHtml;
+            htmlIndex++;
+            elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
+            setTimeout(type, speed);
+        } else {
+            element.classList.remove('typing');
+            attachCopyButtons(element);
+        }
+    }
+    type();
+}
+
+function attachCopyButtons(messageDiv) {
     messageDiv.querySelectorAll('pre').forEach(pre => {
         pre.style.position = 'relative';
         const copyBtn = document.createElement('button');
         copyBtn.className = 'copy-code-btn';
-        copyBtn.innerHTML = 'ðŸ“‹';
+        copyBtn.innerHTML = '📋';
         copyBtn.title = 'Copy code';
         copyBtn.onclick = () => {
             const code = pre.querySelector('code')?.textContent || pre.textContent;
             navigator.clipboard.writeText(code);
-            copyBtn.innerHTML = 'âœ“';
-            setTimeout(() => copyBtn.innerHTML = 'ðŸ“‹', 1500);
+            copyBtn.innerHTML = '✓';
+            setTimeout(() => copyBtn.innerHTML = '📋', 1500);
         };
         pre.appendChild(copyBtn);
     });
+}
+
+// Add message to chat with proper markdown formatting
+function addChatMessage(content, type, useTypewriter = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${type}-message`;
+    
+    const formattedContent = formatMarkdown(content);
+    
+    if (useTypewriter && type === 'bot') {
+        messageDiv.innerHTML = `<div class="message-content"></div>`;
+        elements.chatMessages.appendChild(messageDiv);
+        const contentDiv = messageDiv.querySelector('.message-content');
+        typeWriter(contentDiv, formattedContent);
+    } else {
+        messageDiv.innerHTML = `
+            <div class="message-content">
+                ${formattedContent}
+            </div>
+        `;
+        elements.chatMessages.appendChild(messageDiv);
+        elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
+        attachCopyButtons(messageDiv);
+    }
+    
+    elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
 }
 
 // Format markdown to HTML
