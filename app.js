@@ -1252,6 +1252,9 @@ function renderSidebar(type) {
     if (type === 'lessons') {
         let html = '';
         
+        // Convert to Set for O(1) lookups instead of O(N) array includes
+        const completedLessonsSet = new Set(state.progress.completedLessons);
+
         JAVA_CURRICULUM.modules.forEach((module, moduleIndex) => {
             const isExpanded = moduleIndex === 0;
             
@@ -1265,7 +1268,7 @@ function renderSidebar(type) {
             `;
             
             module.lessons.forEach(lesson => {
-                const isCompleted = state.progress.completedLessons.includes(lesson.id);
+                const isCompleted = completedLessonsSet.has(lesson.id);
                 const isActive = state.currentLesson?.id === lesson.id;
                 
                 html += `
@@ -1304,8 +1307,11 @@ function renderSidebar(type) {
         const exercises = getExercises();
         let html = '';
         
+        // Convert to Set for O(1) lookups instead of O(N) array includes
+        const completedExercisesSet = new Set(state.progress.completedExercises);
+
         exercises.forEach(exercise => {
-            const isCompleted = state.progress.completedExercises.includes(exercise.id);
+            const isCompleted = completedExercisesSet.has(exercise.id);
             
             html += `
                 <div class="exercise-item ${isCompleted ? 'completed' : ''}" 
