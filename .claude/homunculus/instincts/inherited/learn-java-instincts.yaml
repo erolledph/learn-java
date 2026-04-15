@@ -1,0 +1,495 @@
+# Instincts generated from https://github.com/erolledph/learn-java
+# Generated: 2026-04-15T15:36:03.157Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: learn-java-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/erolledph/learn-java
+---
+
+# Learn Java Commit Length
+
+## Action
+
+Write moderate-length commit messages (~66 characters)
+
+## Evidence
+
+- Average commit message length: 66 chars
+- Based on 68 commits
+
+---
+id: learn-java-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/erolledph/learn-java
+---
+
+# Learn Java Naming Files
+
+## Action
+
+Use kebab-case naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: kebab-case
+
+---
+id: learn-java-import-relative
+trigger: "when importing modules"
+confidence: 0.75
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/erolledph/learn-java
+---
+
+# Learn Java Import Relative
+
+## Action
+
+Use relative imports for project files
+
+## Evidence
+
+- Import analysis shows relative import pattern
+- Example: import { x } from '../lib/x'
+
+---
+id: learn-java-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/erolledph/learn-java
+---
+
+# Learn Java Export Style
+
+## Action
+
+Prefer named exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: named
+
+---
+id: learn-java-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/erolledph/learn-java
+---
+
+# Learn Java Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: learn-java-workflow-feature-development
+trigger: "when implementing a new feature"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/erolledph/learn-java
+---
+
+# Learn Java Workflow Feature Development
+
+## Action
+
+Follow the feature-development workflow:
+1. Add feature implementation
+2. Add tests for feature
+3. Update documentation
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~9x per month
+- Files: 
+
+---
+id: learn-java-workflow-add-or-improve-disabled-loading-state-ui
+trigger: "when doing add or improve disabled loading state ui"
+confidence: 0.8
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/erolledph/learn-java
+---
+
+# Learn Java Workflow Add Or Improve Disabled Loading State Ui
+
+## Action
+
+Follow the add-or-improve-disabled-loading-state-ui workflow:
+1. Update JavaScript logic to disable/enable relevant buttons or inputs during async operations
+2. Modify or add CSS classes/selectors for disabled and loading visual states
+3. Optionally update documentation markdown (e.g., .Jules/palette.md) to describe the UI/UX change
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~6x per month
+- Files: app.js, styles.css, .Jules/palette.md
+
+---
+id: learn-java-workflow-remove-or-optimize-syntax-highlighting-performance
+trigger: "when doing remove or optimize syntax highlighting performance"
+confidence: 0.75
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/erolledph/learn-java
+---
+
+# Learn Java Workflow Remove Or Optimize Syntax Highlighting Performance
+
+## Action
+
+Follow the remove-or-optimize-syntax-highlighting-performance workflow:
+1. Remove or refactor manual DOM manipulation code in app.js related to syntax highlighting
+2. Update documentation markdown (e.g., .jules/bolt.md) to reflect the change
+3. Ensure CodeMirror or similar libraries handle syntax highlighting via CSS
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~5x per month
+- Files: app.js, .jules/bolt.md
+
+---
+id: learn-java-workflow-add-aria-labels-for-accessibility
+trigger: "when doing add aria labels for accessibility"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/erolledph/learn-java
+---
+
+# Learn Java Workflow Add Aria Labels For Accessibility
+
+## Action
+
+Follow the add-aria-labels-for-accessibility workflow:
+1. Edit index.html to add or update aria-label attributes on relevant buttons
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: index.html
+
+---
+id: learn-java-workflow-feature-or-ui-enhancement-with-coordinated-js-css-html
+trigger: "when doing feature or ui enhancement with coordinated js css html"
+confidence: 0.65
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/erolledph/learn-java
+---
+
+# Learn Java Workflow Feature Or Ui Enhancement With Coordinated Js Css Html
+
+## Action
+
+Follow the feature-or-ui-enhancement-with-coordinated-js-css-html workflow:
+1. Update app.js to implement feature logic
+2. Update styles.css for related UI changes
+3. Optionally update index.html for markup changes
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~3x per month
+- Files: app.js, styles.css, index.html
+
+---
+id: learn-java-instinct-file-naming
+trigger: "When creating or renaming a file"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: erolledph/learn-java
+---
+
+# Learn Java Instinct File Naming
+
+## Action
+
+Use kebab-case for file names
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.files
+
+---
+id: learn-java-instinct-function-naming
+trigger: "When defining a function"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: erolledph/learn-java
+---
+
+# Learn Java Instinct Function Naming
+
+## Action
+
+Use camelCase for function names
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.functions
+
+---
+id: learn-java-instinct-class-naming
+trigger: "When defining a class"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: erolledph/learn-java
+---
+
+# Learn Java Instinct Class Naming
+
+## Action
+
+Use PascalCase for class names
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.classes
+
+---
+id: learn-java-instinct-constant-naming
+trigger: "When defining a constant"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: erolledph/learn-java
+---
+
+# Learn Java Instinct Constant Naming
+
+## Action
+
+Use SCREAMING_SNAKE_CASE for constant names
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.constants
+
+---
+id: learn-java-instinct-import-style
+trigger: "When importing modules"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: erolledph/learn-java
+---
+
+# Learn Java Instinct Import Style
+
+## Action
+
+Use relative import paths
+
+## Evidence
+
+- Pattern in codeStyle.importStyle
+
+---
+id: learn-java-instinct-export-style
+trigger: "When exporting modules or functions"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: erolledph/learn-java
+---
+
+# Learn Java Instinct Export Style
+
+## Action
+
+Use named exports
+
+## Evidence
+
+- Pattern in codeStyle.exportStyle
+
+---
+id: learn-java-instinct-testing-pattern
+trigger: "When adding a new feature"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: erolledph/learn-java
+---
+
+# Learn Java Instinct Testing Pattern
+
+## Action
+
+Add tests for the feature in a separate test location after implementation
+
+## Evidence
+
+- Workflow 'feature-development' commit sequence
+- architecture.testLocation: separate
+
+---
+id: learn-java-instinct-git-commit-prefix-perf
+trigger: "When making a performance optimization"
+confidence: 0.85
+domain: git
+source: repo-analysis
+source_repo: erolledph/learn-java
+---
+
+# Learn Java Instinct Git Commit Prefix Perf
+
+## Action
+
+Prefix the commit message with 'perf' and a short scope if applicable
+
+## Evidence
+
+- perf(app): optimize sidebar rendering with O(1) Set lookups (#21)
+
+---
+id: learn-java-instinct-git-commit-prefix-feat
+trigger: "When adding a new feature"
+confidence: 0.85
+domain: git
+source: repo-analysis
+source_repo: erolledph/learn-java
+---
+
+# Learn Java Instinct Git Commit Prefix Feat
+
+## Action
+
+Prefix the commit message with 'feat' and a short scope if applicable
+
+## Evidence
+
+- feat: disable chat input and button while AI is typing (#6)
+
+---
+id: learn-java-instinct-git-commit-format-length
+trigger: "When writing a commit message"
+confidence: 0.7
+domain: git
+source: repo-analysis
+source_repo: erolledph/learn-java
+---
+
+# Learn Java Instinct Git Commit Format Length
+
+## Action
+
+Keep the commit message concise, around 66 characters on average
+
+## Evidence
+
+- commits.averageLength: 66
+
+---
+id: learn-java-instinct-add-disabled-loading-state-ui
+trigger: "When someone wants to prevent user actions during async operations and provide visual feedback"
+confidence: 0.95
+domain: workflow
+source: repo-analysis
+source_repo: erolledph/learn-java
+---
+
+# Learn Java Instinct Add Disabled Loading State Ui
+
+## Action
+
+Update JavaScript to disable/enable UI elements, modify/add CSS for disabled/loading states, and optionally update documentation
+
+## Evidence
+
+- Workflow 'add-or-improve-disabled-loading-state-ui'
+- Commits: 'feat: add disabled and loading state to run button (#3)'
+
+---
+id: learn-java-instinct-optimize-syntax-highlighting-performance
+trigger: "When someone wants to improve editor performance by eliminating redundant or inefficient syntax highlighting logic"
+confidence: 0.93
+domain: workflow
+source: repo-analysis
+source_repo: erolledph/learn-java
+---
+
+# Learn Java Instinct Optimize Syntax Highlighting Performance
+
+## Action
+
+Remove or refactor manual DOM manipulation for syntax highlighting in app.js, update documentation, and ensure a library handles highlighting via CSS
+
+## Evidence
+
+- Workflow 'remove-or-optimize-syntax-highlighting-performance'
+- Commits: 'Remove or refactor manual DOM manipulation code in app.js related to syntax highlighting'
+
+---
+id: learn-java-instinct-add-aria-labels-accessibility
+trigger: "When someone wants to improve accessibility for interactive elements lacking descriptive labels"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: erolledph/learn-java
+---
+
+# Learn Java Instinct Add Aria Labels Accessibility
+
+## Action
+
+Edit index.html to add or update aria-label attributes on relevant buttons
+
+## Evidence
+
+- Workflow 'add-aria-labels-for-accessibility'
+- Commit: '🎨 Palette: Add ARIA labels to interactive buttons (#22)'
+
+---
+id: learn-java-instinct-feature-ui-enhancement-coordinated
+trigger: "When someone wants to add a new UI feature or significantly enhance an existing one"
+confidence: 0.88
+domain: workflow
+source: repo-analysis
+source_repo: erolledph/learn-java
+---
+
+# Learn Java Instinct Feature Ui Enhancement Coordinated
+
+## Action
+
+Update app.js for logic, styles.css for UI, and optionally index.html for markup
+
+## Evidence
+
+- Workflow 'feature-or-ui-enhancement-with-coordinated-js-css-html'
+- Commits: 'Update app.js to implement feature logic', 'Update styles.css for related UI changes'
+
