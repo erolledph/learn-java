@@ -388,6 +388,7 @@ function initializeElements() {
     elements.typingIndicator = document.getElementById('typingIndicator');
     elements.runCodeBtn = document.getElementById('runCode');
     elements.sendMessageBtn = document.getElementById('sendMessage');      
+}
 
 // Apply syntax highlighting colors dynamically
 function applySyntaxColors() {
@@ -945,32 +946,22 @@ function simulateQuickResponse(userPrompt, botResponse) {
     state.isAITyping = true;
     elements.typingIndicator.classList.add('visible');
     const sendBtn = document.getElementById('sendMessage');
-    if (elements.chatInput) elements.chatInput.disabled = true;
-    if (sendBtn) sendBtn.disabled = true;
 
     // Disable chat input
     if (elements.chatInput) {
         elements.chatInput.disabled = true;
         elements.chatInput.placeholder = "Byte is thinking...";
     }
-    const sendBtn = document.getElementById('sendMessage');
     if (sendBtn) sendBtn.disabled = true;
-
-    const sendBtn = document.getElementById('sendMessage');
-    if (elements.chatInput) elements.chatInput.disabled = true;
-    if (sendBtn) sendBtn.disabled = true;
-
-    // Disable inputs
-    if (elements.chatInput) elements.chatInput.disabled = true;
-    if (elements.sendBtn) elements.sendBtn.disabled = true;
 
     // Simulate slight delay for realism
     setTimeout(() => {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
-        if (elements.chatInput) elements.chatInput.disabled = false;
-        if (sendBtn) sendBtn.disabled = false;
+
+        if (elements.chatInput) {
             elements.chatInput.disabled = false;
+            elements.chatInput.placeholder = "Ask Byte about your code...";
             elements.chatInput.focus();
         }
         if (sendBtn) sendBtn.disabled = false;
@@ -1735,8 +1726,11 @@ async function sendChatMessage() {
     // Show typing indicator
     state.isAITyping = true;
     elements.typingIndicator.classList.add('visible');
-    if (elements.chatInput) elements.chatInput.disabled = true;
-    if (elements.sendMessageBtn) elements.sendMessageBtn.disabled = true;
+    const sendBtn = elements.sendMessageBtn || document.getElementById('sendMessage');
+    if (elements.chatInput) {
+        elements.chatInput.disabled = true;
+        elements.chatInput.placeholder = "Byte is thinking...";
+    }
     if (sendBtn) sendBtn.disabled = true;
 
     try {
@@ -1764,10 +1758,6 @@ async function sendChatMessage() {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
         if (elements.chatInput) {
-            elements.chatInput.disabled = false;
-            elements.chatInput.focus();
-        }
-        if (elements.sendMessageBtn) elements.sendMessageBtn.disabled = false;
             elements.chatInput.disabled = false;
             elements.chatInput.placeholder = "Ask Byte about your code...";
             elements.chatInput.focus();
