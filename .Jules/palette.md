@@ -13,3 +13,6 @@
 ## 2026-04-17 - Radiogroup Accessibility Pattern
 **Learning:** When using custom UI elements for mutually exclusive selection groups (like theme options), simply relying on visual classes (like `.active`) is not accessible. We must use `role="radiogroup"` on the container, `role="radio"` on the options, and dynamically update `aria-checked` to convey state changes to screen readers.
 **Action:** Always wrap custom mutually exclusive selection buttons with a `role="radiogroup"` and apply `role="radio"` along with dynamic `aria-checked` states to individual options.
+## 2026-04-17 - Adding tabindex="-1" to Skip-to-Content Targets
+**Learning:** When implementing skip-to-content accessibility links, adding the ID target (like `id="main-content"`) to the main container is essential, but it is also best practice for screen reader compatibility to add `tabindex="-1"` to that target element so it programmatically receives focus when the link is activated.
+**Action:** Always include `tabindex="-1"` alongside the ID on the target container when implementing skip links.
