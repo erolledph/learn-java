@@ -54,7 +54,7 @@ const elements = {
 const teachingPath = [
     {
         topic: "Welcome",
-        message: `Hi! I'm Byte, your Java tutor! â˜•
+        message: `Hi! I'm Byte, your Java tutor! <i class="fa-solid fa-mug-hot"></i>
 
 I'll guide you through learning Java step by step. Let's start with the basics!
 
@@ -74,7 +74,7 @@ Click **Run** to execute the code in the editor, then type "next" to continue!`
     },
     {
         topic: "Hello World",
-        message: `Your first Java program is ready! ðŸŽ‰
+        message: `Your first Java program is ready! <i class="fa-solid fa-party-horn"></i>
 
 The code uses \`System.out.println()\` to print text.
 
@@ -87,7 +87,7 @@ Key rules:
     },
     {
         topic: "Variables",
-        message: `Variables store data in your program. ðŸ“¦
+        message: `Variables store data in your program. <i class="fa-solid fa-box"></i>
 
 \`\`\`java
 String name = "Java";   // Text
@@ -102,7 +102,7 @@ Try modifying the variables in the editor!`
     },
     {
         topic: "Conditions",
-        message: `**If/Else** lets programs make decisions! ðŸ”€
+        message: `**If/Else** lets programs make decisions! <i class="fa-solid fa-shuffle"></i>
 
 \`\`\`java
 int age = 18;
@@ -117,7 +117,7 @@ if (age >= 18) {
     },
     {
         topic: "Loops",
-        message: `**Loops** repeat code automatically! ðŸ”„
+        message: `**Loops** repeat code automatically! <i class="fa-solid fa-rotate-right"></i>
 
 \`\`\`java
 for (int i = 1; i <= 5; i++) {
@@ -129,7 +129,7 @@ This prints 1, 2, 3, 4, 5 automatically!`
     },
     {
         topic: "Methods",
-        message: `**Methods** are reusable blocks of code! ðŸ§©
+        message: `**Methods** are reusable blocks of code! <i class="fa-solid fa-puzzle-piece"></i>
 
 \`\`\`java
 static void greet() {
@@ -145,20 +145,20 @@ Methods help organize and reuse code!`
     },
     {
         topic: "Summary",
-        message: `Congratulations! ðŸŽ‰ You've completed the Java basics!
+        message: `Congratulations! <i class="fa-solid fa-party-horn"></i> You've completed the Java basics!
 
 **What you've learned:**
-âœ… Hello World
-âœ… Variables & Data Types
-âœ… If/Else Conditions
-âœ… Loops
-âœ… Methods
+<i class="fa-solid fa-check-circle"></i> Hello World
+<i class="fa-solid fa-check-circle"></i> Variables & Data Types
+<i class="fa-solid fa-check-circle"></i> If/Else Conditions
+<i class="fa-solid fa-check-circle"></i> Loops
+<i class="fa-solid fa-check-circle"></i> Methods
 
 **Next steps:**
 - Explore lessons in the sidebar
 - Ask me anything about Java!
 
-Keep practicing! ðŸš€`
+Keep practicing! <i class="fa-solid fa-rocket"></i>`
     }
 ];
 
@@ -238,7 +238,7 @@ window.addEventListener('unhandledrejection', (event) => {
 
 // Add welcome message to chat
 function addWelcomeMessage() {
-    addChatMessage(`Hi! I'm Byte, your Java tutor! â˜•
+    addChatMessage(`Hi! I'm Byte, your Java tutor! <i class="fa-solid fa-mug-hot"></i>
 
 I'll guide you through learning Java step by step. Let's start with the basics!
 
@@ -725,7 +725,7 @@ function saveCode() {
     const filename = state.currentLesson?.id || 'main';
     localStorage.setItem(`java_code_${filename}`, code);
     localStorage.setItem('java_code_current', code);
-    showToast('Code saved! ðŸ’¾', 'success');
+    showToast('Code saved! <i class="fa-solid fa-floppy-disk"></i>', 'success');
 }
 
 // Load saved code
@@ -759,7 +759,7 @@ function loadLesson(lesson) {
     
     state.currentLesson = lesson;
     
-    // âš¡ Bolt Optimization: Cache curriculum indices in global state
+    // ⚡ Bolt Optimization: Cache curriculum indices in global state
     // Why: Prevents redundant O(N) nested array lookups during navigation events
     // Impact: Changes navigation lookup time from O(N) to O(1)
     let foundModule = null;
@@ -832,9 +832,9 @@ function renderInteractiveLesson(lesson) {
     const content = lesson.content;
     let html = `
         <div class="lesson-interactive-header">
-            <div class="lesson-badge">ðŸ“š ${lesson.duration || '15 min'}</div>
+            <div class="lesson-badge"><i class="fa-solid fa-book-open"></i> ${lesson.duration || '15 min'}</div>
             <button class="ai-explain-btn" onclick="explainLessonWithAI(state.currentLesson)">
-                ðŸ¤– Ask Byte to Explain
+                <i class="fa-solid fa-robot"></i> Ask Byte to Explain
             </button>
         </div>
     `;
@@ -848,7 +848,7 @@ function renderInteractiveLesson(lesson) {
 if (content.description) {
         var snippetCode = content.snippet ? wrapInClass(content.snippet) : '';
         html += '<div class="lesson-block description">' +
-            '<h4>ðŸ“– What is ' + lesson.title + '?</h4>' +
+            '<h4><i class="fa-solid fa-book-open-reader"></i> What is ' + lesson.title + '?</h4>' +
             '<p>' + content.description + '</p>' +
             (content.snippet ? '<div class="code-window">' +
                 '<div class="code-header">' +
@@ -863,7 +863,7 @@ if (content.description) {
     
     if (content.keyPoints) {
         html += `<div class="lesson-block key-points">
-            <h4>ðŸŽ¯ Key Points</h4>
+            <h4><i class="fa-solid fa-bullseye"></i> Key Points</h4>
             <ul>
                 ${content.keyPoints.map(p => `<li>${p}</li>`).join('')}
             </ul>
@@ -873,7 +873,7 @@ if (content.description) {
     if (content.types || content.pillars) {
         const items = content.types || content.pillars;
         html += `<div class="lesson-block concepts">
-            <h4>ðŸ’¡ Concepts</h4>
+            <h4><i class="fa-solid fa-lightbulb"></i> Concepts</h4>
             <div class="concept-chips">
                 ${items.map(item => {
                     const name = typeof item === 'string' ? item.split(' - ')[0] : item.name;
@@ -885,21 +885,21 @@ if (content.description) {
     
     if (lesson.example) {
         html += `<div class="lesson-block code-example">
-            <h4>ðŸ’» Code Example</h4>
+            <h4><i class="fa-solid fa-laptop-code"></i> Code Example</h4>
             <p>The code below is already in the editor. Try running it!</p>
             <div class="example-actions">
-                <button class="action-primary" onclick="runCode()">â–¶ï¸ Run Code</button>
-                <button class="action-secondary" onclick="askAIAboutCode(state.currentLesson.example)">ðŸ¤– Explain This Code</button>
+                <button class="action-primary" onclick="runCode()"><i class="fa-solid fa-play"></i> Run Code</button>
+                <button class="action-secondary" onclick="askAIAboutCode(state.currentLesson.example)"><i class="fa-solid fa-robot"></i> Explain This Code</button>
             </div>
         </div>`;
     }
     
     if (lesson.explanation) {
         html += `<div class="lesson-block explanation">
-            <h4>ðŸ’¬ Byte's Explanation</h4>
+            <h4><i class="fa-solid fa-comments"></i> Byte's Explanation</h4>
             <p>${lesson.explanation}</p>
             <button class="ai-more-btn" onclick="explainLessonWithAI(state.currentLesson)">
-                ðŸ¤– Get More Details from Byte
+                <i class="fa-solid fa-robot"></i> Get More Details from Byte
             </button>
         </div>`;
     }
@@ -907,12 +907,12 @@ if (content.description) {
     // Interactive challenges
     html += `
         <div class="lesson-block practice">
-            <h4>ðŸŽ® Practice Time!</h4>
+            <h4><i class="fa-solid fa-gamepad"></i> Practice Time!</h4>
             <p>Ready to try it yourself? Modify the code and run it!</p>
             <div class="practice-suggestions">
-                <button class="practice-btn" onclick="suggestPractice('modify')">âœï¸ Suggest Modifications</button>
-                <button class="practice-btn" onclick="suggestPractice('challenge')">ðŸŽ¯ Give Me a Challenge</button>
-                <button class="practice-btn" onclick="suggestPractice('quiz')">ðŸ“ Quick Quiz</button>
+                <button class="practice-btn" onclick="suggestPractice('modify')"><i class="fa-solid fa-pencil"></i> Suggest Modifications</button>
+                <button class="practice-btn" onclick="suggestPractice('challenge')"><i class="fa-solid fa-bullseye"></i> Give Me a Challenge</button>
+                <button class="practice-btn" onclick="suggestPractice('quiz')"><i class="fa-solid fa-clipboard-question"></i> Quick Quiz</button>
             </div>
         </div>
     `;
@@ -921,16 +921,16 @@ if (content.description) {
     html += `
         <div class="lesson-navigation">
             <button class="nav-btn" id="prevLessonBtn" onclick="previousLesson()">
-                <span class="arrow">â†</span>
+                <span class="arrow"><i class="fa-solid fa-arrow-left"></i></span>
                 <span class="btn-text">Previous</span>
             </button>
             <button class="lesson-complete-btn outlined" id="markComplete" data-action="toggle-complete" onclick="toggleLessonComplete()">
-                <span class="complete-icon">â—‹</span>
+                <span class="complete-icon"><i class="fa-regular fa-circle"></i></span>
                 <span class="complete-text">Mark Complete</span>
             </button>
             <button class="nav-btn" id="nextLessonBtn" onclick="nextLesson()">
                 <span class="btn-text">Next</span>
-                <span class="arrow">â†’</span>
+                <span class="arrow"><i class="fa-solid fa-arrow-right"></i></span>
             </button>
         </div>
     `;
@@ -1083,7 +1083,7 @@ function updateNavigationButtons() {
     
     if (!prevBtn || !nextBtn) return;
     
-    // âš¡ Bolt Optimization: Use cached indices for O(1) button state evaluation
+    // ⚡ Bolt Optimization: Use cached indices for O(1) button state evaluation
     // Impact: Eliminates a full curriculum scan on every lesson load
     const currentModuleIndex = state.currentModuleIndex;
     const currentIndex = state.currentLessonIndex;
@@ -1276,7 +1276,7 @@ function renderSidebar(type) {
                 <div class="module-header ${isExpanded ? 'expanded' : ''}" data-module="${module.id}">
                     <span class="module-icon">${module.icon}</span>
                     <span class="module-title">${module.title}</span>
-                    <span class="module-arrow">â–¶</span>
+                    <span class="module-arrow"><i class="fa-solid fa-caret-right"></i></span>
                 </div>
                 <div class="lesson-list">
             `;
@@ -1289,7 +1289,7 @@ function renderSidebar(type) {
                     <div class="lesson-item ${isCompleted ? 'completed' : ''} ${isActive ? 'active' : ''}" 
                          data-lesson-id="${lesson.id}" 
                          data-module-id="${module.id}">
-                        <span class="lesson-status">${isCompleted ? 'âœ“' : 'â—‹'}</span>
+                        <span class="lesson-status">${isCompleted ? '<i class="fa-solid fa-check"></i>' : '<i class="fa-regular fa-circle"></i>'}</span>
                         <span class="lesson-title">${lesson.title}</span>
                     </div>
                 `;
@@ -1330,7 +1330,7 @@ function renderSidebar(type) {
             html += `
                 <div class="exercise-item ${isCompleted ? 'completed' : ''}" 
                      data-exercise-id="${exercise.id}">
-                    <span class="exercise-icon">ðŸ’»</span>
+                    <span class="exercise-icon"><i class="fa-solid fa-laptop-code"></i></span>
                     <div class="exercise-info">
                         <span class="exercise-title">${exercise.title}</span>
                         <span class="exercise-difficulty ${exercise.difficulty}">${exercise.difficulty}</span>
@@ -1386,7 +1386,7 @@ function loadExercise(exercise) {
         <pre class="code-block">Expected Output:
 ${exercise.lesson.content.description || 'See the code comments for instructions.'}</pre>
         <button class="complete-btn" style="margin-top: 16px; padding: 8px 16px; background: var(--accent-success); color: white; border: none; border-radius: 4px; cursor: pointer;">
-            Mark Complete âœ“
+            Mark Complete <i class="fa-solid fa-check"></i>
         </button>
     `;
     
@@ -1765,7 +1765,7 @@ async function sendChatMessage() {
         if (sendBtn) sendBtn.disabled = false;
 
         if (response.error) {
-            const errorMessage = `ðŸ¤– Oops! I couldn't get a response.\n\nPlease check your internet connection or API key, then try again.`;
+            const errorMessage = `<i class="fa-solid fa-robot"></i> Oops! I couldn't get a response.\n\nPlease check your internet connection or API key, then try again.`;
             console.error('Groq service error:', response.message);
             addChatMessage(errorMessage, 'bot', true);
         } else {
@@ -1781,7 +1781,7 @@ async function sendChatMessage() {
             elements.chatInput.focus();
         }
         if (elements.sendMessageBtn) elements.sendMessageBtn.disabled = false;
-        addChatMessage(`ðŸ˜• I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot', true);
+        addChatMessage(`<i class="fa-solid fa-face-frown-open"></i> I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot', true);
     } finally {
         if (elements.chatInput) {
             elements.chatInput.disabled = false;
@@ -1824,13 +1824,13 @@ function attachCopyButtons(messageDiv) {
         pre.style.position = 'relative';
         const copyBtn = document.createElement('button');
         copyBtn.className = 'copy-code-btn';
-        copyBtn.innerHTML = '📋';
+        copyBtn.innerHTML = '<i class="fa-solid fa-clipboard"></i>';
         copyBtn.title = 'Copy code';
         copyBtn.onclick = () => {
             const code = pre.querySelector('code')?.textContent || pre.textContent;
             navigator.clipboard.writeText(code);
-            copyBtn.innerHTML = '✓';
-            setTimeout(() => copyBtn.innerHTML = '📋', 1500);
+            copyBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
+            setTimeout(() => copyBtn.innerHTML = '<i class="fa-solid fa-clipboard"></i>', 1500);
         };
         pre.appendChild(copyBtn);
     });
@@ -1931,7 +1931,7 @@ function formatMarkdown(content) {
 
 // Navigation
 function previousLesson() {
-    // âš¡ Bolt Optimization: O(1) retrieval using cached indices
+    // ⚡ Bolt Optimization: O(1) retrieval using cached indices
     // Impact: Replaces O(N) lookup, making navigation instantly responsive
     if (state.currentLessonIndex === -1 || state.currentModuleIndex === -1) return;
 
@@ -1956,7 +1956,7 @@ function previousLesson() {
 }
 
 function nextLesson() {
-    // âš¡ Bolt Optimization: O(1) retrieval using cached indices
+    // ⚡ Bolt Optimization: O(1) retrieval using cached indices
     // Impact: Replaces O(N) lookup, making navigation instantly responsive
     if (state.currentLessonIndex === -1 || state.currentModuleIndex === -1) return;
 
@@ -2019,12 +2019,12 @@ function updateCompleteButton() {
     if (isCompleted) {
         btn.classList.add('completed');
         btn.classList.remove('outlined');
-        icon.textContent = 'âœ“';
+        icon.innerHTML = '<i class="fa-solid fa-check"></i>';
         text.textContent = 'Completed';
     } else {
         btn.classList.remove('completed');
         btn.classList.add('outlined');
-        icon.textContent = 'â—‹';
+        icon.innerHTML = '<i class="fa-regular fa-circle"></i>';
         text.textContent = 'Mark Complete';
     }
 }

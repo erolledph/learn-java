@@ -65,15 +65,15 @@ class GroqService {
     
     getRedirectionMessage() {
         const redirections = [
-            "I'm Byte, your Java tutor! 🧐 I specialize in teaching Java programming. What Java concept would you like to learn about?",
+            "I'm Byte, your Java tutor! <i class='fa-solid fa-magnifying-glass'></i> I specialize in teaching Java programming. What Java concept would you like to learn about?",
             
-            "Java is my thing! 💻 I can help you understand Java concepts like variables, loops, classes, and more. What would you like to explore?",
+            "Java is my thing! <i class='fa-solid fa-laptop-code'></i> I can help you understand Java concepts like variables, loops, classes, and more. What would you like to explore?",
             
-            "My expertise is Java programming! 🎯 Whether it's data types, methods, or OOP concepts, I'm here to help. What Java topic interests you?",
+            "My expertise is Java programming! <i class='fa-solid fa-bullseye'></i> Whether it's data types, methods, or OOP concepts, I'm here to help. What Java topic interests you?",
             
-            "I'm focused on teaching Java! ☕ Let me help you with Java syntax, collections, exception handling, or any other Java topic. What would you like to learn?",
+            "I'm focused on teaching Java! <i class='fa-solid fa-mug-hot'></i> Let me help you with Java syntax, collections, exception handling, or any other Java topic. What would you like to learn?",
             
-            "As your Java tutor, I'm here to explain Java concepts! 🚀 From basic 'Hello World' to advanced topics like threading, just let me know what you need!"
+            "As your Java tutor, I'm here to explain Java concepts! <i class='fa-solid fa-rocket'></i> From basic 'Hello World' to advanced topics like threading, just let me know what you need!"
         ];
         
         return redirections[Math.floor(Math.random() * redirections.length)];
@@ -151,7 +151,7 @@ class GroqService {
             if (error.message.includes('Rate limit') || error.message.includes('rate limit')) {
                 return {
                     error: true,
-                    message: `⏳ Rate limit reached! You've used your daily token limit. 
+                    message: `<i class="fa-solid fa-hourglass-half"></i> Rate limit reached! You've used your daily token limit.
 
 Please wait a few minutes and try again, or:
 - Get a free API key at https://console.groq.com/keys
