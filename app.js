@@ -527,6 +527,12 @@ function initializeResizePanels() {
     let startSize = 0;
     let isMobile = window.innerWidth <= 768;
     
+    // Cache variables for performance
+    let cachedParentRect = null;
+    let cachedParentWidth = 0;
+    let cachedEditorRect = null;
+    let rafId = null;
+
     // Check if mobile on resize
     window.addEventListener('resize', function() {
         isMobile = window.innerWidth <= 768;
@@ -555,6 +561,8 @@ function initializeResizePanels() {
         currentResizer = 'v';
         startPos = e.clientX;
         startSize = isMobile ? lessonSection.offsetHeight : lessonSection.offsetWidth;
+        cachedParentRect = editorSection.parentElement.getBoundingClientRect();
+        cachedParentWidth = editorSection.parentElement.offsetWidth;
         document.body.style.cursor = isMobile ? 'row-resize' : 'col-resize';
         document.body.style.userSelect = 'none';
     });
@@ -564,10 +572,11 @@ function initializeResizePanels() {
         e.preventDefault();
         currentResizer = 'v';
         const touch = e.touches[0];
+        cachedParentRect = editorSection.parentElement.getBoundingClientRect();
+        cachedParentWidth = editorSection.parentElement.offsetWidth;
         if (isMobile) {
             // For mobile, get position relative to content-area
-            const containerRect = editorSection.parentElement.getBoundingClientRect();
-            startPos = touch.clientY - containerRect.top;
+            startPos = touch.clientY - cachedParentRect.top;
             startSize = lessonSection.offsetHeight;
         } else {
             startPos = touch.clientX;
@@ -581,6 +590,7 @@ function initializeResizePanels() {
         currentResizer = 'h';
         startPos = e.clientY;
         startSize = outputPanel.offsetHeight;
+        cachedEditorRect = editorSection.getBoundingClientRect();
         document.body.style.cursor = 'row-resize';
         document.body.style.userSelect = 'none';
     });
@@ -591,42 +601,57 @@ function initializeResizePanels() {
         currentResizer = 'h';
         startPos = e.touches[0].clientY;
         startSize = outputPanel.offsetHeight;
+        cachedEditorRect = editorSection.getBoundingClientRect();
     }, { passive: false });
     
+    let latestX = 0;
+    let latestY = 0;
+
     // Move handler (mouse)
     document.addEventListener('mousemove', function(e) {
         if (!currentResizer) return;
-        handleResize(e.clientX, e.clientY);
+        latestX = e.clientX;
+        latestY = e.clientY;
+        if (!rafId) {
+            rafId = requestAnimationFrame(() => {
+                handleResize(latestX, latestY);
+                rafId = null;
+            });
+        }
     });
     
     // Move handler (touch)
     document.addEventListener('touchmove', function(e) {
         if (!currentResizer) return;
         e.preventDefault();
-        handleResize(e.touches[0].clientX, e.touches[0].clientY);
+        latestX = e.touches[0].clientX;
+        latestY = e.touches[0].clientY;
+        if (!rafId) {
+            rafId = requestAnimationFrame(() => {
+                handleResize(latestX, latestY);
+                rafId = null;
+            });
+        }
     }, { passive: false });
     
     function handleResize(clientX, clientY) {
         if (currentResizer === 'v') {
             if (isMobile) {
                 // Mobile: resize height (lesson vs editor stacked vertically)
-                const containerRect = editorSection.parentElement.getBoundingClientRect();
-                const currentPos = clientY - containerRect.top;
+                const currentPos = clientY - cachedParentRect.top;
                 const diff = currentPos - startPos;
-                const newHeight = Math.max(80, Math.min(containerRect.height * 0.7, startSize + diff));
+                const newHeight = Math.max(80, Math.min(cachedParentRect.height * 0.7, startSize + diff));
                 lessonSection.style.height = newHeight + 'px';
             } else {
                 // Desktop: resize width (lesson vs editor side by side)
-                const containerWidth = editorSection.parentElement.offsetWidth;
                 const diff = clientX - startPos;
-                const newWidth = Math.max(180, Math.min(containerWidth * 0.5, startSize + diff));
+                const newWidth = Math.max(180, Math.min(cachedParentWidth * 0.5, startSize + diff));
                 lessonSection.style.width = newWidth + 'px';
                 lessonSection.style.height = '';
             }
         } else if (currentResizer === 'h') {
-            const containerRect = editorSection.getBoundingClientRect();
             const minOutputHeight = 60;
-            const maxOutputHeight = containerRect.height * 0.7;
+            const maxOutputHeight = cachedEditorRect.height * 0.7;
             
             const diff = clientY - startPos;
             let newOutputHeight = startSize - diff;
@@ -643,11 +668,9 @@ function initializeResizePanels() {
         
         // Only refresh editor on mouse, not on every touchmove
         if (currentResizer === 'h' || !isMobile) {
-            setTimeout(function() {
-                if (state.editor) {
-                    state.editor.refresh();
-                }
-            }, 10);
+            if (state.editor) {
+                state.editor.refresh();
+            }
         }
     }
     
