@@ -2123,8 +2123,10 @@ function loadSettingsValues() {
     const savedTheme = localStorage.getItem('app_theme') || 'dark';
     document.querySelectorAll('.theme-option').forEach(btn => {
         btn.classList.remove('active');
+        btn.setAttribute('aria-checked', 'false');
         if (btn.dataset.theme === savedTheme) {
             btn.classList.add('active');
+            btn.setAttribute('aria-checked', 'true');
         }
     });
     
@@ -2302,8 +2304,12 @@ function initTheme() {
             applyTheme(theme);
             localStorage.setItem('app_theme', theme);
             
-            document.querySelectorAll('.theme-option').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.theme-option').forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-checked', 'false');
+            });
             btn.classList.add('active');
+            btn.setAttribute('aria-checked', 'true');
         });
     });
 }
@@ -2327,8 +2333,10 @@ function loadThemeFromSettings() {
     
     document.querySelectorAll('.theme-option').forEach(btn => {
         btn.classList.remove('active');
+        btn.setAttribute('aria-checked', 'false');
         if (btn.dataset.theme === savedTheme) {
             btn.classList.add('active');
+            btn.setAttribute('aria-checked', 'true');
         }
     });
     
