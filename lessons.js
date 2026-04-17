@@ -11,7 +11,7 @@ const JAVA_CURRICULUM = {
         {
             id: "getting-started",
             title: "Getting Started",
-            icon: "🚀",
+            icon: "<i class='fa-solid fa-rocket'></i>",
             lessons: [
                 {
                     id: "intro",
@@ -118,7 +118,7 @@ const JAVA_CURRICULUM = {
         {
             id: "variables-datatypes",
             title: "Variables & Data Types",
-            icon: "📦",
+            icon: "<i class='fa-solid fa-box'></i>",
             lessons: [
                 {
                     id: "variables",
@@ -423,7 +423,7 @@ const JAVA_CURRICULUM = {
         {
             id: "operators-casting",
             title: "Operators & Casting",
-            icon: "🔢",
+            icon: "<i class='fa-solid fa-1'></i>",
             lessons: [
                 {
                     id: "type-casting",
@@ -468,7 +468,7 @@ const JAVA_CURRICULUM = {
         {
             id: "control-flow",
             title: "Control Flow",
-            icon: "🔀",
+            icon: "<i class='fa-solid fa-shuffle'></i>",
             lessons: [
                 {
                     id: "operators",
@@ -1260,7 +1260,7 @@ const JAVA_CURRICULUM = {
         {
             id: "arrays",
             title: "Arrays",
-            icon: "📋",
+            icon: "<i class='fa-solid fa-list'></i>",
             lessons: [
                 {
                     id: "arrays",
@@ -1612,7 +1612,7 @@ const JAVA_CURRICULUM = {
         {
             id: "methods",
             title: "Methods",
-            icon: "⚙️",
+            icon: "<i class='fa-solid fa-gear'></i>",
             lessons: [
                 {
                     id: "methods",
@@ -1737,7 +1737,7 @@ const JAVA_CURRICULUM = {
         {
             id: "oop",
             title: "Object-Oriented Programming",
-            icon: "🏗️",
+            icon: "<i class='fa-solid fa-building'></i>",
             lessons: [
                 {
                     id: "oop-concepts",
@@ -2176,7 +2176,7 @@ public class Main {
         {
             id: "advanced",
             title: "Advanced Topics",
-            icon: "📚",
+            icon: "<i class='fa-solid fa-book'></i>",
             lessons: [
                 {
                     id: "scope",

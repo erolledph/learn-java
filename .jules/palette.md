@@ -1,0 +1,4 @@
+
+## 2024-05-18 - Replacing emojis with FontAwesome icons
+**Learning:** Emojis can render inconsistently across different operating systems and browsers, sometimes breaking or appearing with unintended styles. Using an icon library like FontAwesome provides consistent vector-based rendering. When modifying JS code that populates HTML with icons, it's essential to check if `.textContent` is used and change it to `.innerHTML` if inserting icon markup. Also single quotes within JS string templates can be cleaner to avoid double quote escaping issues.
+**Action:** When updating elements containing icons dynamically via JS, systematically check and replace `textContent` assignments with `innerHTML` to ensure the HTML tags render correctly. Ensure single quotes are used correctly for class attributes inside JS backticks or double-quoted strings.

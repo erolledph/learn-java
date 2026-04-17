@@ -925,7 +925,7 @@ if (content.description) {
                 <span class="btn-text">Previous</span>
             </button>
             <button class="lesson-complete-btn outlined" id="markComplete" data-action="toggle-complete" onclick="toggleLessonComplete()">
-                <span class="complete-icon">â—‹</span>
+                <span class="complete-icon"><i class="fa-regular fa-circle"></i></span>
                 <span class="complete-text">Mark Complete</span>
             </button>
             <button class="nav-btn" id="nextLessonBtn" onclick="nextLesson()">
@@ -1276,7 +1276,7 @@ function renderSidebar(type) {
                 <div class="module-header ${isExpanded ? 'expanded' : ''}" data-module="${module.id}">
                     <span class="module-icon">${module.icon}</span>
                     <span class="module-title">${module.title}</span>
-                    <span class="module-arrow">â–¶</span>
+                    <span class="module-arrow"><i class="fa-solid fa-caret-right"></i></span>
                 </div>
                 <div class="lesson-list">
             `;
@@ -1289,7 +1289,7 @@ function renderSidebar(type) {
                     <div class="lesson-item ${isCompleted ? 'completed' : ''} ${isActive ? 'active' : ''}" 
                          data-lesson-id="${lesson.id}" 
                          data-module-id="${module.id}">
-                        <span class="lesson-status">${isCompleted ? 'âœ“' : 'â—‹'}</span>
+                        <span class="lesson-status">${isCompleted ? '<i class="fa-solid fa-check"></i>' : '<i class="fa-regular fa-circle"></i>'}</span>
                         <span class="lesson-title">${lesson.title}</span>
                     </div>
                 `;
@@ -1330,7 +1330,7 @@ function renderSidebar(type) {
             html += `
                 <div class="exercise-item ${isCompleted ? 'completed' : ''}" 
                      data-exercise-id="${exercise.id}">
-                    <span class="exercise-icon">ðŸ’»</span>
+                    <span class="exercise-icon"><i class="fa-solid fa-laptop-code"></i></span>
                     <div class="exercise-info">
                         <span class="exercise-title">${exercise.title}</span>
                         <span class="exercise-difficulty ${exercise.difficulty}">${exercise.difficulty}</span>
@@ -1824,13 +1824,13 @@ function attachCopyButtons(messageDiv) {
         pre.style.position = 'relative';
         const copyBtn = document.createElement('button');
         copyBtn.className = 'copy-code-btn';
-        copyBtn.innerHTML = '📋';
+        copyBtn.innerHTML = '<i class="fa-solid fa-clipboard"></i>';
         copyBtn.title = 'Copy code';
         copyBtn.onclick = () => {
             const code = pre.querySelector('code')?.textContent || pre.textContent;
             navigator.clipboard.writeText(code);
-            copyBtn.innerHTML = '✓';
-            setTimeout(() => copyBtn.innerHTML = '📋', 1500);
+            copyBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
+            setTimeout(() => copyBtn.innerHTML = '<i class="fa-solid fa-clipboard"></i>', 1500);
         };
         pre.appendChild(copyBtn);
     });
@@ -2019,12 +2019,12 @@ function updateCompleteButton() {
     if (isCompleted) {
         btn.classList.add('completed');
         btn.classList.remove('outlined');
-        icon.textContent = 'âœ“';
+        icon.innerHTML = '<i class="fa-solid fa-check"></i>';
         text.textContent = 'Completed';
     } else {
         btn.classList.remove('completed');
         btn.classList.add('outlined');
-        icon.textContent = 'â—‹';
+        icon.innerHTML = '<i class="fa-regular fa-circle"></i>';
         text.textContent = 'Mark Complete';
     }
 }
