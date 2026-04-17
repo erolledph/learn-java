@@ -151,7 +151,7 @@ class GroqService {
             if (error.message.includes('Rate limit') || error.message.includes('rate limit')) {
                 return {
                     error: true,
-                    message: `⏳ Rate limit reached! You've used your daily token limit. 
+                    message: `<i class="fa-solid fa-hourglass-half"></i> Rate limit reached! You've used your daily token limit.
 
 Please wait a few minutes and try again, or:
 - Get a free API key at https://console.groq.com/keys
