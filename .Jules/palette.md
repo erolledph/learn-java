@@ -10,3 +10,6 @@
 ## 2024-04-13 - Chat Input Disabled State Pattern
 **Learning:** During async operations, ensuring elements like textareas and submit buttons are explicitly disabled enhances accessibility by providing clear visual feedback via `cursor: not-allowed` and reduced opacity, and restoring `focus()` immediately afterwards keeps keyboard navigation seamless.
 **Action:** Always apply `:disabled` styles alongside element-level disabling and explicit refocusing for all async inputs to maintain smooth user experiences.
+## 2026-04-17 - Radiogroup Accessibility Pattern
+**Learning:** When using custom UI elements for mutually exclusive selection groups (like theme options), simply relying on visual classes (like `.active`) is not accessible. We must use `role="radiogroup"` on the container, `role="radio"` on the options, and dynamically update `aria-checked` to convey state changes to screen readers.
+**Action:** Always wrap custom mutually exclusive selection buttons with a `role="radiogroup"` and apply `role="radio"` along with dynamic `aria-checked` states to individual options.

@@ -361,17 +361,17 @@
                 <div class="setting-group">
                     <h3>Theme</h3>
                     <div class="setting-item">
-                        <label>App Theme</label>
-                        <div class="theme-selector">
-                            <button class="theme-option active" data-theme="dark" title="Dark Theme">
+                        <label id="app-theme-label">App Theme</label>
+                        <div class="theme-selector" role="radiogroup" aria-labelledby="app-theme-label">
+                            <button class="theme-option active" data-theme="dark" title="Dark Theme" role="radio" aria-checked="true">
                                 <span class="theme-preview dark"></span>
                                 <span class="theme-label">Dark</span>
                             </button>
-                            <button class="theme-option" data-theme="light" title="Light Theme">
+                            <button class="theme-option" data-theme="light" title="Light Theme" role="radio" aria-checked="false">
                                 <span class="theme-preview light"></span>
                                 <span class="theme-label">Light</span>
                             </button>
-                            <button class="theme-option" data-theme="night" title="Night/Amber Theme">
+                            <button class="theme-option" data-theme="night" title="Night/Amber Theme" role="radio" aria-checked="false">
                                 <span class="theme-preview night"></span>
                                 <span class="theme-label">Night</span>
                             </button>
