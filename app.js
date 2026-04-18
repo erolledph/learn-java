@@ -54,7 +54,7 @@ const elements = {
 const teachingPath = [
     {
         topic: "Welcome",
-        message: `Hi! I'm Byte, your Java tutor! <i class="fa-solid fa-mug-hot"></i>
+        message: `Hi! I'm Byte, your Java tutor! 👋
 
 I'll guide you through learning Java step by step. Let's start with the basics!
 
