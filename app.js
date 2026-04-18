@@ -1781,7 +1781,7 @@ async function sendChatMessage() {
         if (sendBtn) sendBtn.disabled = false;
 
         if (response.error) {
-            const errorMessage = `<i class="fa-solid fa-robot"></i> Oops! I couldn't get a response.\n\nPlease check your internet connection or API key, then try again.`;
+            const errorMessage = `🧐 Oops! I couldn't get a response.\n\nPlease check your internet connection or API key, then try again.`;
             console.error('Groq service error:', response.message);
             addChatMessage(errorMessage, 'bot', true);
         } else {
@@ -1797,7 +1797,7 @@ async function sendChatMessage() {
             elements.chatInput.focus();
         }
         if (elements.sendMessageBtn) elements.sendMessageBtn.disabled = false;
-        addChatMessage(`<i class="fa-solid fa-face-frown-open"></i> I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot', true);
+        addChatMessage(`😢 I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot', true);
     } finally {
         if (elements.chatInput) {
             elements.chatInput.disabled = false;
