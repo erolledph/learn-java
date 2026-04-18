@@ -959,6 +959,8 @@ function simulateQuickResponse(userPrompt, botResponse) {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
 
+        addChatMessage(botResponse, 'bot', true);
+
         if (elements.chatInput) {
             elements.chatInput.disabled = false;
             elements.chatInput.placeholder = "Ask Byte about your code...";
@@ -1698,6 +1700,20 @@ async function sendChatMessage() {
     
     // Check for teaching mode navigation commands
     const lowerMsg = message.toLowerCase();
+
+    // Fuzzy match for common greetings
+    const greetings = ['hi', 'hello', 'hey', 'hi there', 'hello byte', 'hey byte', 'hiya', 'howdy'];
+    if (greetings.includes(lowerMsg.replace(/[^a-z ]/g, '').trim())) {
+        state.isAITyping = true;
+        elements.typingIndicator.classList.add('visible');
+
+        setTimeout(() => {
+            state.isAITyping = false;
+            elements.typingIndicator.classList.remove('visible');
+            addChatMessage("Hi there! I'm Byte, your Java tutor. How can I help you with your code today?", 'bot', true);
+        }, 600);
+        return;
+    }
     if (state.isTeachingMode) {
         if (lowerMsg === 'yes' || lowerMsg === 'lets go' || lowerMsg === 'let\'s go' || lowerMsg === 'ready' || lowerMsg === 'start' || lowerMsg === 'go') {
             nextTeachingStep();
