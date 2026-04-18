@@ -54,7 +54,7 @@ const elements = {
 const teachingPath = [
     {
         topic: "Welcome",
-        message: `Hi! I'm Byte, your Java tutor! <i class="fa-solid fa-mug-hot"></i>
+        message: `Hi! I'm Byte, your Java tutor! 👋
 
 I'll guide you through learning Java step by step. Let's start with the basics!
 
@@ -959,6 +959,8 @@ function simulateQuickResponse(userPrompt, botResponse) {
         state.isAITyping = false;
         elements.typingIndicator.classList.remove('visible');
 
+        addChatMessage(botResponse, 'bot', true);
+
         if (elements.chatInput) {
             elements.chatInput.disabled = false;
             elements.chatInput.placeholder = "Ask Byte about your code...";
@@ -1698,6 +1700,20 @@ async function sendChatMessage() {
     
     // Check for teaching mode navigation commands
     const lowerMsg = message.toLowerCase();
+
+    // Fuzzy match for common greetings
+    const greetings = ['hi', 'hello', 'hey', 'hi there', 'hello byte', 'hey byte', 'hiya', 'howdy'];
+    if (greetings.includes(lowerMsg.replace(/[^a-z ]/g, '').trim())) {
+        state.isAITyping = true;
+        elements.typingIndicator.classList.add('visible');
+
+        setTimeout(() => {
+            state.isAITyping = false;
+            elements.typingIndicator.classList.remove('visible');
+            addChatMessage("Hi there! I'm Byte, your Java tutor. How can I help you with your code today?", 'bot', true);
+        }, 600);
+        return;
+    }
     if (state.isTeachingMode) {
         if (lowerMsg === 'yes' || lowerMsg === 'lets go' || lowerMsg === 'let\'s go' || lowerMsg === 'ready' || lowerMsg === 'start' || lowerMsg === 'go') {
             nextTeachingStep();
@@ -1765,7 +1781,7 @@ async function sendChatMessage() {
         if (sendBtn) sendBtn.disabled = false;
 
         if (response.error) {
-            const errorMessage = `<i class="fa-solid fa-robot"></i> Oops! I couldn't get a response.\n\nPlease check your internet connection or API key, then try again.`;
+            const errorMessage = `🧐 Oops! I couldn't get a response.\n\nPlease check your internet connection or API key, then try again.`;
             console.error('Groq service error:', response.message);
             addChatMessage(errorMessage, 'bot', true);
         } else {
@@ -1781,7 +1797,7 @@ async function sendChatMessage() {
             elements.chatInput.focus();
         }
         if (elements.sendMessageBtn) elements.sendMessageBtn.disabled = false;
-        addChatMessage(`<i class="fa-solid fa-face-frown-open"></i> I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot', true);
+        addChatMessage(`😢 I couldn't connect to the AI right now. Please check your internet or your Groq API key and try again.\n\nGet a key: https://console.groq.com/keys`, 'bot', true);
     } finally {
         if (elements.chatInput) {
             elements.chatInput.disabled = false;
