@@ -2,9 +2,23 @@
 // Java Learning Hub - Main Application
 // ============================================
 
-// Just escape basic HTML - snippet already contains rendered HTML
 function highlightJava(code) {
-    return code;
+    if (code === null || code === "") {
+        return "";
+    }
+
+    // Simple syntax highlighting regex rules
+    const rules = [
+        { regex: /\b(public|private|protected|class|static|void|int|double|String|boolean|if|else|for|while|return|new)\b/g, class: 'keyword' },
+        { regex: /\b(true|false|null)\b/g, class: 'boolean' }
+    ];
+
+    let highlighted = code;
+    rules.forEach(rule => {
+        highlighted = highlighted.replace(rule.regex, `<span class="${rule.class}">$1</span>`);
+    });
+
+    return highlighted;
 }
 
 // Global state
@@ -2370,4 +2384,9 @@ function loadThemeFromSettings() {
     });
     
     applyTheme(savedTheme);
+}
+
+// Export for testing
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { highlightJava };
 }
